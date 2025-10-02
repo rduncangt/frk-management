@@ -1,0 +1,110 @@
+\documentclass[10pt]{article}
+\tracingonline=1
+
+\usepackage{inconsolata}
+\usepackage[paper=letterpaper,left=0.1875in,right=0.1875in,top=0.5in,bottom=0.5in]{geometry}
+\usepackage[most]{tcolorbox}
+\usepackage{multicol}
+\usepackage{csvsimple}
+
+% formatted for Avery 5160 labels - 1" x 2-5/8", 3 columns x 10 rows
+\setlength{\textheight}{10in} % exactly 10 rows of 1.0in labels
+\pagestyle{empty}
+
+% column gap 0.125"
+\setlength{\columnsep}{0.125in}
+\raggedcolumns
+\setlength{\parskip}{0pt} % no paragraph glue
+\setlength{\parindent}{0pt}
+
+% saw tag background colors
+\definecolor{135}{HTML}{AAAA00}
+\definecolor{261}{HTML}{FFA500}
+\definecolor{462}{HTML}{DD8888}
+
+% supervision tag background colors
+\definecolor{S2}{HTML}{DD8888}
+\definecolor{AS1}{HTML}{ADD8E6}
+\definecolor{S1}{HTML}{88DD88}
+
+% latex3 programming layer
+\ExplSyntaxOn
+\NewDocumentCommand{\sawtag}{m}{
+    % pass the argument to the :V variant for expansion
+    \frk_sawtag_print:V #1
+}
+
+% Define the base function for printing. It takes a braced argument.
+\cs_set_protected:Npn \frk_sawtag_print:n #1
+  {
+    % \tl_show:N #1
+    \seq_set_split:Nnn \l_tmpa_seq { , } { #1 }
+    \seq_map_inline:Nn \l_tmpa_seq
+      {
+        \tl_set:Nn \l_tmpa_tl { ##1 }
+        \tl_trim_spaces:N \l_tmpa_tl
+        \tl_if_blank:VTF \l_tmpa_tl { } { \frk_sawtag_one:V \l_tmpa_tl \kern1pt }
+      }
+  }
+
+% generate the :V variant from the base :n function
+\cs_generate_variant:Nn \frk_sawtag_print:n { V }
+
+% define the base function for a single tag
+\cs_new_protected:Npn \frk_sawtag_one:n #1
+  {
+    \begingroup
+      \colorlet{frk_tmp_col}{#1}%
+      \begin{tcolorbox}[enhanced, arc=6pt, boxrule=0pt, colback=frk_tmp_col,
+        width=1.0cm, height=0.35cm, boxsep=0pt,
+        left=1pt, right=1pt, top=0.5pt, bottom=0.5pt,
+        halign=center, valign=center, nobeforeafter]
+        \scriptsize\bfseries #1
+      \end{tcolorbox}%
+    \endgroup
+  }
+
+% generate the :V variant from the base :n function
+\cs_generate_variant:Nn \frk_sawtag_one:n { V }
+\ExplSyntaxOff
+
+\newcommand{\supertag}[1]{%
+  \begingroup
+    \colorlet{frk_tmp_col}{#1}%
+    \begin{tcolorbox}[enhanced, sharp corners, boxrule=0pt, colback=frk_tmp_col,
+      width=1.0cm, height=0.35cm, boxsep=0pt, left=1pt, right=1pt, top=0.5pt, bottom=0.5pt,
+      halign=center, valign=center, nobeforeafter]
+        \scriptsize\bfseries #1
+    \end{tcolorbox}%
+  \endgroup
+}
+
+\NewDocumentCommand{\frklabel}{m m m m m m m}{%
+  \begin{tcolorbox}[
+    width=2.625in, height=1.0in,
+    colframe=white, colback=white,
+    boxrule=0.3pt, sharp corners,
+    boxsep=2pt, left=2pt, right=2pt, top=2pt, bottom=2pt,
+    valign=center,
+    nobeforeafter, before skip=0pt, after skip=0pt]
+    \noindent
+    \makebox[\linewidth]{\texttt{\bfseries\MakeUppercase{#2}}\hfill qty~#3}\par
+    \vspace{2pt}
+    \makebox[\linewidth]{\texttt{\textbf{#1}}\hfill\sawtag{#4}}\par
+    \vspace{2pt}
+    \makebox[\linewidth]{\texttt{\textbf{#6:#7}}\hfill\supertag{#5}}
+  \end{tcolorbox}%
+}
+
+\begin{document}
+\begin{multicols}{3}
+
+  % TSV file columns:
+  % PartNumber  PartName  Count Saw Supervision Bin Section
+  % read TSV file of FRK items and generate one label per line:
+  \csvreader[separator=tab]{frk_items.tsv}{}{%
+    \frklabel{\csvcoli}{\csvcolii}{\csvcoliii}{\csvcoliv}{\csvcolv}{\csvcolvi}{\csvcolvii}%
+  }
+
+\end{multicols}
+\end{document}
