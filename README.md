@@ -81,6 +81,6 @@ pdflatex frk-parts-boxmap.tex        # Box map
 
 ### Output Files
 
-+ `frk-parts-labels-avery.pdf` - Avery-format labels for all parts in the TSV file
-+ `frk-parts-inventory.pdf`    - Single-page inventory checklist
-+ `frk-parts-boxmap.pdf`       - Toolbox bin layout (currently with hard-coded labels)
++ [`frk-parts-labels-avery.pdf`](frk-parts-labels-avery.pdf) - Avery-format labels for all parts in the TSV file
++ [`frk-parts-inventory.pdf`](frk-parts-inventory.pdf)    - Single-page inventory checklist
++ [`frk-parts-boxmap.pdf`](frk-parts-boxmap.pdf)       - Toolbox bin layout (currently with hard-coded labels)
