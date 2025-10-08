@@ -1,23 +1,43 @@
-# Field Repair Kit Inventory Management
+# Field Repair Kit Inventory Management: Documents and Materials
 
-Generate PDF documents for managing the inventory of a Saw Kit Field Repair Kit (FRK).
+## Materials
 
-## Overview
+These are the materials purchased and used for configuring the FRK:
 
-This repository contains LaTeX source files that produce three types of printable documents:
++ Husky tool box here?
 
-- **Labels**: Part labels for physical organization (Avery format)
-- **Inventory Sheet**: Single-page inventory checklist
-- **Box Map**: Toolbox bin layout diagram
++ 2"x3" plastic resealable bags
+  + each FRK uses approximately 35
+  + $4.99 per 100
+  + <https://www.amazon.com/dp/B0CMX4BGPT>
 
-## Requirements
++ 4"x6" plastic resealable bags
+  + each FRK uses approximately 5
+  + $3.32 per 100
+  + <https://www.walmart.com/ip/Hello-Hobby-4-x6-Re-closable-Plastic-Poly-Bags-Jewelry-and-Craft-Storage-Unisex-Gift-bag-Length-6-inches/5323687689>
 
-- A LaTeX distribution (e.g., TeX Live or MiKTeX)
-- `frk_items.tsv` data file in the repository root
++ Avery Repositionable Address Labels, Repositionable Adhesive, 1" x 2-5/8", 750 Labels (58160)
+  + $15 per 750 labels
+  + <https://www.walmart.com/ip/Avery-750-Pack-White-1-x-2-5-8-Repositionable-Address-Labels-for-Inkjet-Printers/14295717>
 
-## Data Format
+## Documents
 
-All LaTeX files expect a TSV file named `frk_items.tsv` with the following columns:
+This section concerns itself with generation of those PDF documents used in managing the inventory of an individual Field Repair Kit (FRK).
+
+Provided in the repository are the LaTeX source files that produce three types of printable documents:
+
++ **Labels**: Part labels for physical organization (Avery format)
++ **Inventory Sheet**: Single-page inventory checklist
++ **Box Map**: Toolbox bin layout diagram
+
+### Requirements
+
++ A LaTeX distribution (e.g., TeX Live or MiKTeX)
++ [`frk_items.tsv`](frk_items.tsv) data file in the repository root
+
+### Data Format
+
+All LaTeX files expect a TSV file named [`frk_items.tsv`](frk_items.tsv) with the following columns:
 
 | Part Number | Part Name | Count | Saw | Supervision | Bin | Section |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -25,9 +45,12 @@ All LaTeX files expect a TSV file named `frk_items.tsv` with the following colum
 
 You must generate this data file from your source of truth before building documents.
 
-## Building Documents
+### Building Documents
 
-### Using Make
+One can use `make` or `pdflatex` to produce the documents. Each of these should produce the same results.
+All document producing calls to `make` simply call `pdflatex` underneath with opinionated options.
+
+#### Using Make
 
 ```bash
 make all        # Generate all PDFs
@@ -37,7 +60,7 @@ make boxmap     # Generate box map only
 make clean      # Remove generated files
 ```
 
-### Using `pdflatex` directly
+#### Using `pdflatex` directly
 
 ```bash
 pdflatex frk-parts-labels-avery.tex  # Labels
@@ -45,8 +68,8 @@ pdflatex frk-parts-inventory.tex     # Inventory sheet
 pdflatex frk-parts-boxmap.tex        # Box map
 ```
 
-## Output Files
+### Output Files
 
-- `frk-parts-labels-avery.pdf` - Avery-format labels for all parts in the TSV file
-- `frk-parts-inventory.pdf`    - Single-page inventory checklist
-- `frk-parts-boxmap.pdf`       - Toolbox bin layout (currently with hard-coded labels)
++ `frk-parts-labels-avery.pdf` - Avery-format labels for all parts in the TSV file
++ `frk-parts-inventory.pdf`    - Single-page inventory checklist
++ `frk-parts-boxmap.pdf`       - Toolbox bin layout (currently with hard-coded labels)
