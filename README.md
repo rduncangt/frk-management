@@ -23,13 +23,13 @@ These are the materials purchased and used for configuring the FRK:
 ### Photos
 
 + FRK parts in bags with labels:
-  + <img src="frk-parts-bagged-with-labels.png" alt="FRK parts in bags with labels" width="50%" height="auto">
+  + <img src="frk-parts-bagged-labeled.jpg" alt="FRK parts in bags with labels" width="50%" height="auto">
 
 + FRK toolbox open areas populated:
-  + <img src="frk-toolbox-open-areas-populated.png" alt="FRK toolbox open areas populated" width="50%" height="auto">
+  + <img src="frk-toolbox-open-areas-populated.jpg" alt="FRK toolbox open areas populated" width="50%" height="auto">
 
 + FRK toolbox populated:
-  + <img src="frk-toolbox-populated.png" alt="FRK toolbox populated" width="50%" height="auto">
+  + <img src="frk-toolbox-populated.jpg" alt="FRK toolbox populated" width="50%" height="auto">
 
 ## Documents
 
