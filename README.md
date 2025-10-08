@@ -68,7 +68,7 @@ make all        # Generate all PDFs
 make labels     # Generate labels only
 make inventory  # Generate inventory sheet only
 make boxmap     # Generate box map only
-make clean      # Remove generated files
+make clean      # Remove *.log and *.aux files
 ```
 
 #### Using `pdflatex` directly
