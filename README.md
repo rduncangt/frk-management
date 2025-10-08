@@ -20,6 +20,17 @@ These are the materials purchased and used for configuring the FRK:
   + $15 per 750 labels
   + <https://www.walmart.com/ip/Avery-750-Pack-White-1-x-2-5-8-Repositionable-Address-Labels-for-Inkjet-Printers/14295717>
 
+### Photos
+
++ FRK parts in bags with labels:
+  + <img src="frk-parts-bagged-with-labels.png" alt="FRK parts in bags with labels" width="50%" height="auto">
+
++ FRK toolbox open areas populated:
+  + <img src="frk-toolbox-open-areas-populated.png" alt="FRK toolbox open areas populated" width="50%" height="auto">
+
++ FRK toolbox populated:
+  + <img src="frk-toolbox-populated.png" alt="FRK toolbox populated" width="50%" height="auto">
+
 ## Documents
 
 This section concerns itself with generation of those PDF documents used in managing the inventory of an individual Field Repair Kit (FRK).
