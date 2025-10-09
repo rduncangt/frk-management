@@ -39,7 +39,8 @@
     \csvreader[
         separator=tab,
         no head,
-        late after line=\\\hline, % ensures the line ends with a new row command
+        before line=\\[0.01cm], % ensures the line ends with a new row command
+        late after line=\\[0.1cm]\hline, % ensures the line ends with a new row command
         late after last line={}
     ]{frk_items.tsv}{1=\sku, 2=\partname, 3=\count,4=\saws, 6=\bin, 7=\category}
     {
