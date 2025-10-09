@@ -102,7 +102,10 @@
   % TSV file columns:
   % PartNumber  PartName  Count Saw Supervision Bin Section
   % read TSV file of FRK items and generate one label per line:
-  \csvreader[separator=tab]{frk_items.tsv}{}{%
+    \csvreader[
+        separator=tab,
+        no head,
+    ]{frk_items.tsv}{}{%
     \frklabel{\csvcoli}{\csvcolii}{\csvcoliii}{\csvcoliv}{\csvcolv}{\csvcolvi}{\csvcolvii}%
   }
 
