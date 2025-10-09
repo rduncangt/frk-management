@@ -1,52 +1,41 @@
-\documentclass[10pt]{article}
-\usepackage{geometry}
+\documentclass{article}
+\usepackage[letterpaper, top=0.75in, bottom=0.5in, left=0.5in, right=0.5in]{geometry}
+\usepackage{longtable}
 \usepackage{booktabs}
-\usepackage[l3]{csvsimple}
-\usepackage{tabularx}
+\usepackage{csvsimple}
 \usepackage{array}
+\usepackage[table]{xcolor}
 \usepackage{fancyhdr}
-
-\geometry{letterpaper, top=0.45in, bottom=0.15in, left=0.25in, right=0.25in}
 
 \setlength{\headheight}{14pt}
 \pagestyle{fancy}
-\lhead{\footnotesize FRK Inventory}
-\rhead{\footnotesize\today} 
-\renewcommand{\headrulewidth}{0.3pt}
+\fancyhf{}
+\lhead{\small FRK Inventory}
+\rhead{\small\today}
+\renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
 
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.75}
+
 \begin{document}
-\pagestyle{fancy}
 
-\begin{tabularx}{\textwidth}{
-    >{\hsize=0.2\hsize}X% bin 
-    >{\hsize=0.6\hsize\raggedleft\arraybackslash}X% count
-    >{\hsize=2.0\hsize}X% partname 
-    >{\hsize=1.0\hsize}X% sku 
-    >{\hsize=0.6\hsize}X% saws 
-    >{\hsize=1.6\hsize}X% category
-    }
-    \toprule
-    \textbf{Bin} & \textbf{Qty/Req} & \textbf{Part Name} & \textbf{SKU} \ & \textbf{Saws} & \textbf{Category} \\
-    \midrule
-    
-    % The core command:
-    % 1. Reads 'data.tsv'
-    % 2. Sets the delimiter to 'tab'
-    % 3. Skips the first line (header)
-    % 4. Defines temporary variables for the needed columns
-    % 5. For each row, prints the content of the variables separated by '&' and ends with '\\'
-    \csvreader[
-        separator=tab,
-        no head,
-        late after line=\\\hline, % ensures the line ends with a new row command
-        late after last line={}
-    ]{frk_items.tsv}{1=\sku, 2=\partname, 3=\count,4=\saws, 6=\bin, 7=\category}
-    {
-        \bin & \count & \partname & \sku & \saws & \category
-    }
+\rowcolors{2}{white}{gray!10}
 
-    % \bottomrule
-\end{tabularx}
+\csvreader[
+ separator=tab,
+ no head,
+ longtable={
+  p{0.07\textwidth}
+  >{\raggedleft\arraybackslash}p{0.10\textwidth}
+  p{0.35\textwidth}
+  p{0.15\textwidth}
+  p{0.09\textwidth}
+  p{0.20\textwidth}
+ },
+ table head={\rowcolor{white}\toprule \textbf{Bin} & \textbf{Qty/Req} & \textbf{Part Name} & \textbf{SKU} & \textbf{Saws} & \textbf{Category} \\ \midrule},
+ late after line=\\,
+ table foot={\bottomrule}
+]{frk_items.tsv}{}{\csvcolvi & \csvcoliii & \csvcolii & \csvcoli & \csvcoliv & \csvcolvii}
 
 \end{document}
