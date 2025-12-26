@@ -1,0 +1,95 @@
+\documentclass[10pt]{article}
+% pdflatex frk-bin-labels-avery.tex  # bin labels
+\tracingonline=1
+
+%%- edit the kit count here: -----------------------------------------------
+% enter the number of copies of each label to print
+\newcommand{\kitcount}{6} % Change this number to set copies for all labels
+%%--------------------------------------------------------------------------
+
+\usepackage{inconsolata}
+\usepackage[paper=letterpaper,left=0.1875in,right=0.1875in,top=0.5in,bottom=0.5in]{geometry}
+\usepackage[most]{tcolorbox}
+\usepackage{multicol}
+\usepackage{csvsimple}
+\usepackage{expl3}
+
+% formatted for Avery 5160 labels - 1" x 2-5/8", 3 columns x 10 rows
+\setlength{\textheight}{10in} % exactly 10 rows of 1.0in labels
+\pagestyle{empty}
+
+% column gap 0.125"
+\setlength{\columnsep}{0.125in}
+\raggedcolumns
+\setlength{\parskip}{0pt} % no paragraph glue
+\setlength{\parindent}{0pt}
+
+% latex3 programming layer
+\ExplSyntaxOn
+% Sequence to track unique Bin IDs
+\seq_new:N \g_frk_printed_bins_seq
+
+\NewDocumentCommand{\checkandprint}{m m}{
+  % 1. Force expansion of the Bin ID macro into a string variable
+  \str_set:Nx \l_tmpa_str { #1 }
+  
+  % 2. Check the string value against the sequence
+  \seq_if_in:NVF \g_frk_printed_bins_seq \l_tmpa_str
+    {
+      % 3. Add the string value to the sequence globally
+      \seq_gput_right:NV \g_frk_printed_bins_seq \l_tmpa_str
+      \int_step_inline:nn { \kitcount }
+        {
+          % 4. Print the label the specified number of times
+          \frkbinlabel{#1}{#2}
+        }
+    }
+}
+
+% FIX: Use the correct kernel functions to generate 'V' (Value) variants
+\prg_generate_conditional_variant:Nnn \seq_if_in:Nn { NV } { F }
+\cs_generate_variant:Nn \seq_gput_right:Nn { NV }
+\ExplSyntaxOff
+
+\NewDocumentCommand{\frkbinlabel}{m m}{%
+  \begin{tcolorbox}[
+    width=2.625in, height=1.0in,
+    colframe=black, colback=white,
+    boxrule=0.3pt, sharp corners,
+    boxsep=2pt, left=2pt, right=2pt, top=2pt, bottom=2pt,
+    valign=center,
+    nobeforeafter, before skip=0pt, after skip=0pt]
+    \centering
+    {\Huge\texttt{\textbf{#1}}}\\[4pt]
+    {\large\texttt{\textbf{#2}}}
+  \end{tcolorbox}%
+}
+
+\begin{document}
+\begin{multicols}{3}
+
+  % TSV file columns:
+  % ----------  --------  ----  --- ----------- --- ------- ---------
+  %          i	      ii	  iii	 iv	          v	 vi	    vii	     viii
+  % ----------  --------  ----  --- ----------- --- ------- ---------
+  % PartNumber	PartName	Count	Saw	Supervision	Bin	Section	Packaging
+  % ----------  --------  ----  --- ----------- --- ------- ---------
+
+  % bin A1 is not currently assigned, so insert needed
+  \ExplSyntaxOn
+  \int_step_inline:nn { \kitcount }
+    {%
+      \frkbinlabel{A1}{}%
+    }%
+  \ExplSyntaxOff
+
+  % read TSV file of FRK items and generate one label per line:
+  \csvreader[
+      separator=tab,
+      no head,
+  ]{frk_items.tsv}{}{%
+    \checkandprint{\csvcolvi}{\csvcolvii}%
+    }%
+
+\end{multicols}
+\end{document}
