@@ -14,14 +14,12 @@
 1121 648 6610	Bumper strip	8	261,462	S1	A7	bumper strips
 1141 656 7700	Chain catcher	3	261	AS1	A8	chain catchers
 1142 656 7700	Chain catcher	3	462	AS1	A8	chain catchers
-0000 955 0802	Collar nut M8x1	6	261	S2	A9	screws and nuts
+0000 995 0803	Collar nut M8	8	261,462	S2	A9	screws and nuts
 9074 477 4438	Pan head self-tapping screw	2	261	S2	A9	screws and nuts
-0000 995 0803	Collar nut M8	2	462	S2	A9	screws and nuts
 9022 341 0960	Spline Screw M5x20	1	462	S2	A9	screws and nuts
 9061 373 0982	Countersunk screw M5x18-10.9	2	462	S2	A9	screws and nuts
 1118 195 3500	Spring	1	135	S2	AA	pawls and springs
-4116 195 7200	Pawl	1	135	S2	AA	pawls and springs
-1125 195 7200	Pawl	4	261,462	S2	AA	pawls and springs
+0000 195 7200	Pawl	5	135,261,462	S2	AA	pawls and springs
 1128 195 3500	Spring	3	261,462	S2	AA	pawls and springs
 1141 160 5500	Tension spring	3	261	S2	B1	chain brake
 1142 160 5500	Tension spring	1	462	S2	B1	chain brake
@@ -44,7 +42,8 @@ MA02 007 1002	Chain tensioner kit	2	261,462	S2	D1	tensioner hardware
 1142 640 3200	Oil pump	1	462	S2	D3	oil pump hardware
 0000 400 7011	Spark plug NGK CMR6H	4	135,462	S1	D4	spark plugs
 0000 400 7000	Spark plug BPMR7A	3	261	S1	D4	spark plugs
-1128 007 1000	Rim sprocket kit 3/8" 7T	2	462	AS1	D5	rim sprocket kits
+1128 007 1001	Rim sprocket kit 3/8" 7T	1	462	AS1	D5	rim sprocket kits
+1141 007 1002	Rim sprocket kit 0.325" 7T	1	261	AS1	D5	rim sprocket kits
 0000 350 0527	Filler cap, mix	1	135	AS1	O1	air filters, filler caps
 0000 350 0529	Filler cap, oil	1	135	AS1	O1	air filters, filler caps
 4180 141 0300	Air filter	1	135	S1	O1	air filters, filler caps
