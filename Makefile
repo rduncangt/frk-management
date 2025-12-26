@@ -26,14 +26,14 @@ all: labels binlabels boxmap inventory
 
 # Target to compile the labels document.
 labels: $(LABELS_PDF)
-$(LABELS_PDF): $(LABELS_SRC)
+$(LABELS_PDF): $(LABELS_SRC) $(DATA_SOURCE)
 	@echo "Compiling labels..."
 	$(PDFLATEX) $(LABELS_SRC)
 	$(PDFLATEX) $(LABELS_SRC)
 
 # Target to compile the bin labels document.
 binlabels: $(BIN_LABELS_PDF)
-$(BIN_LABELS_PDF): $(BIN_LABELS_SRC)
+$(BIN_LABELS_PDF): $(BIN_LABELS_SRC) $(DATA_SOURCE)
 	@echo "Compiling bin labels..."
 	$(PDFLATEX) $(BIN_LABELS_SRC)
 	$(PDFLATEX) $(BIN_LABELS_SRC)
@@ -47,7 +47,7 @@ $(BOXMAP_PDF): $(BOXMAP_SRC)
 
 # Target to compile the inventory document.
 inventory: $(INVENTORY_PDF)
-$(INVENTORY_PDF): $(INVENTORY_SRC)
+$(INVENTORY_PDF): $(INVENTORY_SRC) $(DATA_SOURCE)
 	@echo "Compiling inventory..."
 	$(PDFLATEX) $(INVENTORY_SRC)
 	$(PDFLATEX) $(INVENTORY_SRC)
