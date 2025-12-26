@@ -1,58 +1,58 @@
-9512 933 2260	Needle cage 10x13x10	3	261	AS1	A2	needle cages
-9512 933 2379	Needle cage 10x16x12	1	462	AS1	A2	needle cages
-0000 640 2003	Chain sprocket 3/8"P 7 teeth	1	135	S2	A3	sprockets
-4182 162 8900	Washer	2	135	S2	A3	sprockets
-0000 642 1236	Rim sprocket 0.325" 7T	2	261	AS1	A3	sprockets
-0000 958 1022	Washer Ø 27 mm	10	261	AS1	A4	e-clips and washers
-9460 624 0801	E-clip 8x1.3	12	261,462	AS1	A4	e-clips and washers
-0000 958 1032	Washer Ø 27 mm	1	462	AS1	A4	e-clips and washers
-1141 020 9430	Decompression valve	1	261	S2	A5	decompression valves
-1142 020 9400	Decompression valve	1	462	S2	A5	decompression valves
-1141 656 1501	Guard	1	261	S1	A6	guards
-1142 656 1500	Guard	1	462	S1	A6	guards
-1123 648 6600	Bumper strip	4	135	S1	A7	bumper strips
-1121 648 6610	Bumper strip	8	261,462	S1	A7	bumper strips
-1141 656 7700	Chain catcher	3	261	AS1	A8	chain catchers
-1142 656 7700	Chain catcher	3	462	AS1	A8	chain catchers
-0000 995 0803	Collar nut M8	8	261,462	S2	A9	screws and nuts
-9074 477 4438	Pan head self-tapping screw	2	261	S2	A9	screws and nuts
-9022 341 0960	Spline Screw M5x20	1	462	S2	A9	screws and nuts
-9061 373 0982	Countersunk screw M5x18-10.9	2	462	S2	A9	screws and nuts
-1118 195 3500	Spring	1	135	S2	AA	pawls and springs
-0000 195 7200	Pawl	5	135,261,462	S2	AA	pawls and springs
-1128 195 3500	Spring	3	261,462	S2	AA	pawls and springs
-1141 160 5500	Tension spring	3	261	S2	B1	chain brake
-1142 160 5500	Tension spring	1	462	S2	B1	chain brake
-0000 350 3521	Pickup body	1	135	S2	B2	fuel filters
-0000 350 3518	Pickup body	4	261,462	S2	B2	fuel filters
-4182 660 0700	Chain tightener	2	135	S2	D1	tensioner hardware
-1125 640 1900	Tensioner slide	2	261	S2	D1	tensioner hardware
-1141 664 1030	Inner side plate	2	261	S2	D1	tensioner hardware
-MA02 007 1002	Chain tensioner kit	2	261,462	S2	D1	tensioner hardware
-1128 664 1000	Inner side plate	2	462	S2	D1	tensioner hardware
-4180 160 2000	Clutch	1	135	S2	D2	clutches
-1121 160 2051	Clutch	2	261	S2	D2	clutches
-1142 160 2000	Clutch	1	462	S2	D2	clutches
-4138 640 3200	Oil pump	1	135	S2	D3	oil pump hardware
-1121 640 7111	Worm	3	261	S2	D3	oil pump hardware
-1121 647 3100	Carrier	3	261	S2	D3	oil pump hardware
-1141 640 3200	Oil pump	1	261	S2	D3	oil pump hardware
-1128 640 7112	Worm	1	462	S2	D3	oil pump hardware
-1128 647 2400	Spring	1	462	S2	D3	oil pump hardware
-1142 640 3200	Oil pump	1	462	S2	D3	oil pump hardware
-0000 400 7011	Spark plug NGK CMR6H	4	135,462	S1	D4	spark plugs
-0000 400 7000	Spark plug BPMR7A	3	261	S1	D4	spark plugs
-1128 007 1001	Rim sprocket kit 3/8" 7T	1	462	AS1	D5	rim sprocket kits
-1141 007 1002	Rim sprocket kit 0.325" 7T	1	261	AS1	D5	rim sprocket kits
-0000 350 0527	Filler cap, mix	1	135	AS1	O1	air filters, filler caps
-0000 350 0529	Filler cap, oil	1	135	AS1	O1	air filters, filler caps
-4180 141 0300	Air filter	1	135	S1	O1	air filters, filler caps
-0000 350 0532	Filler cap	1	261	AS1	O1	air filters, filler caps
-0000 350 0537	Oil filler cap	2	261	AS1	O1	air filters, filler caps
-1141 140 4400	Air filter HD2	1	261	S1	O1	air filters, filler caps
-0000 350 0533	Filler cap	3	462	AS1	O1	air filters, filler caps
-1142 140 4402	Air filter HD2	1	462	S1	O1	air filters, filler caps
-4182 190 4001	Rewind starter	1	135	S2	O2	rewind starter assemblies
-1141 080 2104	Fan housing with rewind starter	1	261	S2	O2	rewind starter assemblies
-1142 080 2102	Fan housing with rewind starter	1	462	S2	O2	rewind starter assemblies
-1142 160 5400	Brake band	1	462	AS1	O2	rewind starter assemblies
+9512 933 2260	Needle cage 10x13x10	3	261	AS1	A2	needle cages	2" x 3"
+9512 933 2379	Needle cage 10x16x12	1	462	AS1	A2	needle cages	2" x 3"
+0000 640 2003	Chain sprocket 3/8"P 7 teeth	1	135	S2	A3	sprockets	2" x 3"
+4182 162 8900	Washer	2	135	S2	A3	sprockets	2" x 3"
+0000 642 1236	Rim sprocket 0.325" 7T	2	261	AS1	A3	sprockets	2" x 3"
+0000 958 1022	Washer Ø 27 mm	10	261	AS1	A4	e-clips and washers	2" x 3"
+9460 624 0801	E-clip 8x1.3	12	261,462	AS1	A4	e-clips and washers	2" x 3"
+0000 958 1032	Washer Ø 27 mm	1	462	AS1	A4	e-clips and washers	2" x 3"
+1141 020 9430	Decompression valve	1	261	S2	A5	decompression valves	2" x 3"
+1142 020 9400	Decompression valve	1	462	S2	A5	decompression valves	2" x 3"
+1141 656 1501	Guard	1	261	S1	A6	guards	3" x 4"
+1142 656 1500	Guard	1	462	S1	A6	guards	3" x 4"
+1123 648 6600	Bumper strip	4	135	S1	A7	bumper strips	2" x 3"
+1121 648 6610	Bumper strip	8	261,462	S1	A7	bumper strips	2" x 3"
+1141 656 7700	Chain catcher	3	261	AS1	A8	chain catchers	2" x 3"
+1142 656 7700	Chain catcher	3	462	AS1	A8	chain catchers	2" x 3"
+0000 995 0803	Collar nut M8	8	261,462	S2	A9	screws and nuts	2" x 3"
+9074 477 4438	Pan head self-tapping screw	2	261	S2	A9	screws and nuts	2" x 3"
+9022 341 0960	Spline Screw M5x20	1	462	S2	A9	screws and nuts	2" x 3"
+9061 373 0982	Countersunk screw M5x18-10.9	2	462	S2	A9	screws and nuts	2" x 3"
+1118 195 3500	Spring	1	135	S2	AA	pawls and springs	2" x 3"
+0000 195 7200	Pawl	5	135,261,462	S2	AA	pawls and springs	2" x 3"
+1128 195 3500	Spring	3	261,462	S2	AA	pawls and springs	2" x 3"
+1141 160 5500	Tension spring	3	261	S2	B1	chain brake	4" x 6"
+1142 160 5500	Tension spring	1	462	S2	B1	chain brake	4" x 6"
+0000 350 3521	Pickup body	1	135	S2	B2	fuel filters	2" x 3"
+0000 350 3518	Pickup body	4	261,462	S2	B2	fuel filters	4" x 6"
+4182 660 0700	Chain tightener	2	135	S2	D1	tensioner hardware	4" x 6"
+1125 640 1900	Tensioner slide	2	261	S2	D1	tensioner hardware	2" x 3"
+1141 664 1030	Inner side plate	2	261	S2	D1	tensioner hardware	4" x 6"
+MA02 007 1002	Chain tensioner kit	2	261,462	S2	D1	tensioner hardware	4" x 6"
+1128 664 1000	Inner side plate	2	462	S2	D1	tensioner hardware	4" x 6"
+4180 160 2000	Clutch	1	135	S2	D2	clutches	4" x 6"
+1121 160 2051	Clutch	2	261	S2	D2	clutches	4" x 6"
+1142 160 2000	Clutch	1	462	S2	D2	clutches	4" x 6"
+4138 640 3200	Oil pump	1	135	S2	D3	oil pump hardware	2" x 3"
+1121 640 7111	Worm	3	261	S2	D3	oil pump hardware	2" x 3"
+1121 647 3100	Carrier	3	261	S2	D3	oil pump hardware	2" x 3"
+1141 640 3200	Oil pump	1	261	S2	D3	oil pump hardware	4" x 6"
+1128 640 7112	Worm	1	462	S2	D3	oil pump hardware	2" x 3"
+1128 647 2400	Spring	1	462	S2	D3	oil pump hardware	2" x 3"
+1142 640 3200	Oil pump	1	462	S2	D3	oil pump hardware	4" x 6"
+0000 400 7011	Spark plug NGK CMR6H	4	135,462	S1	D4	spark plugs	4" x 6"
+0000 400 7000	Spark plug BPMR7A	3	261	S1	D4	spark plugs	4" x 6"
+1128 007 1001	Rim sprocket kit 3/8" 7T	1	462	AS1	D5	rim sprocket kits	4" x 6"
+1141 007 1002	Rim sprocket kit 0.325" 7T	1	261	AS1	D5	rim sprocket kits	4" x 6"
+0000 350 0527	Filler cap, mix	1	135	AS1	O1	air filters, filler caps	4" x 6"
+0000 350 0529	Filler cap, oil	1	135	AS1	O1	air filters, filler caps	4" x 6"
+4180 141 0300	Air filter	1	135	S1	O1	air filters, filler caps	4" x 6"
+0000 350 0532	Filler cap	1	261	AS1	O1	air filters, filler caps	4" x 6"
+0000 350 0537	Oil filler cap	2	261	AS1	O1	air filters, filler caps	4" x 6"
+1141 140 4400	Air filter HD2	1	261	S1	O1	air filters, filler caps	-
+0000 350 0533	Filler cap	3	462	AS1	O1	air filters, filler caps	4" x 6"
+1142 140 4402	Air filter HD2	1	462	S1	O1	air filters, filler caps	-
+4182 190 4001	Rewind starter	1	135	S2	O2	rewind starter assemblies	-
+1141 080 2104	Fan housing with rewind starter	1	261	S2	O2	rewind starter assemblies	-
+1142 080 2102	Fan housing with rewind starter	1	462	S2	O2	rewind starter assemblies	-
+1142 160 5400	Brake band	1	462	AS1	O2	rewind starter assemblies	4" x 6"
