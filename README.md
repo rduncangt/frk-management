@@ -4,21 +4,27 @@
 
 These are the materials purchased and used for configuring the FRK:
 
-+ Husky tool box here?
-
 + 2"x3" plastic resealable bags
-  + each FRK uses approximately 35
+  + each FRK uses approximately 29
   + $4.99 per 100
   + <https://www.amazon.com/dp/B0CMX4BGPT>
 
++ 3"x4" plastic resealable bags
+  + each FRK uses approximately 2
+  + $3.32 per 100
+  + <https://www.walmart.com/ip/Hello-Hobby-3-x-4-Re-closable-Plastic-Bags-for-Jewelry-and-Craft-Storage-100-Bags-USHH2232/5323687687>
+
 + 4"x6" plastic resealable bags
-  + each FRK uses approximately 5
+  + each FRK uses approximately 23
   + $3.32 per 100
   + <https://www.walmart.com/ip/Hello-Hobby-4-x6-Re-closable-Plastic-Poly-Bags-Jewelry-and-Craft-Storage-Unisex-Gift-bag-Length-6-inches/5323687689>
 
 + Avery Repositionable Address Labels, Repositionable Adhesive, 1" x 2-5/8", 750 Labels (58160)
   + $15 per 750 labels
   + <https://www.walmart.com/ip/Avery-750-Pack-White-1-x-2-5-8-Repositionable-Address-Labels-for-Inkjet-Printers/14295717>
+  + used for parts labeling and toolbox bin labels
+    + unique parts count approximately 60
+    + bin count 17 plus 2 open areas (toolbox configurations may differ, however)
 
 ### Photos
 
