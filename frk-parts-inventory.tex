@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage[letterpaper, top=0.75in, bottom=0.5in, left=0.5in, right=0.5in]{geometry}
+\usepackage[letterpaper, top=0.75in, bottom=0.5in, left=0.25in, right=0.25in]{geometry}
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{csvsimple}
@@ -26,14 +26,14 @@
  separator=tab,
  no head,
  longtable={
-  p{0.07\textwidth}
-  >{\raggedleft\arraybackslash}p{0.10\textwidth}
-  p{0.35\textwidth}
+  p{0.04\textwidth}
+  >{\raggedleft\arraybackslash}p{0.075\textwidth}
+  p{0.30\textwidth}
   p{0.15\textwidth}
   p{0.09\textwidth}
   p{0.20\textwidth}
  },
- table head={\rowcolor{white}\toprule \textbf{Bin} & \textbf{Qty/Req} & \textbf{Part Name} & \textbf{SKU} & \textbf{Saws} & \textbf{Category} \\ \midrule},
+ table head={\rowcolor{white}\toprule \textbf{Bin} & \textbf{Qty/Req} & \textbf{Part Name} & \textbf{Part Number} & \textbf{Saws} & \textbf{Category} \\ \midrule},
  late after line=\\,
  table foot={\bottomrule}
 ]{frk_items.tsv}{}{\csvcolvi & \csvcoliii & \csvcolii & \csvcoli & \csvcoliv & \csvcolvii}
