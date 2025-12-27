@@ -53,7 +53,7 @@ Provided in the repository are the LaTeX source files that produce three types o
 + A LaTeX distribution (e.g., TeX Live or MiKTeX)
 + [`frk_items.tsv`](frk_items.tsv) data file in the repository root
 
-### Data Format
+### Data File and Format
 
 All LaTeX files expect a TSV file named [`frk_items.tsv`](frk_items.tsv) with the following columns:
 
@@ -61,7 +61,7 @@ All LaTeX files expect a TSV file named [`frk_items.tsv`](frk_items.tsv) with th
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 9512 933 2260 | Needle cage 10x13x10 | 3 | 261 | AS1 | A2 | needle cages | 2" x 3" |
 
-You must generate this data file from your source of truth before building documents.
+NB: This data file should be generated from a source of truth before building documents.
 
 ### Building Documents
 
