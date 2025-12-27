@@ -57,9 +57,9 @@ Provided in the repository are the LaTeX source files that produce three types o
 
 All LaTeX files expect a TSV file named [`frk_items.tsv`](frk_items.tsv) with the following columns:
 
-| Part Number | Part Name | Count | Saw | Supervision | Bin | Section |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 9512 933 2260 | Needle cage 10x13x10 | 3 | 261 | AS1 | A2 | needle cages |
+| Part Number | Part Name | Count | Saw | Supervision | Bin | Section | Packaging |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 9512 933 2260 | Needle cage 10x13x10 | 3 | 261 | AS1 | A2 | needle cages | 2" x 3" |
 
 You must generate this data file from your source of truth before building documents.
 
