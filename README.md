@@ -38,6 +38,7 @@ This section concerns itself with generation of those PDF documents used in mana
 Provided in the repository are the LaTeX source files that produce three types of printable documents:
 
 + **Labels**: Part labels for physical organization (Avery format)
++ **Bin Labels**: Bin labels for affixing to toolbox bins (Avery format)
 + **Inventory Sheet**: Single-page inventory checklist
 + **Box Map**: Toolbox bin layout diagram
 
@@ -66,6 +67,7 @@ All document producing calls to `make` simply call `pdflatex` underneath with op
 ```bash
 make all        # Generate all PDFs
 make labels     # Generate labels only
+make binlabels  # Generate bin labels only
 make inventory  # Generate inventory sheet only
 make boxmap     # Generate box map only
 make clean      # Remove *.log and *.aux files
@@ -75,6 +77,7 @@ make clean      # Remove *.log and *.aux files
 
 ```bash
 pdflatex frk-parts-labels-avery.tex  # Labels
+pdflatex frk-bin-labels-avery.tex    # Bin labels
 pdflatex frk-parts-inventory.tex     # Inventory sheet
 pdflatex frk-parts-boxmap.tex        # Box map
 ```
@@ -82,5 +85,6 @@ pdflatex frk-parts-boxmap.tex        # Box map
 ### Output Files
 
 + [`frk-parts-labels-avery.pdf`](frk-parts-labels-avery.pdf) - Avery-format labels for all parts in the TSV file
++ [`frk-bin-labels-avery.pdf`](frk-bin-labels-avery.pdf) - Avery-format labels for all toolbox bins
 + [`frk-parts-inventory.pdf`](frk-parts-inventory.pdf)    - Single-page inventory checklist
 + [`frk-parts-boxmap.pdf`](frk-parts-boxmap.pdf)       - Toolbox bin layout (currently with hard-coded labels)
