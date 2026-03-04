@@ -1,4 +1,3 @@
-PartNumber	PartName	Count	Saw	Supervision	Bin	Section	Packaging
 9512 933 2260	Needle cage 10x13x10	3	261	AS1	A2	needle cages	2" x 3"
 9512 933 2379	Needle cage 10x16x12	1	462	AS1	A2	needle cages	2" x 3"
 0000 640 2003	Chain sprocket 3/8"P 7 teeth	1	135	S2	A3	sprockets	2" x 3"
@@ -50,7 +49,7 @@ MA02 007 1002	Chain tensioner kit	2	261,462	S2	D1	tensioner hardware	4" x 6"
 0000 350 0529	Filler cap, oil	1	135	AS1	O1	air filters, filler caps	4" x 6"
 4180 141 0300	Air filter	1	135	S1	O1	air filters, filler caps	4" x 6"
 0000 350 0532	Filler cap	1	261	AS1	O1	air filters, filler caps	4" x 6"
-0000 350 0537	Oil filler cap	2	261	AS1	O1	air filters, filler caps	4" x 6"
+0000 350 0537	Oil filler cap	1	261	AS1	O1	air filters, filler caps	4" x 6"
 1141 140 4400	Air filter HD2	1	261	S1	O1	air filters, filler caps	-
 0000 350 0533	Filler cap	2	462	AS1	O1	air filters, filler caps	4" x 6"
 1142 140 4402	Air filter HD2	1	462	S1	O1	air filters, filler caps	-
