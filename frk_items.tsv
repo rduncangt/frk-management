@@ -14,7 +14,7 @@
 1123 648 6600	Bumper strip	4	135	S1	A7	bumper strips	2" x 3"
 1121 648 6610	Bumper strip	8	261,462	S1	A7	bumper strips	2" x 3"
 1141 656 7700	Chain catcher	3	261	AS1	A8	chain catchers	2" x 3"
-1142 656 7700	Chain catcher	3	462	AS1	A8	chain catchers	2" x 3"
+1142 656 7700	Chain catcher	1	462	AS1	A8	chain catchers	2" x 3"
 0000 995 0803	Collar nut M8	8	261,462	S2	A9	screws and nuts	2" x 3"
 9074 477 4438	Pan head self-tapping screw	2	261	S2	A9	screws and nuts	2" x 3"
 9022 341 0960	Spline Screw M5x20	1	462	S2	A9	screws and nuts	2" x 3"
@@ -30,7 +30,7 @@
 1125 640 1900	Tensioner slide	2	261	S2	D1	tensioner hardware	2" x 3"
 1141 664 1030	Inner side plate	2	261	S2	D1	tensioner hardware	4" x 6"
 MA02 007 1002	Chain tensioner kit	2	261,462	S2	D1	tensioner hardware	4" x 6"
-1128 664 1000	Inner side plate	2	462	S2	D1	tensioner hardware	4" x 6"
+1128 664 1000	Inner side plate	1	462	S2	D1	tensioner hardware	4" x 6"
 4180 160 2000	Clutch	1	135	S2	D2	clutches	4" x 6"
 1121 160 2051	Clutch	2	261	S2	D2	clutches	4" x 6"
 1142 160 2000	Clutch	1	462	S2	D2	clutches	4" x 6"
@@ -56,4 +56,5 @@ MA02 007 1002	Chain tensioner kit	2	261,462	S2	D1	tensioner hardware	4" x 6"
 4182 190 4001	Rewind starter	1	135	S2	O2	rewind starter assemblies	-
 1141 080 2104	Fan housing with rewind starter	1	261	S2	O2	rewind starter assemblies	-
 1142 080 2102	Fan housing with rewind starter	1	462	S2	O2	rewind starter assemblies	-
+1141 160 5400	Brake band	1	261	AS1	O2	rewind starter assemblies	4" x 6"
 1142 160 5400	Brake band	1	462	AS1	O2	rewind starter assemblies	4" x 6"
