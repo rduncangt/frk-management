@@ -32,7 +32,7 @@ Anti-vibration spring attachment.
 
 Source: STIHL MS 462 C-M Z spare-parts list, edition 10/29/2024, section AI; drawing on PDF page 32, parts table on page 33.
 
-## MS 261 — cylinder mounting
+## MS 261 — cylinder
 
 Secures the cylinder to the crankcase.
 
