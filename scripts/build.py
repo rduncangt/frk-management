@@ -301,11 +301,12 @@ class Reference:
         return out + '\\end{document}\n'
 
     def inventory(self):
-        out = self.preamble('0.4in')
+        out = r'\PassOptionsToPackage{table}{xcolor}' + '\n' + self.preamble('0.4in')
         out += r'{\Large\bfseries Field Repair Kit — Inventory}\hfill '+self.data['revision']+r'\par{\small Kit: \rule{1.1in}{0.3pt}\hfill Checked by: \rule{1.4in}{0.3pt}\hfill Date: \rule{1in}{0.3pt}}\par'
-        out += r'\small\renewcommand{\arraystretch}{1.22}\setlength{\tabcolsep}{4pt}\begin{longtable}{@{}lp{2.78in}p{1.23in}lp{0.70in}rr@{}}\toprule\textbf{Bin} & \textbf{Part} & \textbf{Part number} & \textbf{Level} & \textbf{Saws} & \textbf{Req.} & \textbf{Qty}\\\midrule\endfirsthead\multicolumn{7}{@{}l}{\large\bfseries Field Repair Kit — Inventory (continued)}\\\toprule\textbf{Bin} & \textbf{Part} & \textbf{Part number} & \textbf{Level} & \textbf{Saws} & \textbf{Req.} & \textbf{Qty}\\\midrule\endhead'
-        for p in self.parts.values():
-            out += '\n'+p['bin']+' & '+tex(p['name'])+r' & \href{'+tex(self.part_url(p['id']))+r'}{\texttt{'+p['number']+r'}} & \textcolor{frkSupervision}{'+p['scope']+r'} & \textcolor{frkApplication}{'+', '.join(p['models'])+'} & '+str(p['count'])+r' & \rule{0.23in}{0.3pt}\\'+'\n'
+        out += r'\small\renewcommand{\arraystretch}{1.9}\setlength{\tabcolsep}{4pt}\begin{longtable}{@{}l>{\raggedright\arraybackslash}p{2.58in}p{1.23in}llrr@{}}\toprule\textbf{Bin} & \textbf{Part} & \textbf{Part number} & \textbf{Level} & \textbf{Saws} & \textbf{Req.} & \textbf{Qty}\\\midrule\endfirsthead\multicolumn{7}{@{}l}{\large\bfseries Field Repair Kit — Inventory (continued)}\\\toprule\textbf{Bin} & \textbf{Part} & \textbf{Part number} & \textbf{Level} & \textbf{Saws} & \textbf{Req.} & \textbf{Qty}\\\midrule\endhead'
+        for i, p in enumerate(self.parts.values()):
+            shade = r'\rowcolor{black!6}' if i % 2 else ''
+            out += '\n'+shade+p['bin']+' & '+tex(p['name'])+r' & \href{'+tex(self.part_url(p['id']))+r'}{\texttt{'+p['number']+r'}} & \textcolor{frkSupervision}{'+p['scope']+r'} & \textcolor{frkApplication}{\mbox{'+', '.join(p['models'])+'}} & '+str(p['count'])+r' & \rule{0.23in}{0.3pt}\\'+'\n'
         return out + r'\bottomrule\end{longtable}\end{document}'+'\n'
 
     def bins(self):
@@ -377,7 +378,7 @@ class Reference:
             applications = '; '.join(a['label'] for a in p['applications'])
             searchable = ' '.join([p['name'], p['number'], pid, p['bin'], p['category'], applications])
             status = ' · Fit unconfirmed' if p.get('status') else ''
-            index += f'<li data-search="{html.escape(searchable.lower(), quote=True)}" data-models="{",".join(p["models"])}" data-bin="{p["bin"]}"><a href="parts/{pid}/"><span class="part-name">{html.escape(p["name"])}</span><span class="part-number">{p["number"]}</span><span class="location">{html.escape(applications)}{status}</span><span class="bin">{p["bin"]} · Qty {p["count"]}</span></a></li>'
+            index += f'<li data-search="{html.escape(searchable.lower(), quote=True)}" data-models="{",".join(p["models"])}" data-bin="{p["bin"]}"><a href="parts/{pid}/"><span class="part-name">{html.escape(p["name"])}</span><span class="part-number">{p["number"]}</span><span class="location">{html.escape(applications)}{status}</span><span class="part-bin"><span class="detail-label">Bin</span><span>{p["bin"]}</span></span><span class="part-quantity"><span class="detail-label">Per kit</span><span>{p["count"]}</span></span></a></li>'
             body = f'<nav class="crumb"><a href="../../index.html">All parts</a><span>Bin {p["bin"]}</span></nav><h1>{html.escape(p["name"])}</h1><p class="number">{p["number"]}</p><div class="metadata"><span>Bin <strong>{p["bin"]}</strong></span><span><strong>{p["count"]}</strong> per kit</span><span class="supervision"><strong>{p["scope"]}</strong> supervision</span></div><nav class="downloads" aria-label="Downloads"><a href="field-card.pdf" download>Field card PDF</a><a href="bag-label.pdf" download>Avery label PDF</a><a href="../../downloads/frk-part-reference.pdf" download>Offline reference PDF</a></nav>'
             if p.get('notice'):
                 body += '<p class="notice">'+html.escape(p['notice'])+'</p>'
