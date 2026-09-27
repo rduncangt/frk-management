@@ -301,21 +301,28 @@ PACKAGES\begin{document}
         return out + '\\end{document}\n'
 
     def inventory(self):
-        out = r'\PassOptionsToPackage{table}{xcolor}' + '\n' + self.preamble('0.4in,bottom=0.75in,footskip=0.30in', packages=('fancyhdr',))
+        out = r'\PassOptionsToPackage{table}{xcolor}' + '\n' + self.preamble('0.4in,top=0.85in,bottom=0.70in,headheight=0.50in,headsep=0.08in,footskip=0.30in', packages=('fancyhdr',))
         out += r'''\hypersetup{pdftitle={Field Repair Kit: Inventory}}
 \pagestyle{fancy}
 \fancyhf{}
-\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrulewidth}{0.3pt}
 \renewcommand{\footrulewidth}{0.3pt}
+\fancyhead[L]{%
+\begin{minipage}[c]{1.08in}\includegraphics[width=\linewidth]{reference/team-rubicon-logo.png}\end{minipage}\hspace{0.16in}%
+\begin{minipage}[c]{\dimexpr\linewidth-1.24in\relax}\setlength{\parskip}{0pt}%
+{\fontsize{8}{10}\selectfont\color{frkSecondary} FIELD REPAIR KIT\par}%
+{\Large\bfseries Inventory\par}%
+\end{minipage}}
 \fancyfoot[L]{\footnotesize\color{frkSecondary}Document revision: REVISION}
 \fancyfoot[R]{\footnotesize\color{frkSecondary}Page \thepage{} of \pageref*{inventory-last-page}}
 '''.replace('REVISION', tex(self.data['revision']))
-        out += r'{\Large\bfseries Field Repair Kit — Inventory}\par{\small Kit: \rule{1.1in}{0.3pt}\hfill Checked by: \rule{1.4in}{0.3pt}\hfill Date checked: \rule{1in}{0.3pt}}\par'
-        out += r'\small\renewcommand{\arraystretch}{1.9}\setlength{\tabcolsep}{4pt}\begin{longtable}{@{}l>{\raggedright\arraybackslash}p{2.58in}p{1.23in}llrr@{}}\toprule\textbf{Bin} & \textbf{Part} & \textbf{Part number} & \textbf{Level} & \textbf{Saws} & \textbf{Req.} & \textbf{Qty}\\\midrule\endfirsthead\multicolumn{7}{@{}l}{\large\bfseries Field Repair Kit — Inventory (continued)}\\\toprule\textbf{Bin} & \textbf{Part} & \textbf{Part number} & \textbf{Level} & \textbf{Saws} & \textbf{Req.} & \textbf{Qty}\\\midrule\endhead'
+        out += r'{\small Kit: \rule{1.1in}{0.3pt}\hfill Checked by: \rule{1.4in}{0.3pt}\hfill Date checked: \rule{1in}{0.3pt}}\par'
+        out += r'\small\renewcommand{\arraystretch}{1.9}\setlength{\tabcolsep}{4pt}\begin{longtable}{@{}l>{\raggedright\arraybackslash}p{2.58in}p{1.23in}llrr@{}}\toprule\textbf{Bin} & \textbf{Part} & \textbf{Part number} & \textbf{Level} & \textbf{Saws} & \textbf{Req.} & \textbf{Qty}\\\midrule\endfirsthead\toprule\textbf{Bin} & \textbf{Part} & \textbf{Part number} & \textbf{Level} & \textbf{Saws} & \textbf{Req.} & \textbf{Qty}\\\midrule\endhead'
         for i, p in enumerate(self.parts.values()):
             shade = r'\rowcolor{black!6}' if i % 2 else ''
-            out += '\n'+shade+p['bin']+' & '+tex(p['name'])+r' & \href{'+tex(self.part_url(p['id']))+r'}{\texttt{'+p['number']+r'}} & \textcolor{frkSupervision}{'+p['scope']+r'} & \textcolor{frkApplication}{\mbox{'+', '.join(p['models'])+'}} & '+str(p['count'])+r' & \rule{0.23in}{0.3pt}\\'+'\n'
-        return out + r'\bottomrule\end{longtable}\label{inventory-last-page}\end{document}'+'\n'
+            last_page = r'\label{inventory-last-page}' if i == len(self.parts)-1 else ''
+            out += '\n'+shade+p['bin']+' & '+tex(p['name'])+r' & \href{'+tex(self.part_url(p['id']))+r'}{\texttt{'+p['number']+r'}} & \textcolor{frkSupervision}{'+p['scope']+r'} & \textcolor{frkApplication}{\mbox{'+', '.join(p['models'])+'}} & '+str(p['count'])+' & '+last_page+r'\rule{0.23in}{0.3pt}\\'+'\n'
+        return out + r'\bottomrule\end{longtable}\end{document}'+'\n'
 
     def bins(self):
         result = {'A1': 'unassigned'}
