@@ -1,0 +1,23 @@
+\documentclass[letterpaper]{article}
+\usepackage[margin=0in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,tikz,graphicx,inconsolata}
+\pagestyle{empty}
+\definecolor{focus}{HTML}{075985}
+\begin{document}
+\null
+\begin{tikzpicture}[remember picture,overlay,x=1bp,y=-1bp]
+  \begin{scope}[shift={(current page.north west)}]
+    % Top-left label on an Avery 5160 / 58160 sheet: 189 x 72 bp.
+    \begin{scope}[shift={(13.5,36)}]
+      \node[anchor=west,inner sep=0,font=\sffamily\fontsize{7.4}{8}\selectfont] at (4,10) {PAN HEAD SCREW};
+      \node[anchor=west,inner sep=0,font=\ttfamily\bfseries\fontsize{11.5}{12}\selectfont] at (4,23) {9022 371 1020};
+      \node[anchor=west,inner sep=0,text=focus,font=\sffamily\bfseries\fontsize{9}{10}\selectfont] at (4,36) {462 starter housing};
+      \node[anchor=west,inner sep=0,font=\sffamily\fontsize{7}{8}\selectfont] at (4,47) {Also 462 AV / 261 cylinder};
+      \node[anchor=west,inner sep=0,font=\sffamily\bfseries\fontsize{8}{9}\selectfont] at (4,60) {M5$\times$20 \quad A9 \quad S2 \quad Qty 1};
+      \node[anchor=north west,inner sep=0] at (125,4) {\includegraphics[width=60bp,height=60bp]{images/qr.png}};
+      \node[anchor=center,inner sep=0,font=\sffamily\fontsize{6.2}{7}\selectfont] at (155,69) {USES + DIAGRAMS};
+    \end{scope}
+  \end{scope}
+\end{tikzpicture}
+\end{document}
