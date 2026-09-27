@@ -8,18 +8,13 @@ This system brings together parts references, labels, and inventory documents fo
 
 Search by part name or number, filter by saw or bin, and view highlighted diagrams and related parts. Each part page also provides its own field card and bag label.
 
-| PDF | Use |
-| :--- | :--- |
-| [Offline part reference](frk-part-reference.pdf?raw=1) | Part descriptions and diagrams in an indexed reference with bookmarks and internal links, available without a connection. |
-| [Inventory checklist](frk-parts-inventory.pdf?raw=1) | Check kit contents against required quantities and record the count on hand. |
-| [Box map](frk-parts-boxmap.pdf?raw=1) | Locate bins and open storage areas by their codes and contents. |
+PDFs for printing and offline use:
 
-### Parts and bin labels
-
-| PDF | Use |
-| :--- | :--- |
-| [Part labels](frk-parts-labels-avery.pdf?raw=1) | Bag labels with part identification, quantity, bin, supervision level, and a QR link to the part reference. |
-| [Bin labels](frk-bin-labels-avery.pdf?raw=1) | Bin codes and contents for marking storage locations in the kit. |
+- **[Offline part reference](https://rduncangt.github.io/frk-management/downloads/frk-part-reference.pdf)** — Indexed part descriptions and diagrams, with bookmarks and internal links for offline use.
+- **[Inventory checklist](https://rduncangt.github.io/frk-management/downloads/frk-parts-inventory.pdf)** — Check kit contents against required quantities and record the count on hand.
+- **[Box map](https://rduncangt.github.io/frk-management/downloads/frk-parts-boxmap.pdf)** — Locate bins and open storage areas by their codes and contents.
+- **[Part labels](https://rduncangt.github.io/frk-management/downloads/frk-parts-labels-avery.pdf)** — Bag labels with part identification, quantity, bin, supervision level, and a QR link to the part reference.
+- **[Bin labels](https://rduncangt.github.io/frk-management/downloads/frk-bin-labels-avery.pdf)** — Bin codes and contents for marking storage locations in the kit.
 
 **Paper for both label PDFs:** [Avery 5160 / 58160 format](https://www.avery.com/templates/58160), with 1″ × 2⅝″ labels on US Letter (8½″ × 11″) sheets, arranged 3 across × 10 down. **Print at 100% / actual size.**
 
@@ -27,7 +22,7 @@ The [materials list](#materials) includes the repositionable Avery 58160 stock u
 
 ## Materials
 
-Supplies used to pack and label the kits. Prices are approximate, in USD, for the pack sizes shown.
+Supplies used to pack and label the kits. The linked suppliers are examples; comparable supplies are available from other vendors. Prices are approximate, in USD, for the pack sizes shown.
 
 | Material | Approx. pack price | Supplier |
 | :--- | :--- | :--- |
