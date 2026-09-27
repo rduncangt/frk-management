@@ -4,7 +4,7 @@
 
 Bin A8 · 3 spares per FRK · AS1 supervision · 2″ × 3″ bag
 
-[Field card (PDF)](field-card.pdf) · [Bag label (PDF)](bag-label.pdf)
+[Field card (PDF)](field-card.pdf?raw=1) · [Bag label (PDF)](bag-label.pdf?raw=1)
 
 | Saw | Application | Qty fitted | Item |
 | :--- | :--- | :---: | :---: |

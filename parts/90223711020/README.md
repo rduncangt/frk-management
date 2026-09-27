@@ -4,7 +4,7 @@
 
 Bin A9 · 1 spare per FRK · S2 supervision · 2″ × 3″ bag
 
-[Field card (PDF)](field-card.pdf) · [Bag label (PDF)](bag-label.pdf)
+[Field card (PDF)](field-card.pdf?raw=1) · [Bag label (PDF)](bag-label.pdf?raw=1)
 
 | Saw | Application | Qty fitted | Item |
 | :--- | :--- | :---: | :---: |
@@ -14,7 +14,7 @@ Bin A9 · 1 spare per FRK · S2 supervision · 2″ × 3″ bag
 
 ## MS 462 — starter / fan housing
 
-Secures the starter / fan housing to the crankcase. Listed separately from the complete starter assembly.
+Secures fan housing with rewind starter **[1142 080 2102](../11420802102/README.md)** to the crankcase.
 
 **Item 17 · Qty fitted: 3**
 
