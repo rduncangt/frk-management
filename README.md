@@ -39,48 +39,14 @@ These are the materials purchased and used for configuring the FRK:
 
 ## Documents
 
-- [Part references](docs/parts/README.md): model-specific uses, highlighted diagrams and related parts
+- [Parts reference](https://rduncangt.github.io/frk-management/): search parts, filter by saw or bin, and view highlighted diagrams and related parts
 - [Offline part reference](frk-part-reference.pdf?raw=1): complete indexed PDF with internal links and bookmarks
 - [Part labels](frk-parts-labels-avery.pdf?raw=1): one set of 61 labels on three Avery 5160 / 58160 sheets
 - [Bin labels](frk-bin-labels-avery.pdf?raw=1): eight copies of each bin label
 - [Inventory checklist](frk-parts-inventory.pdf?raw=1)
 - [Box map](frk-parts-boxmap.pdf?raw=1)
 
-The [online reference](https://rduncangt.github.io/frk-management/) supports search by part name, number, application and bin. QR codes use permanent part-number addresses under `/frk-management/parts/`.
-
-### Source data
-
-[`frk_items.tsv`](frk_items.tsv) supplies the inventory values to every document. It has no header row and uses these eight tab-separated columns:
-
-| Part Number | Part Name | Count | Saw | Supervision | Bin | Section | Packaging |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 9512 933 2260 | Needle cage 10x13x10 | 3 | 261 | AS1 | A2 | needle cages | 2" x 3" |
-
-[`reference/parts.json`](reference/parts.json) records each application: model, manual edition, drawing/table pages, item number, manual quantity, diagram crop/highlight and related-part links. Inventory quantities, names, bins and supervision levels remain in the TSV. `kit_count` controls the number of bin-label sets.
-
-Related links use `[[partnumber]]` or `[[partnumber#application-id]]`. Application-specific links keep an assembly's fasteners separate from their other uses. A reference with an unverified part-number match carries `status: "unconfirmed"` and identifies the number actually listed in the manual.
-
-Diagram sources are in [`reference/figures/`](reference/figures/). Crop and highlight coordinates use PDF points from the upper-left corner of an A4 drawing page. [`scripts/build.py`](scripts/build.py) contains the shared layouts and color roles; web styling is in [`reference/site.css`](reference/site.css).
-
-### Build
-
-Requires Python 3.10+, [uv](https://docs.astral.sh/uv/), and a LaTeX distribution with `pdflatex`, `geometry`, `lmodern`, `inconsolata`, `graphicx`, `xcolor`, `pgf`, `hyperref`, `longtable`, `booktabs`, `array`, `tcolorbox` and `tabularx`.
-
-```sh
-make all        # Refresh every PDF, part page, diagram, QR code and the static site
-make check      # Validate references, generated PDFs and site links
-make check-live # Verify the published site and every QR destination (requires network)
-```
-
-`make` installs the pinned Python dependencies into `.venv`. Per-part pages, PDFs, diagrams and QR images are generated directly into `docs/parts/`. Each part's `README.md` provides a GitHub view of the same reference. Per-part LaTeX sources and compiler intermediates stay in `.build`; the shared layouts are in `scripts/build.py`. The main documents remain at the repository root, with download copies under `docs/downloads/`. Edit the shared sources and rebuild them together.
-
-The `labels`, `binlabels`, `inventory`, `boxmap`, `reference` and `site` targets all refresh the complete set, keeping the printed and web versions synchronized. `make generate` refreshes sources and images without compiling PDFs. `make clean` removes the build cache. Set `PDFLATEX=/path/to/pdflatex` when needed.
-
-### Web publishing and printing
-
-GitHub Pages serves the generated `docs/` directory. To publish the pilot, select **Deploy from a branch**, `pan-head-screw-qr-pilot`, and `/docs` in the [repository’s Pages settings](https://github.com/rduncangt/frk-management/settings/pages). After deployment completes, run `make check-live` to verify all QR destinations. The `site_url` in `reference/parts.json` sets QR and PDF destinations; changing the publishing branch does not change those addresses.
-
-The publishing directory is omitted from public URLs: `docs/parts/90223711020/index.html` is served at `https://rduncangt.github.io/frk-management/parts/90223711020/`. A 404 at the site’s home page usually means Pages is disabled, the publishing branch or directory is incorrect, or deployment has not completed.
+### Printing
 
 Part and bin labels use US Letter Avery 5160 / 58160 geometry: 1 × 2⅝ inches, three columns by ten rows. Print at **100% / actual size**. Each part directory also contains a PDF placing that single label in the sheet's top-left position.
 
