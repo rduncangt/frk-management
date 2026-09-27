@@ -3,19 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,tikz,graphicx,inconsolata}
 \pagestyle{empty}
-\definecolor{focus}{HTML}{075985}
-% Model and supervision colors match frk-parts-labels-avery.tex.
-\definecolor{saw261}{HTML}{FFA500}
-\definecolor{saw462}{HTML}{DD8888}
-\definecolor{superS2}{HTML}{DD8888}
-\tikzset{
-  modeltag/.style={anchor=north west,inner xsep=2bp,inner ysep=1bp,
-    minimum width=20bp,minimum height=11bp,rounded corners=2.5bp,
-    font=\sffamily\bfseries\fontsize{7.5}{8}\selectfont},
-  supertag/.style={anchor=north west,inner xsep=2bp,inner ysep=1bp,
-    minimum width=19bp,minimum height=11bp,
-    font=\sffamily\bfseries\fontsize{7.5}{8}\selectfont}
-}
+\input{../../frk-reference-colors.tex}
 \begin{document}
 \null
 \begin{tikzpicture}[remember picture,overlay,x=1bp,y=-1bp]
@@ -24,14 +12,11 @@
     \begin{scope}[shift={(13.5,36)}]
       \node[anchor=west,inner sep=0,font=\sffamily\bfseries\fontsize{9}{10}\selectfont] at (4,10) {Pan head screw M5x20};
       \node[anchor=west,inner sep=0,font=\ttfamily\bfseries\fontsize{11.5}{12}\selectfont] at (4,23) {9022 371 1020};
-      \node[anchor=west,inner sep=0,text=focus,font=\sffamily\bfseries\fontsize{9}{10}\selectfont] at (4,36) {462 starter housing};
-      \node[anchor=west,inner sep=0,font=\sffamily\fontsize{7}{8}\selectfont] at (4,47) {Also 462 AV / 261 cylinder};
-      \node[modeltag,fill=saw261] at (4,55) {261};
-      \node[modeltag,fill=saw462] at (28,55) {462};
-      \node[anchor=west,inner sep=0,font=\sffamily\fontsize{8}{9}\selectfont] at (54,60.5) {\textbf{A9}\enspace Qty~1};
-      \node[supertag,fill=superS2] at (102,55) {S2};
+      \node[anchor=west,inner sep=0,text=frkApplication,font=\sffamily\bfseries\fontsize{9}{10}\selectfont] at (4,36) {462 starter housing};
+      \node[anchor=west,inner sep=0,text=frkApplication,font=\sffamily\fontsize{7}{8}\selectfont] at (4,47) {\textcolor{frkSecondary}{Also} 462 AV / 261 cylinder};
+      \node[anchor=west,inner sep=0,text=frkSecondary,font=\sffamily\fontsize{8.5}{9}\selectfont] at (4,61) {Bin~\textcolor{black}{\textbf{A9}}\qquad Qty~\textcolor{black}{\textbf{1}}\qquad \textcolor{frkSupervision}{\textbf{S2}}};
       \node[anchor=north west,inner sep=0] at (125,3) {\includegraphics[width=60bp,height=60bp]{images/qr.png}};
-      \node[anchor=center,inner sep=0,font=\sffamily\fontsize{6.2}{7}\selectfont] at (155,66) {USES + DIAGRAMS};
+      \node[anchor=center,inner sep=0,text=frkSecondary,font=\sffamily\fontsize{6.2}{7}\selectfont] at (155,66) {USES + DIAGRAMS};
     \end{scope}
   \end{scope}
 \end{tikzpicture}

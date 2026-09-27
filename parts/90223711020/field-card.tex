@@ -7,8 +7,7 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{5pt}
 \renewcommand{\familydefault}{\sfdefault}
-\definecolor{focus}{HTML}{075985}
-\definecolor{muted}{HTML}{52525B}
+\input{../../frk-reference-colors.tex}
 \newcommand{\guideurl}{https://github.com/rduncangt/frk-management/blob/pan-head-screw-qr-pilot/parts/90223711020/README.md}
 \newcommand{\application}[5]{%
   \begin{minipage}[c]{0.39\linewidth}
@@ -16,10 +15,10 @@
     \includegraphics[width=\linewidth,height=2.35in,keepaspectratio]{images/#1.png}
   \end{minipage}\hfill
   \begin{minipage}[c]{0.58\linewidth}
-    {\large\bfseries\color{focus}#2\par}
+    {\large\bfseries\color{frkApplication}#2\par}
     #3\par
     \textbf{#4}\par
-    {\footnotesize #5\par}
+    {\footnotesize\color{frkSecondary}#5\par}
   \end{minipage}\par
 }
 \begin{document}
@@ -28,17 +27,17 @@
   \begin{minipage}[c]{1.08in}
     \includegraphics[width=\linewidth]{images/team-rubicon-logo.png}
   \end{minipage}\hspace{0.16in}%
-  \begin{minipage}[c]{2in}
-    {\fontsize{8}{10}\selectfont\color{muted} FIELD REPAIR KIT PART REFERENCE}
+  \begin{minipage}[c]{2.25in}
+    {\fontsize{8}{10}\selectfont\color{frkSecondary} FIELD REPAIR KIT --- PART REFERENCE}
   \end{minipage}\par
   {\fontsize{21}{24}\selectfont\bfseries Pan head screw IS M5$\times$20\par}
   {\fontsize{18}{21}\selectfont\ttfamily\bfseries 9022 371 1020\par}
-  {\small Bin A9 \enspace | \enspace 1 spare per kit \enspace | \enspace S2 supervision}
+  {\small\color{frkSecondary} Bin \textcolor{black}{\textbf{A9}} \enspace | \enspace \textcolor{black}{\textbf{1}} spare per kit \enspace | \enspace \textcolor{frkSupervision}{\textbf{S2}} supervision}
 \end{minipage}\hfill
 \begin{minipage}[c]{0.14\linewidth}
   \centering
   \href{\guideurl}{\includegraphics[width=0.82in]{images/qr.png}}\par
-  {\scriptsize Online guide}
+  {\scriptsize\color{frkSecondary} Online guide}
 \end{minipage}
 \par\smallskip\hrule\smallskip
 \application{ms462-starter}{MS 462 --- starter / fan housing}{%
@@ -62,7 +61,7 @@
   PDF drawing p.\ 8, parts table p.\ 9.%
 }
 \smallskip\hrule\smallskip
-{\footnotesize
+{\footnotesize\color{frkSecondary}
   Drawings \textcopyright\ ANDREAS STIHL AG \& Co. KG. Not to scale. \hfill 2026-09-27
 }
 \end{document}
