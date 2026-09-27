@@ -17,6 +17,8 @@ from concurrent.futures import ThreadPoolExecutor
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
+from urllib.error import HTTPError, URLError
+from urllib.request import Request, urlopen
 
 from PIL import Image, ImageDraw
 import qrcode
@@ -157,7 +159,7 @@ class Reference:
         result = Image.alpha_composite(crop, overlay).convert('RGB')
         output = io.BytesIO()
         result.save(output, format='PNG', optimize=True)
-        write(f'parts/{p["id"]}/images/{a["id"]}.png', output.getvalue())
+        write(f'docs/parts/{p["id"]}/{a["id"]}.png', output.getvalue())
 
     def assets(self):
         for p in self.parts.values():
@@ -166,7 +168,7 @@ class Reference:
             qr.make(fit=True)
             output = io.BytesIO()
             qr.make_image(fill_color='black', back_color='white').save(output, format='PNG')
-            write(f'parts/{p["id"]}/images/qr.png', output.getvalue())
+            write(f'docs/parts/{p["id"]}/qr.png', output.getvalue())
             for a in p['applications']:
                 self.figure(p, a)
 
@@ -190,8 +192,9 @@ class Reference:
 '''.replace('MARGIN', margin).replace('RELATIVE', relative)
 
     def card(self, p, offline=False):
-        base = f'parts/{p["id"]}/' if offline else ''
-        logo = 'parts/images/team-rubicon-logo.png' if offline else '../images/team-rubicon-logo.png'
+        prefix = '' if offline else '../../../'
+        base = f'{prefix}docs/parts/{p["id"]}/'
+        logo = prefix + 'reference/team-rubicon-logo.png'
         mode = 'offline' if offline else 'tex'
         plural = '' if p['count'] == 1 else 's'
         body = (r'\pdfbookmark[1]{' + tex(p['name'] + ' — ' + p['number']) + '}{bookmark-' + p['id'] + r'}\hypertarget{' + p['id'] + r'}{}\label{part-' + p['id'] + '}\n') if offline else ''
@@ -203,7 +206,7 @@ class Reference:
 {\small\color{frkSecondary} Bin \textcolor{black}{\textbf{BIN}} \enspace | \enspace \textcolor{black}{\textbf{COUNT}} sparePLURAL per kit \enspace | \enspace \textcolor{frkSupervision}{\textbf{SCOPE}} supervision}
 \end{minipage}\hfill
 \begin{minipage}[c]{0.14\linewidth}\centering
-\href{URL}{\includegraphics[width=0.82in]{BASEimages/qr.png}}\par
+\href{URL}{\includegraphics[width=0.82in]{BASEqr.png}}\par
 {\scriptsize\color{frkSecondary} Online guide}
 \end{minipage}\par\smallskip\hrule\medskip
 '''.replace('LOGO', logo).replace('NAME', tex(p['name'])).replace('URL', tex(self.part_url(p['id']))).replace('NUMBER', tex(p['number'])).replace('BIN', p['bin']).replace('COUNT', str(p['count'])).replace('PLURAL', plural).replace('SCOPE', p['scope']).replace('BASE', base)
@@ -216,7 +219,7 @@ class Reference:
             facts = r'{\small\textbf{Item ' + tex(a['item']) + r' \enspace | \enspace Qty listed: ' + str(a['quantity']) + r'}}\par' + '\n'
             source = r'{\footnotesize\color{frkSecondary} ' + tex(self.source(a)) + r'}\par' + '\n'
             description = self.render_text(a['text'], mode) + '\\par\n'
-            figure = base + 'images/' + a['id'] + '.png'
+            figure = base + a['id'] + '.png'
             if len(apps) == 1:
                 body += anchor + heading + description + facts + r'\begin{center}\includegraphics[width=5.3in,height=5.5in,keepaspectratio]{' + figure + r'}\end{center}' + '\n' + source
             else:
@@ -249,22 +252,23 @@ class Reference:
 \node[anchor=west,inner sep=0,text=frkSecondary,font=\sffamily\fontsize{8}{9}\selectfont] at (4,65) {Bin~\textcolor{black}{\textbf{BIN}}\quad Qty~\textcolor{black}{\textbf{COUNT}}\quad \textcolor{frkSupervision}{\textbf{SCOPE}}};
 \node[anchor=north west,inner sep=0] at (131,15) {\includegraphics[width=54bp,height=54bp]{QR}};
 \end{scope}
-'''.replace('X,Y', f'{x},{y}').replace('NS', str(name_size)).replace('NAME', name).replace('NUMBER', tex(p['number'])).replace('COLOR', 'frkSupervision' if p.get('status') == 'unconfirmed' else 'frkApplication').replace('MS', str(main_size)).replace('MAIN', tex(main)).replace('SECONDARY', tex(secondary)).replace('BIN', p['bin']).replace('COUNT', str(p['count'])).replace('SCOPE', p['scope']).replace('QR', base + 'images/qr.png')
+'''.replace('X,Y', f'{x},{y}').replace('NS', str(name_size)).replace('NAME', name).replace('NUMBER', tex(p['number'])).replace('COLOR', 'frkSupervision' if p.get('status') == 'unconfirmed' else 'frkApplication').replace('MS', str(main_size)).replace('MAIN', tex(main)).replace('SECONDARY', tex(secondary)).replace('BIN', p['bin']).replace('COUNT', str(p['count'])).replace('SCOPE', p['scope']).replace('QR', base + 'qr.png')
 
     def label_sheet(self, parts, individual=False):
-        result = self.preamble('0in', '../../' if individual else '')
+        prefix = '../../../' if individual else ''
+        result = self.preamble('0in', prefix)
         for page in range(math.ceil(len(parts)/30)):
             if page:
                 result += '\\newpage\n'
             result += r'\null\begin{tikzpicture}[remember picture,overlay,x=1bp,y=-1bp]\begin{scope}[shift={(current page.north west)}]' + '\n'
             for i, p in enumerate(parts[page*30:(page+1)*30]):
-                result += self.label(p, 13.5 + (i % 3)*198, 36+(i//3)*72, '' if individual else f'parts/{p["id"]}/')
+                result += self.label(p, 13.5 + (i % 3)*198, 36+(i//3)*72, f'{prefix}docs/parts/{p["id"]}/')
             result += '\\end{scope}\\end{tikzpicture}\n'
         return result + '\\end{document}\n'
 
     def markdown(self, p):
         text = f'# {p["name"]}\n\n**{p["number"]}**\n\nBin **{p["bin"]}** · **{p["count"]}** per kit · **{p["scope"]}** supervision\n\n'
-        text += f'[Part page]({self.part_url(p["id"])}) · [Field card PDF](field-card.pdf?raw=1) · [Avery label PDF](bag-label.pdf?raw=1) · [Offline reference](../../frk-part-reference.pdf?raw=1)\n\n'
+        text += f'[Part page]({self.part_url(p["id"])}) · [Field card PDF](field-card.pdf?raw=1) · [Avery label PDF](bag-label.pdf?raw=1) · [Offline reference](../../downloads/frk-part-reference.pdf?raw=1)\n\n'
         if p.get('notice'):
             text += f'> **{p["notice"]}**\n\n'
         for a in p['applications']:
@@ -272,7 +276,7 @@ class Reference:
             text += f'<a id="{a["id"]}"></a>\n\n## {MODELS[a["model"]]} — {application_name(a)}\n\n'
             text += self.render_text(a['text'], 'md') + '\n\n'
             text += f'**Item {a["item"]} · Qty listed: {a["quantity"]}**\n\n'
-            path = f'images/{a["id"]}.png'
+            path = f'{a["id"]}.png'
             alt = f'{MODELS[a["model"]]} {a["name"]}, item {a["item"]} highlighted'
             width = round(min(440, 300*a['crop'][2]/a['crop'][3]))
             text += f'<a href="{path}"><img src="{path}" alt="{html.escape(alt)}" width="{width}"></a>\n\n'
@@ -282,7 +286,7 @@ class Reference:
     def offline_book(self):
         parts = sorted(self.parts.values(), key=lambda p: (p['name'].casefold(), p['number']))
         out = self.preamble(book=True)
-        out += r'\pdfbookmark[0]{Part index}{book-index}\hypertarget{index}{}\includegraphics[width=1.08in]{parts/images/team-rubicon-logo.png}\hfill{\small '+self.data['revision']+r'}\par{\LARGE\bfseries Field Repair Kit: Part Reference}\par'
+        out += r'\pdfbookmark[0]{Part index}{book-index}\hypertarget{index}{}\includegraphics[width=1.08in]{reference/team-rubicon-logo.png}\hfill{\small '+self.data['revision']+r'}\par{\LARGE\bfseries Field Repair Kit: Part Reference}\par'
         out += r'{\color{frkSecondary} HT 135 \enspace / \enspace MS 261 \enspace / \enspace MS 462 \hfill '+str(len(parts))+r' parts}\par\medskip'
         out += r'\renewcommand{\arraystretch}{1.28}\begin{longtable}{@{}p{3.52in}p{1.68in}p{0.65in}r@{}}\toprule\textbf{Part} & \textbf{Part number} & \textbf{Bin} & \textbf{Page}\\\midrule\endfirsthead\multicolumn{4}{@{}l}{\large\bfseries Part index (continued)}\\\toprule\textbf{Part} & \textbf{Part number} & \textbf{Bin} & \textbf{Page}\\\midrule\endhead'
         for p in parts:
@@ -331,20 +335,20 @@ class Reference:
     def sources(self):
         write('frk-reference-colors.tex', '% Shared color roles, generated by scripts/build.py.\n'+''.join(r'\definecolor{frk'+key.title()+r'}{HTML}{'+value+'}\n' for key, value in COLORS.items()))
         for p in self.parts.values():
-            base = f'parts/{p["id"]}/'
-            write(base+'README.md', self.markdown(p))
-            write(base+'field-card.tex', self.preamble(relative='../../')+self.card(p)+'\\end{document}\n')
+            base = f'.build/parts/{p["id"]}/'
+            write(f'docs/parts/{p["id"]}/README.md', self.markdown(p))
+            write(base+'field-card.tex', self.preamble(relative='../../../')+self.card(p)+'\\end{document}\n')
             write(base+'bag-label.tex', self.label_sheet([p], individual=True))
         write('frk-parts-labels-avery.tex', self.label_sheet(list(self.parts.values())))
         write('frk-bin-labels-avery.tex', self.bin_labels())
         write('frk-parts-inventory.tex', self.inventory())
         write('frk-part-reference.tex', self.offline_book())
         write('frk-bin-contents.tex', '% Generated bin names from frk_items.tsv.\n'+''.join(r'\expandafter\def\csname frkbin'+k+r'\endcsname{'+tex(v)+'}\n' for k, v in self.bins().items()))
-        index = '# Parts\n\n[Online reference]('+self.url+'/) · [Offline reference PDF](../frk-part-reference.pdf?raw=1)\n\n| Part | Part number | Models | Bin |\n| :--- | :--- | :--- | :--- |\n'
+        index = '# Parts\n\n[Online reference]('+self.url+'/) · [Offline reference PDF](../downloads/frk-part-reference.pdf?raw=1)\n\n| Part | Part number | Models | Bin |\n| :--- | :--- | :--- | :--- |\n'
         for p in self.parts.values():
             name = p['name'] + (' — fit unconfirmed' if p.get('status') else '')
             index += f'| [{name}]({p["id"]}/README.md) | {p["number"]} | {", ".join(p["models"])} | {p["bin"]} |\n'
-        write('parts/README.md', index)
+        write('docs/parts/README.md', index)
 
     def html_page(self, title, body, depth=0):
         prefix = '../'*depth
@@ -363,7 +367,7 @@ class Reference:
             css = css.replace('@'+role.upper()+'@', '#'+value)
         write('docs/assets/site.css', css)
         copy('reference/search.js', 'docs/assets/search.js')
-        copy('parts/images/team-rubicon-logo.png', 'docs/assets/team-rubicon-logo.png')
+        copy('reference/team-rubicon-logo.png', 'docs/assets/team-rubicon-logo.png')
         for name in ('frk-part-reference', 'frk-parts-labels-avery', 'frk-bin-labels-avery', 'frk-parts-inventory', 'frk-parts-boxmap'):
             copy(name+'.pdf', 'docs/downloads/'+name+'.pdf')
         index = '<h1>Parts</h1><p class="intro">HT 135 / MS 261 / MS 462</p><nav class="downloads" aria-label="Documents"><a href="downloads/frk-part-reference.pdf" download>Offline reference PDF</a><a href="downloads/frk-parts-labels-avery.pdf">Part labels</a><a href="downloads/frk-parts-inventory.pdf">Inventory</a><a href="downloads/frk-parts-boxmap.pdf">Box map</a><a href="downloads/frk-bin-labels-avery.pdf">Bin labels</a></nav>'
@@ -383,17 +387,15 @@ class Reference:
                 figure = a['id']+'.png'
                 alt = f'{MODELS[a["model"]]} {a["name"]}, item {a["item"]} highlighted'
                 body += f'<section class="application" id="{a["id"]}"><div><h2>{MODELS[a["model"]]} — {html.escape(application_name(a))}</h2><p>{self.render_text(a["text"], "html")}</p><p class="facts">Item {a["item"]} <span>Qty listed: {a["quantity"]}</span></p></div><a class="diagram" href="{figure}" aria-label="Open full-size diagram: {html.escape(alt)}"><img src="{figure}" alt="{html.escape(alt)}" loading="lazy"></a><p class="source">{html.escape(self.source(a))}</p></section>'
-                copy(f'parts/{pid}/images/{figure}', f'docs/parts/{pid}/{figure}')
-            for file in ('field-card.pdf', 'bag-label.pdf'):
-                copy(f'parts/{pid}/{file}', f'docs/parts/{pid}/{file}')
             write(f'docs/parts/{pid}/index.html', self.html_page(p['name'], body, 2))
         index += '</ul><p id="empty" hidden>No matching parts.</p><script src="assets/search.js" defer></script>'
         write('docs/index.html', self.html_page('Parts', index))
 
 
-def compile_pdf(source, passes=1, executable='pdflatex'):
+def compile_pdf(source, passes=1, destination=None, executable='pdflatex'):
     source = ROOT / source
-    output = ROOT / '.build' / source.relative_to(ROOT).with_suffix('')
+    destination = ROOT / destination if destination else source.with_suffix('.pdf')
+    output = ROOT / '.build/latex' / destination.relative_to(ROOT).with_suffix('')
     output.mkdir(parents=True, exist_ok=True)
     # Avoid changing committed PDFs when inputs and compiler version have not changed.
     dependencies = [source, ROOT/'frk-reference-colors.tex']
@@ -405,7 +407,7 @@ def compile_pdf(source, passes=1, executable='pdflatex'):
     build_settings = f'{passes}:{compiler}:{compiler.stat().st_mtime_ns}'.encode()
     fingerprint = hashlib.sha256(build_settings+b''.join(p.read_bytes() for p in dependencies)).hexdigest()
     stamp = output/'fingerprint'
-    if source.with_suffix('.pdf').exists() and stamp.exists() and stamp.read_text() == fingerprint:
+    if destination.exists() and stamp.exists() and stamp.read_text() == fingerprint:
         return
     for _ in range(passes):
         process = subprocess.run([executable, '-halt-on-error', '-interaction=nonstopmode',
@@ -416,7 +418,7 @@ def compile_pdf(source, passes=1, executable='pdflatex'):
     log = (output/source.with_suffix('.log').name).read_text(errors='replace')
     if 'Overfull \\hbox' in log or 'Overfull \\vbox' in log:
         raise RuntimeError(f'Layout overflow in {source.relative_to(ROOT)}; see {output}')
-    copy(output/source.with_suffix('.pdf').name, source.with_suffix('.pdf'))
+    copy(output/source.with_suffix('.pdf').name, destination)
     stamp.write_text(fingerprint)
 
 
@@ -436,14 +438,24 @@ class PageLinks(HTMLParser):
 
 
 def check_site(ref):
-    pages = {path.resolve(): PageLinks(path.read_text()) for path in (ROOT/'docs').rglob('*.html')}
-    if len(pages) != len(ref.parts)+1:
+    html_pages = {path.resolve(): PageLinks(path.read_text()) for path in (ROOT/'docs').rglob('*.html')}
+    if len(html_pages) != len(ref.parts)+1:
         raise ValueError('Website page count differs from the inventory')
+    pages = dict(html_pages)
+    for path in (ROOT/'docs/parts').rglob('README.md'):
+        content = path.read_text()
+        page = PageLinks(content)
+        page.links.extend(re.findall(r'\[[^\]]+\]\(([^\s)]+)\)', content))
+        pages[path.resolve()] = page
+    if len(pages)-len(html_pages) != len(ref.parts)+1:
+        raise ValueError('Git reference page count differs from the inventory')
     count = 0
     for path, page in pages.items():
         for link in page.links:
             url = urlsplit(link)
             if url.scheme or url.netloc:
+                if path.suffix == '.md':
+                    continue
                 raise ValueError(f'Unexpected external dependency in site: {link}')
             target = (path.parent/unquote(url.path)).resolve() if url.path else path
             if target.is_dir():
@@ -453,7 +465,24 @@ def check_site(ref):
             if url.fragment and (target not in pages or url.fragment not in pages[target].ids):
                 raise ValueError(f'Broken site anchor: {path} → {link}')
             count += 1
-    print(f'Checked {len(pages)} web pages and {count} local links/assets.')
+    print(f'Checked {len(html_pages)} web pages, {len(pages)-len(html_pages)} Git reference pages and {count} local links/assets.')
+
+
+def check_live_site(ref):
+    """Check deployed QR destinations, including HTTP-200 error or stale pages."""
+    def verify(path, url):
+        try:
+            with urlopen(Request(url, headers={'User-Agent': 'FRK-reference-check'}), timeout=25) as response:
+                content = response.read()
+        except (HTTPError, URLError) as error:
+            raise ValueError(f'Cannot open {url}: {error}. Check the Pages publishing source and deployment status.') from error
+        if content != (ROOT/'docs'/path).read_bytes():
+            raise ValueError(f'Published page differs from the generated reference: {url}')
+
+    verify('index.html', ref.url+'/')
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        list(pool.map(lambda key: verify(f'parts/{key}/index.html', ref.part_url(key)), ref.parts))
+    print(f'Checked the live index and all {len(ref.parts)} QR destinations at {ref.url}/.')
 
 
 def check_pdfs(ref):
@@ -470,7 +499,7 @@ def check_pdfs(ref):
 
     for p in ref.parts.values():
         for file in ('field-card', 'bag-label'):
-            path = ROOT/f'parts/{p["id"]}/{file}.pdf'
+            path = ROOT/f'docs/parts/{p["id"]}/{file}.pdf'
             pdf = PdfReader(path)
             if len(pdf.pages) != 1:
                 raise ValueError(f'Expected a single page: {path}')
@@ -485,7 +514,7 @@ def check_pdfs(ref):
                 raise ValueError(f'Inventory quantity or supervision differs in {path}')
             if file == 'bag-label':
                 check_label_position(pdf.pages[0], p['number'])
-        card = PdfReader(ROOT/f'parts/{p["id"]}/field-card.pdf')
+        card = PdfReader(ROOT/f'docs/parts/{p["id"]}/field-card.pdf')
         uris = {str(a.get_object().get('/A', {}).get('/URI', '')) for a in card.pages[0].get('/Annots', [])}
         if ref.part_url(p['id']) not in uris:
             raise ValueError(f'Part number/QR link missing: {p["id"]}')
@@ -519,10 +548,13 @@ def check_pdfs(ref):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('target', nargs='?', default='all', choices=['all', 'generate', 'check'])
+    parser.add_argument('target', nargs='?', default='all', choices=['all', 'generate', 'check', 'check-live'])
     parser.add_argument('--pdflatex', default=os.environ.get('PDFLATEX', 'pdflatex'))
     args = parser.parse_args()
     ref = Reference()
+    if args.target == 'check-live':
+        check_live_site(ref)
+        return
     if args.target == 'check':
         check_pdfs(ref)
         check_site(ref)
@@ -531,7 +563,7 @@ def main():
     ref.sources()
     if args.target == 'generate':
         return
-    jobs = [(f'parts/{p["id"]}/{name}.tex', 2 if name == 'bag-label' else 1) for p in ref.parts.values() for name in ('field-card', 'bag-label')]
+    jobs = [(f'.build/parts/{p["id"]}/{name}.tex', 2 if name == 'bag-label' else 1, f'docs/parts/{p["id"]}/{name}.pdf') for p in ref.parts.values() for name in ('field-card', 'bag-label')]
     jobs += [('frk-part-reference.tex', 3), ('frk-parts-labels-avery.tex', 2), ('frk-bin-labels-avery.tex', 2), ('frk-parts-inventory.tex', 2), ('frk-parts-boxmap.tex', 1)]
     with ThreadPoolExecutor(max_workers=4) as pool:
         list(pool.map(lambda job: compile_pdf(*job, executable=args.pdflatex), jobs))

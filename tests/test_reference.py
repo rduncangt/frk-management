@@ -1,11 +1,14 @@
 """Regression checks for inventory propagation and contextual part links."""
 import copy
+import io
 import json
 import tempfile
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import patch
 
-from scripts.build import Reference, ROOT, DATA, identifier
+from scripts.build import Reference, ROOT, check_live_site, identifier
 
 
 class ReferenceTests(unittest.TestCase):
@@ -63,6 +66,18 @@ class ReferenceTests(unittest.TestCase):
         key = identifier('0000 350 0533')
         self.assertEqual(key, '00003500533')
         self.assertEqual(self.ref.part_url(key), 'https://rduncangt.github.io/frk-management/parts/00003500533/')
+
+    def test_live_check_rejects_wrong_page_even_with_successful_http_response(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root/'docs/parts/00003500533').mkdir(parents=True)
+            (root/'docs/index.html').write_bytes(b'<h1>Parts</h1>')
+            (root/'docs/parts/00003500533/index.html').write_bytes(b'<h1>Filler cap</h1>')
+            ref = SimpleNamespace(url=self.ref.url, parts={'00003500533': {}}, part_url=self.ref.part_url)
+            # A misconfigured host can return its home page for every path with HTTP 200.
+            with patch('scripts.build.ROOT', root), patch('scripts.build.urlopen', side_effect=lambda *a, **kw: io.BytesIO(b'<h1>Parts</h1>')):
+                with self.assertRaisesRegex(ValueError, 'Published page differs'):
+                    check_live_site(ref)
 
 
 if __name__ == '__main__':

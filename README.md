@@ -39,7 +39,7 @@ These are the materials purchased and used for configuring the FRK:
 
 ## Documents
 
-- [Part references](parts/README.md): model-specific uses, highlighted diagrams and related parts
+- [Part references](docs/parts/README.md): model-specific uses, highlighted diagrams and related parts
 - [Offline part reference](frk-part-reference.pdf?raw=1): complete indexed PDF with internal links and bookmarks
 - [Part labels](frk-parts-labels-avery.pdf?raw=1): one set of 61 labels on three Avery 5160 / 58160 sheets
 - [Bin labels](frk-bin-labels-avery.pdf?raw=1): eight copies of each bin label
@@ -69,15 +69,18 @@ Requires Python 3.10+, [uv](https://docs.astral.sh/uv/), and a LaTeX distributio
 ```sh
 make all        # Refresh every PDF, part page, diagram, QR code and the static site
 make check      # Validate references, generated PDFs and site links
+make check-live # Verify the published site and every QR destination (requires network)
 ```
 
-`make` installs the pinned Python dependencies into `.venv`. Build intermediates stay in `.build`. Generated `.tex`, `.pdf`, part pages and `docs/` are committed outputs; edit the shared sources and rebuild them together.
+`make` installs the pinned Python dependencies into `.venv`. Per-part pages, PDFs, diagrams and QR images are generated directly into `docs/parts/`. Each part's `README.md` provides a GitHub view of the same reference. Per-part LaTeX sources and compiler intermediates stay in `.build`; the shared layouts are in `scripts/build.py`. The main documents remain at the repository root, with download copies under `docs/downloads/`. Edit the shared sources and rebuild them together.
 
 The `labels`, `binlabels`, `inventory`, `boxmap`, `reference` and `site` targets all refresh the complete set, keeping the printed and web versions synchronized. `make generate` refreshes sources and images without compiling PDFs. `make clean` removes the build cache. Set `PDFLATEX=/path/to/pdflatex` when needed.
 
 ### Web publishing and printing
 
-GitHub Pages serves the generated `docs/` directory. To publish the pilot, select **Deploy from a branch**, `pan-head-screw-qr-pilot`, and `/docs` in the repository’s Pages settings. The `site_url` in `reference/parts.json` sets QR and PDF destinations; changing the publishing branch does not change those addresses.
+GitHub Pages serves the generated `docs/` directory. To publish the pilot, select **Deploy from a branch**, `pan-head-screw-qr-pilot`, and `/docs` in the [repository’s Pages settings](https://github.com/rduncangt/frk-management/settings/pages). After deployment completes, run `make check-live` to verify all QR destinations. The `site_url` in `reference/parts.json` sets QR and PDF destinations; changing the publishing branch does not change those addresses.
+
+The publishing directory is omitted from public URLs: `docs/parts/90223711020/index.html` is served at `https://rduncangt.github.io/frk-management/parts/90223711020/`. A 404 at the site’s home page usually means Pages is disabled, the publishing branch or directory is incorrect, or deployment has not completed.
 
 Part and bin labels use US Letter Avery 5160 / 58160 geometry: 1 × 2⅝ inches, three columns by ten rows. Print at **100% / actual size**. Each part directory also contains a PDF placing that single label in the sheet's top-left position.
 
