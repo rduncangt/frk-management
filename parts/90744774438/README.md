@@ -1,23 +1,21 @@
 # Pan head self-tapping screw
 
-**9074 477 4438** · IS-P6×30
+**9074 477 4438**
 
-Bin A9 · 2 spares per FRK · AS1 supervision · 2″ × 3″ bag
+Bin **A9** · **2** per kit · **AS1** supervision
 
-[Field card (PDF)](field-card.pdf?raw=1) · [Bag label (PDF)](bag-label.pdf?raw=1)
+[Part page](https://rduncangt.github.io/frk-management/parts/90744774438/) · [Field card PDF](field-card.pdf?raw=1) · [Avery label PDF](bag-label.pdf?raw=1) · [Offline reference](../../frk-part-reference.pdf?raw=1)
 
-| Saw | Application | Qty fitted | Item |
-| :--- | :--- | :---: | :---: |
-| MS 261 C-M | Chain catcher | 1 | 40 |
+<a id="ms261-chain-catcher"></a>
 
 ## MS 261 — chain catcher
 
-Secures chain catcher **[1141 656 7700](../11416567700/README.md)** (item 39) to the crankcase.
+IS-P6×30. Secures chain catcher [1141 656 7700](../11416567700/README.md) (item 39) to the crankcase.
 
-**Item 40 · Qty fitted: 1**
+**Item 40 · Qty listed: 1**
 
-<a href="images/ms261-chain-catcher-screw.png?raw=1"><img src="images/ms261-chain-catcher-screw.png" width="331" alt="MS 261 crankcase drawing, with screw item 40 highlighted in blue beside chain catcher item 39."></a>
+<a href="images/ms261-chain-catcher.png"><img src="images/ms261-chain-catcher.png" alt="MS 261 Chain catcher, item 40 highlighted" width="368"></a>
 
-Source: STIHL MS 261 C-M spare-parts list, edition 10/02/2023, Crankcase; drawing on PDF page 3, parts table on page 5.
+MS 261 C-M spare-parts list, 10/02/2023. Drawing p. 3; parts table p. 5.
 
-Drawing © ANDREAS STIHL AG & Co. KG. Not to scale.
+Drawings © ANDREAS STIHL AG & Co. KG. Not to scale.

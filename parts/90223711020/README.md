@@ -1,45 +1,46 @@
-# Pan head screw IS M5×20
+# Pan head screw IS M5x20
 
 **9022 371 1020**
 
-Bin A9 · 1 spare per FRK · S2 supervision · 2″ × 3″ bag
+Bin **A9** · **1** per kit · **S2** supervision
 
-[Field card (PDF)](field-card.pdf?raw=1) · [Bag label (PDF)](bag-label.pdf?raw=1)
+[Part page](https://rduncangt.github.io/frk-management/parts/90223711020/) · [Field card PDF](field-card.pdf?raw=1) · [Avery label PDF](bag-label.pdf?raw=1) · [Offline reference](../../frk-part-reference.pdf?raw=1)
 
-| Saw | Application | Qty fitted | Item |
-| :--- | :--- | :---: | :---: |
-| MS 462 C-M | Starter / fan housing to crankcase | 3 | 17 |
-| MS 462 C-M | Anti-vibration (AV) spring attachment | 1 | 5 |
-| MS 261 C-M | Cylinder to crankcase | 4 | 20 |
+<a id="ms-462--starter--fan-housing"></a>
+<a id="ms462-starter"></a>
 
-## MS 462 — starter / fan housing
+## MS 462 — starter housing
 
-Secures fan housing with rewind starter **[1142 080 2102](../11420802102/README.md)** to the crankcase.
+IS M5×20. Secures fan housing [1142 080 2102](../11420802102/README.md) to the crankcase.
 
-**Item 17 · Qty fitted: 3**
+**Item 17 · Qty listed: 3**
 
-<a href="images/ms462-starter.png?raw=1"><img src="images/ms462-starter.png" width="296" alt="MS 462 starter / fan-housing drawing, with screw item 17 highlighted in blue."></a>
+<a href="images/ms462-starter.png"><img src="images/ms462-starter.png" alt="MS 462 Starter housing, item 17 highlighted" width="328"></a>
 
-Source: STIHL MS 462 C-M Z spare-parts list, edition 10/29/2024, section O; drawing on PDF page 21, parts table on page 22.
+MS 462 C-M Z spare-parts list, 10/29/2024. Drawing p. 21; parts table p. 22.
+
+<a id="ms462-av-system"></a>
 
 ## MS 462 — AV system
 
-Anti-vibration spring attachment.
+IS M5×20. Fastening in the anti-vibration assembly.
 
-**Item 5 · Qty fitted: 1**
+**Item 5 · Qty listed: 1**
 
-<a href="images/ms462-av.png?raw=1"><img src="images/ms462-av.png" width="213" alt="MS 462 anti-vibration drawing, with screw item 5 highlighted in blue."></a>
+<a href="images/ms462-av-system.png"><img src="images/ms462-av-system.png" alt="MS 462 AV system, item 5 highlighted" width="236"></a>
 
-Source: STIHL MS 462 C-M Z spare-parts list, edition 10/29/2024, section AI; drawing on PDF page 32, parts table on page 33.
+MS 462 C-M Z spare-parts list, 10/29/2024. Drawing p. 32; parts table p. 33.
+
+<a id="ms261-cylinder"></a>
 
 ## MS 261 — cylinder
 
-Secures the cylinder to the crankcase.
+IS M5×20. Cylinder-to-crankcase fastening.
 
-**Item 20 · Qty fitted: 4**
+**Item 20 · Qty listed: 4**
 
-<a href="images/ms261-cylinder.png?raw=1"><img src="images/ms261-cylinder.png" width="193" alt="MS 261 cylinder and crankcase drawing, with screw item 20 highlighted in blue."></a>
+<a href="images/ms261-cylinder.png"><img src="images/ms261-cylinder.png" alt="MS 261 Cylinder, item 20 highlighted" width="229"></a>
 
-Source: STIHL MS 261 C-M spare-parts list, edition 10/02/2023; drawing on PDF page 8, parts table on page 9.
+MS 261 C-M spare-parts list, 10/02/2023. Drawing p. 8; parts table p. 9.
 
 Drawings © ANDREAS STIHL AG & Co. KG. Not to scale.

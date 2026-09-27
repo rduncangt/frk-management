@@ -1,0 +1,13 @@
+[project]
+name = "frk-reference"
+version = "0.1.0"
+description = "Generate Field Repair Kit references, labels, and inventory documents"
+requires-python = ">=3.10"
+dependencies = [
+    "Pillow==12.3.0",
+    "qrcode==8.2",
+    "pypdf==6.19.0",
+]
+
+[tool.uv]
+package = false

@@ -60,9 +60,10 @@
 
 \setlength{\tabcolsep}{0pt}
 
+\input{frk-bin-contents.tex}
 \begin{document}
 
-% lengths calculated based on \linewidth must be after \begin{document}
+% Lengths below depend on the document linewidth.
 \newlength{\boxwidth} % width for the outer box
 \newlength{\awidth} % width for A bins
 \newlength{\aheight} % height for A bins
@@ -130,7 +131,7 @@
       \colorbox{Abin}{%
       \parbox[c][\aheight][c]{\awidth - 2\fboxsep}%
         {
-          {\footnotesize \textbf{A1: unassigned} \\
+          {\footnotesize \textbf{A1: \csname frkbinA1\endcsname} \\
           % 1. part 1
           % 2. part 2
           }%
@@ -139,7 +140,7 @@
       \colorbox{Abin}{%
       \parbox[c][\aheight][c]{\awidth - 2\fboxsep}%
         {
-          {\footnotesize \textbf{A2: needle cages} \\
+          {\footnotesize \textbf{A2: \csname frkbinA2\endcsname} \\
           % 1. part 1
           % 2. part 2
           }%
@@ -148,7 +149,7 @@
       \colorbox{Abin}{%
       \parbox[c][\aheight][c]{\awidth - 2\fboxsep}%
         {
-          {\footnotesize \textbf{A3: sprockets} \\
+          {\footnotesize \textbf{A3: \csname frkbinA3\endcsname} \\
           % 1. part 1
           % 2. part 2
           }%
@@ -157,7 +158,7 @@
       \colorbox{Abin}{%
       \parbox[c][\aheight][c]{\awidth - 2\fboxsep}%
         {
-          {\footnotesize \textbf{A4: e-clips and washers} \\
+          {\footnotesize \textbf{A4: \csname frkbinA4\endcsname} \\
           % 1. part 1
           % 2. part 2
           }%
@@ -166,7 +167,7 @@
       \colorbox{Abin}{%
       \parbox[c][\aheight][c]{\awidth - 2\fboxsep}%
         {
-          {\footnotesize \textbf{A5: decompression valves} \\
+          {\footnotesize \textbf{A5: \csname frkbinA5\endcsname} \\
           % 1. part 1
           % 2. part 2
           }%
@@ -182,7 +183,7 @@
       \colorbox{Bbin}{%
         \parbox[c][\bheight][c]{\dimexpr\bwidth - 2\fboxsep\relax}%
         {
-          {\footnotesize \textbf{B1: chain brake} \\
+          {\footnotesize \textbf{B1: \csname frkbinB1\endcsname} \\
           % 1. Tension spring	3	261	1141 160 5500	chain brake
           % 2. part 2
           }%
@@ -190,12 +191,12 @@
       } &
       % open area in the middle
       \colorbox{Obin}{%
-      \parbox[c][\bheight][c]{\dimexpr\threetimesbwidth - 2\fboxsep\relax}{\centering\textbf{OPEN AREA} \\air filters\\filler caps}%
+      \parbox[c][\bheight][c]{\dimexpr\threetimesbwidth - 2\fboxsep\relax}{\centering\textbf{O1: OPEN AREA} \\\csname frkbinO1\endcsname}%
       } &
       \colorbox{Bbin}{%
         \parbox[c][\bheight][c]{\dimexpr\bwidth - 2\fboxsep\relax}%
         {
-          {\footnotesize \textbf{B2: fuel filters} \\
+          {\footnotesize \textbf{B2: \csname frkbinB2\endcsname} \\
           % 1. part 1
           % 2. part 2
           }%
@@ -210,7 +211,7 @@
       \colorbox{Abin}{%
       \parbox[c][\aheight][c]{\awidth - 2\fboxsep}%
         {
-          {\footnotesize \textbf{A6: guards} \\
+          {\footnotesize \textbf{A6: \csname frkbinA6\endcsname} \\
           % 1. part 1
           % 2. part 2
           }%
@@ -219,7 +220,7 @@
       \colorbox{Abin}{%
       \parbox[c][\aheight][c]{\awidth - 2\fboxsep}%
         {
-          {\footnotesize \textbf{A7: bumper strips} \\
+          {\footnotesize \textbf{A7: \csname frkbinA7\endcsname} \\
           % 1. part 1
           % 2. part 2
           }%
@@ -228,7 +229,7 @@
       \colorbox{Abin}{%
       \parbox[c][\aheight][c]{\awidth - 2\fboxsep}%
         {
-          {\footnotesize \textbf{A8: chain catchers} \\
+          {\footnotesize \textbf{A8: \csname frkbinA8\endcsname} \\
           % 1. part 1
           % 2. part 2
           }%
@@ -237,7 +238,7 @@
       \colorbox{Abin}{%
       \parbox[c][\aheight][c]{\awidth - 2\fboxsep}%
         {
-          {\footnotesize \textbf{A9: screws and nuts} \\
+          {\footnotesize \textbf{A9: \csname frkbinA9\endcsname} \\
           % 1. part 1
           % 2. part 2
           }%
@@ -246,7 +247,7 @@
       \colorbox{Abin}{%
       \parbox[c][\aheight][c]{\awidth - 2\fboxsep}%
         {
-          {\footnotesize \textbf{AA: pawls and springs} \\
+          {\footnotesize \textbf{AA: \csname frkbinAA\endcsname} \\
           % 1. part 1
           % 2. part 2
           }%
@@ -295,7 +296,7 @@ cut here \hfill cut here
       \colorbox{Dbin}{%
       \parbox[c][\dshort][c]{\dlong - 2\fboxsep}
         {
-          {\footnotesize \textbf{D1: tensioner hardware} \\
+          {\footnotesize \textbf{D1: \csname frkbinD1\endcsname} \\
           % 1. part 1
           % 2. part 2
           }%
@@ -308,7 +309,7 @@ cut here \hfill cut here
       \colorbox{Dbin}{%
         \parbox[c][\dshort][c]{\dlong - 2\fboxsep}%
         {
-          {\footnotesize \textbf{D2: clutches} \\
+          {\footnotesize \textbf{D2: \csname frkbinD2\endcsname} \\
           % 1. part 1
           % 2. part 2
           }%
@@ -323,7 +324,7 @@ cut here \hfill cut here
       \colorbox{Dbin}{%
       \parbox[c][\dshort][c]{\dlong - 2\fboxsep}%
         {
-          {\footnotesize \textbf{D3: oil pump hardware} \\
+          {\footnotesize \textbf{D3: \csname frkbinD3\endcsname} \\
           % 1. part 1
           % 2. part 2
           }%
@@ -331,9 +332,7 @@ cut here \hfill cut here
       } &
       % open area in the middle
       \colorbox{Obin}{%
-        \parbox[c][\dshort][c]{\dimexpr\boxwidth - 1\dlong - 2\fboxsep\relax}{\centering\textbf{OPEN AREA}%
-      \\rewind starter assemblies%
-      \\brake bands}%
+        \parbox[c][\dshort][c]{\dimexpr 3\dlong - 2\fboxsep\relax}{\centering\textbf{O2: OPEN AREA} \\\csname frkbinO2\endcsname}%
       }%
       \\
     \end{tabularx}%
@@ -344,7 +343,7 @@ cut here \hfill cut here
       \colorbox{Dbin}{%
       \parbox[c][\dshort][c]{\dlong - 2\fboxsep}%
         {
-          {\footnotesize \textbf{D4: spark plugs} \\
+          {\footnotesize \textbf{D4: \csname frkbinD4\endcsname} \\
           % 1. part 1
           % 2. part 2
           }%
@@ -353,7 +352,7 @@ cut here \hfill cut here
       \colorbox{Dbin}{%
       \parbox[c][\dshort][c]{\dlong - 2\fboxsep}%
         {
-          {\footnotesize \textbf{D5: rim sprocket kits} \\
+          {\footnotesize \textbf{D5: \csname frkbinD5\endcsname} \\
           % 1. part 1
           % 2. part 2
           }%
@@ -361,7 +360,7 @@ cut here \hfill cut here
       } &
       % open area in the middle
       \colorbox{Obin}{%
-        \parbox[c][\dshort][c]{\dimexpr\boxwidth - 2\dlong - 2\fboxsep\relax}{\,}%
+        \parbox[c][\dshort][c]{\dimexpr 2\dlong - 2\fboxsep\relax}{\,}%
       }%
       \\
       \hline

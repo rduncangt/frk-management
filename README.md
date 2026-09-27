@@ -39,58 +39,46 @@ These are the materials purchased and used for configuring the FRK:
 
 ## Documents
 
-This section concerns itself with generation of those PDF documents used in managing the inventory of an individual Field Repair Kit (FRK).
+- [Part references](parts/README.md): model-specific uses, highlighted diagrams and related parts
+- [Offline part reference](frk-part-reference.pdf?raw=1): complete indexed PDF with internal links and bookmarks
+- [Part labels](frk-parts-labels-avery.pdf?raw=1): one set of 61 labels on three Avery 5160 / 58160 sheets
+- [Bin labels](frk-bin-labels-avery.pdf?raw=1): eight copies of each bin label
+- [Inventory checklist](frk-parts-inventory.pdf?raw=1)
+- [Box map](frk-parts-boxmap.pdf?raw=1)
 
-Provided in the repository are the LaTeX source files that produce three types of printable documents:
+The [online reference](https://rduncangt.github.io/frk-management/) supports search by part name, number, application and bin. QR codes use permanent part-number addresses under `/frk-management/parts/`.
 
-+ **Labels**: Part labels for physical organization (Avery format)
-+ **Bin Labels**: Bin labels for affixing to toolbox bins (Avery format)
-+ **Inventory Sheet**: Single-page inventory checklist
-+ **Box Map**: Toolbox bin layout diagram
+### Source data
 
-### Requirements
-
-+ A LaTeX distribution (e.g., TeX Live or MiKTeX)
-+ [`frk_items.tsv`](frk_items.tsv) data file in the repository root
-
-### Data File and Format
-
-All LaTeX files expect a TSV file named [`frk_items.tsv`](frk_items.tsv) with the following columns:
+[`frk_items.tsv`](frk_items.tsv) supplies the inventory values to every document. It has no header row and uses these eight tab-separated columns:
 
 | Part Number | Part Name | Count | Saw | Supervision | Bin | Section | Packaging |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 9512 933 2260 | Needle cage 10x13x10 | 3 | 261 | AS1 | A2 | needle cages | 2" x 3" |
 
-NB: This data file should be generated from a source of truth before building documents.
+[`reference/parts.json`](reference/parts.json) records each application: model, manual edition, drawing/table pages, item number, manual quantity, diagram crop/highlight and related-part links. Inventory quantities, names, bins and supervision levels remain in the TSV. `kit_count` controls the number of bin-label sets.
 
-### Building Documents
+Related links use `[[partnumber]]` or `[[partnumber#application-id]]`. Application-specific links keep an assembly's fasteners separate from their other uses. A reference with an unverified part-number match carries `status: "unconfirmed"` and identifies the number actually listed in the manual.
 
-One can use `make` or `pdflatex` to produce the documents. Each of these should produce the same results.
-All document producing calls to `make` simply call `pdflatex` underneath with opinionated options.
+Diagram sources are in [`reference/figures/`](reference/figures/). Crop and highlight coordinates use PDF points from the upper-left corner of an A4 drawing page. [`scripts/build.py`](scripts/build.py) contains the shared layouts and color roles; web styling is in [`reference/site.css`](reference/site.css).
 
-#### Using Make
+### Build
 
-```bash
-make all        # Generate all PDFs
-make labels     # Generate labels only
-make binlabels  # Generate bin labels only
-make inventory  # Generate inventory sheet only
-make boxmap     # Generate box map only
-make clean      # Remove *.log and *.aux files
+Requires Python 3.10+, [uv](https://docs.astral.sh/uv/), and a LaTeX distribution with `pdflatex`, `geometry`, `lmodern`, `inconsolata`, `graphicx`, `xcolor`, `pgf`, `hyperref`, `longtable`, `booktabs`, `array`, `tcolorbox` and `tabularx`.
+
+```sh
+make all        # Refresh every PDF, part page, diagram, QR code and the static site
+make check      # Validate references, generated PDFs and site links
 ```
 
-#### Using `pdflatex` directly
+`make` installs the pinned Python dependencies into `.venv`. Build intermediates stay in `.build`. Generated `.tex`, `.pdf`, part pages and `docs/` are committed outputs; edit the shared sources and rebuild them together.
 
-```bash
-pdflatex frk-parts-labels-avery.tex  # Labels
-pdflatex frk-bin-labels-avery.tex    # Bin labels
-pdflatex frk-parts-inventory.tex     # Inventory sheet
-pdflatex frk-parts-boxmap.tex        # Box map
-```
+The `labels`, `binlabels`, `inventory`, `boxmap`, `reference` and `site` targets all refresh the complete set, keeping the printed and web versions synchronized. `make generate` refreshes sources and images without compiling PDFs. `make clean` removes the build cache. Set `PDFLATEX=/path/to/pdflatex` when needed.
 
-### Output Files
+### Web publishing and printing
 
-+ [`frk-parts-labels-avery.pdf`](frk-parts-labels-avery.pdf) - Avery-format labels for all parts in the TSV file
-+ [`frk-bin-labels-avery.pdf`](frk-bin-labels-avery.pdf) - Avery-format labels for all toolbox bins
-+ [`frk-parts-inventory.pdf`](frk-parts-inventory.pdf)    - Single-page inventory checklist
-+ [`frk-parts-boxmap.pdf`](frk-parts-boxmap.pdf)       - Toolbox bin layout (currently with hard-coded labels)
+GitHub Pages serves the generated `docs/` directory. To publish the pilot, select **Deploy from a branch**, `pan-head-screw-qr-pilot`, and `/docs` in the repository’s Pages settings. The `site_url` in `reference/parts.json` sets QR and PDF destinations; changing the publishing branch does not change those addresses.
+
+Part and bin labels use US Letter Avery 5160 / 58160 geometry: 1 × 2⅝ inches, three columns by ten rows. Print at **100% / actual size**. Each part directory also contains a PDF placing that single label in the sheet's top-left position.
+
+Drawings © ANDREAS STIHL AG & Co. KG. Team Rubicon logo from [Team Rubicon](https://teamrubiconusa.org/).

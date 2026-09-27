@@ -1,0 +1,3082 @@
+{
+  "site_url": "https://rduncangt.github.io/frk-management",
+  "revision": "2026-09-27",
+  "kit_count": 8,
+  "manuals": {
+    "ms261": {
+      "title": "MS 261 C-M spare-parts list",
+      "edition": "10/02/2023"
+    },
+    "ms462": {
+      "title": "MS 462 C-M Z spare-parts list",
+      "edition": "10/29/2024"
+    },
+    "ht135": {
+      "title": "HT 135-Z spare-parts list",
+      "edition": "10/28/2024"
+    }
+  },
+  "parts": {
+    "95129332260": {
+      "applications": [
+        {
+          "id": "ms261-clutch-drum",
+          "model": "261",
+          "name": "Clutch drum",
+          "manual": "ms261",
+          "drawing": 10,
+          "table": 11,
+          "item": "19",
+          "quantity": 1,
+          "crop": [
+            240,
+            255,
+            300,
+            205
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                491,
+                408,
+                10,
+                11
+              ]
+            }
+          ],
+          "text": "Needle cage inside the clutch drum.",
+          "label": "261 clutch drum"
+        }
+      ]
+    },
+    "95129332379": {
+      "applications": [
+        {
+          "id": "ms462-clutch-drum",
+          "model": "462",
+          "name": "Clutch drum",
+          "manual": "ms462",
+          "drawing": 13,
+          "table": 14,
+          "item": "18",
+          "quantity": 1,
+          "crop": [
+            130,
+            410,
+            330,
+            248
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                262,
+                551,
+                14,
+                14
+              ]
+            }
+          ],
+          "text": "Needle cage inside the clutch drum.",
+          "label": "462 clutch drum"
+        }
+      ]
+    },
+    "00006402003": {
+      "applications": [
+        {
+          "id": "ht135-gear-head",
+          "model": "135",
+          "name": "Gear head",
+          "manual": "ht135",
+          "drawing": 17,
+          "table": 18,
+          "item": "26",
+          "quantity": 1,
+          "crop": [
+            280,
+            525,
+            220,
+            130
+          ],
+          "marks": [
+            {
+              "polygon": [
+                [
+                  296,
+                  577
+                ],
+                [
+                  343,
+                  550
+                ],
+                [
+                  367,
+                  563
+                ],
+                [
+                  319,
+                  595
+                ]
+              ]
+            }
+          ],
+          "text": "3/8-inch P pitch; 7 teeth. Includes two washers [[41821628900]] (item 27).",
+          "label": "135 gear head"
+        }
+      ]
+    },
+    "41821628900": {
+      "applications": [
+        {
+          "id": "ht135-gear-head",
+          "model": "135",
+          "name": "Gear head",
+          "manual": "ht135",
+          "drawing": 17,
+          "table": 18,
+          "item": "27",
+          "quantity": 2,
+          "crop": [
+            280,
+            525,
+            220,
+            130
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                327,
+                561,
+                9,
+                11
+              ]
+            },
+            {
+              "ellipse": [
+                349,
+                575,
+                9,
+                11
+              ]
+            }
+          ],
+          "text": "Washers on either side of chain sprocket [[00006402003]] (item 26).",
+          "label": "135 gear head"
+        }
+      ]
+    },
+    "00006421236": {
+      "applications": [
+        {
+          "id": "ms261-rim-sprocket",
+          "model": "261",
+          "name": "Rim sprocket",
+          "manual": "ms261",
+          "drawing": 10,
+          "table": 11,
+          "item": "24",
+          "quantity": 1,
+          "crop": [
+            240,
+            255,
+            300,
+            205
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                477,
+                399,
+                14,
+                16
+              ]
+            }
+          ],
+          "text": "0.325-inch pitch; 7 teeth. Included in rim sprocket kit [[11410071002]].",
+          "label": "261 clutch drum"
+        }
+      ]
+    },
+    "00006421223": {
+      "applications": [
+        {
+          "id": "ms462-rim-sprocket",
+          "model": "462",
+          "name": "Rim sprocket",
+          "manual": "ms462",
+          "drawing": 13,
+          "table": 14,
+          "item": "20",
+          "quantity": 1,
+          "crop": [
+            130,
+            410,
+            330,
+            248
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                336,
+                592,
+                18,
+                22
+              ]
+            }
+          ],
+          "text": "3/8-inch pitch; 7 teeth. The FRK also contains the separate 8-tooth kit [[11280071001]].",
+          "label": "462 clutch drum"
+        }
+      ]
+    },
+    "00009581022": {
+      "applications": [
+        {
+          "id": "ms261-clutch-drum",
+          "model": "261",
+          "name": "Clutch drum",
+          "manual": "ms261",
+          "drawing": 10,
+          "table": 12,
+          "item": "28",
+          "quantity": 1,
+          "crop": [
+            240,
+            255,
+            300,
+            205
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                504,
+                416,
+                11,
+                13
+              ]
+            }
+          ],
+          "text": "Retained by E-clip [[94606240801#ms261-clutch-drum]]. Included in rim sprocket kit [[11410071002]].",
+          "label": "261 clutch drum"
+        }
+      ]
+    },
+    "94606240801": {
+      "applications": [
+        {
+          "id": "ms261-clutch-drum",
+          "model": "261",
+          "name": "Clutch drum",
+          "manual": "ms261",
+          "drawing": 10,
+          "table": 12,
+          "item": "29",
+          "quantity": 1,
+          "crop": [
+            240,
+            255,
+            300,
+            205
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                519,
+                424,
+                9,
+                11
+              ]
+            }
+          ],
+          "text": "Retains washer [[00009581022]]. Included in rim sprocket kit [[11410071002]].",
+          "label": "261 clutch drum"
+        },
+        {
+          "id": "ms462-clutch-drum",
+          "model": "462",
+          "name": "Clutch drum",
+          "manual": "ms462",
+          "drawing": 13,
+          "table": 14,
+          "item": "22",
+          "quantity": 1,
+          "crop": [
+            130,
+            410,
+            330,
+            248
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                373,
+                614,
+                9,
+                11
+              ]
+            }
+          ],
+          "text": "Retains washer [[00009581032]]. Included in rim sprocket kit [[11280071001]].",
+          "label": "462 clutch drum"
+        }
+      ]
+    },
+    "00009581032": {
+      "applications": [
+        {
+          "id": "ms462-clutch-drum",
+          "model": "462",
+          "name": "Clutch drum",
+          "manual": "ms462",
+          "drawing": 13,
+          "table": 14,
+          "item": "21",
+          "quantity": 1,
+          "crop": [
+            130,
+            410,
+            330,
+            248
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                357,
+                604,
+                12,
+                14
+              ]
+            }
+          ],
+          "text": "Retained by E-clip [[94606240801#ms462-clutch-drum]]. Included in rim sprocket kit [[11280071001]].",
+          "label": "462 clutch drum"
+        }
+      ]
+    },
+    "11410209430": {
+      "applications": [
+        {
+          "id": "ms261-cylinder",
+          "model": "261",
+          "name": "Cylinder",
+          "manual": "ms261",
+          "drawing": 8,
+          "table": 9,
+          "item": "17",
+          "quantity": 1,
+          "crop": [
+            48,
+            237,
+            224,
+            294
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                183,
+                267,
+                13,
+                10
+              ]
+            }
+          ],
+          "text": "Decompression valve in the cylinder.",
+          "label": "261 cylinder"
+        }
+      ]
+    },
+    "11420209400": {
+      "applications": [
+        {
+          "id": "ms462-cylinder",
+          "model": "462",
+          "name": "Cylinder",
+          "manual": "ms462",
+          "drawing": 9,
+          "table": 10,
+          "item": "9",
+          "quantity": 1,
+          "crop": [
+            68,
+            267,
+            267,
+            259
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                225,
+                290,
+                13,
+                10
+              ]
+            }
+          ],
+          "text": "Decompression valve in the cylinder. Also listed in section D, drawing p. 11 / table p. 12.",
+          "label": "462 cylinder"
+        }
+      ]
+    },
+    "11416561501": {
+      "applications": [
+        {
+          "id": "ms261-chain-sprocket-cover",
+          "model": "261",
+          "name": "Chain sprocket cover",
+          "manual": "ms261",
+          "drawing": 15,
+          "table": 16,
+          "item": "13",
+          "quantity": 1,
+          "crop": [
+            163,
+            225,
+            310,
+            217
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                277,
+                407,
+                21,
+                30
+              ]
+            }
+          ],
+          "text": "Guard fitted to the chain sprocket cover.",
+          "label": "261 sprocket cover"
+        }
+      ]
+    },
+    "11426561500": {
+      "applications": [
+        {
+          "id": "ms462-chain-sprocket-cover",
+          "model": "462",
+          "name": "Chain sprocket cover",
+          "manual": "ms462",
+          "drawing": 17,
+          "table": 18,
+          "item": "7",
+          "quantity": 1,
+          "crop": [
+            217,
+            344,
+            313,
+            246
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                250,
+                541,
+                22,
+                39
+              ]
+            }
+          ],
+          "text": "Guard fitted to the chain sprocket cover.",
+          "label": "462 sprocket cover"
+        }
+      ]
+    },
+    "11236486600": {
+      "applications": [
+        {
+          "id": "ht135-chain-sprocket-cover",
+          "model": "135",
+          "name": "Chain sprocket cover",
+          "manual": "ht135",
+          "drawing": 17,
+          "table": 18,
+          "item": "12",
+          "quantity": 2,
+          "crop": [
+            145,
+            390,
+            240,
+            172
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                302,
+                507,
+                10,
+                10
+              ]
+            },
+            {
+              "ellipse": [
+                301,
+                534,
+                10,
+                10
+              ]
+            }
+          ],
+          "text": "Two strips on the gear-head housing, behind the chain sprocket cover.",
+          "label": "135 sprocket cover"
+        }
+      ]
+    },
+    "11216486610": {
+      "applications": [
+        {
+          "id": "ms261-chain-sprocket-cover",
+          "model": "261",
+          "name": "Chain sprocket cover",
+          "manual": "ms261",
+          "drawing": 15,
+          "table": 16,
+          "item": "12",
+          "quantity": 2,
+          "crop": [
+            163,
+            225,
+            310,
+            217
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                322,
+                349,
+                13,
+                13
+              ]
+            },
+            {
+              "ellipse": [
+                345,
+                316,
+                13,
+                13
+              ]
+            }
+          ],
+          "text": "Two strips on the inside of the chain sprocket cover.",
+          "label": "261 sprocket cover"
+        },
+        {
+          "id": "ms462-chain-sprocket-cover",
+          "model": "462",
+          "name": "Chain sprocket cover",
+          "manual": "ms462",
+          "drawing": 17,
+          "table": 18,
+          "item": "4",
+          "quantity": 2,
+          "crop": [
+            217,
+            344,
+            313,
+            215
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                387,
+                421,
+                17,
+                14
+              ]
+            },
+            {
+              "ellipse": [
+                416,
+                399,
+                16,
+                15
+              ]
+            }
+          ],
+          "text": "Two strips on the inside of the chain sprocket cover.",
+          "label": "462 sprocket cover"
+        }
+      ]
+    },
+    "11416567700": {
+      "applications": [
+        {
+          "id": "ms261-chain-catcher",
+          "model": "261",
+          "name": "Chain catcher",
+          "manual": "ms261",
+          "drawing": 3,
+          "table": 5,
+          "item": "39",
+          "quantity": 1,
+          "crop": [
+            276,
+            251,
+            270,
+            220
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                459.8,
+                376.4,
+                13.4,
+                13.8
+              ]
+            }
+          ],
+          "text": "Secured to the crankcase by self-tapping screw [[90744774438]] (IS-P6×30; item 40).",
+          "label": "261 crankcase"
+        }
+      ]
+    },
+    "11426567700": {
+      "applications": [
+        {
+          "id": "ms462-chain-catcher",
+          "model": "462",
+          "name": "Chain catcher",
+          "manual": "ms462",
+          "drawing": 17,
+          "table": 18,
+          "item": "12",
+          "quantity": 1,
+          "crop": [
+            191,
+            235,
+            166,
+            154
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                247,
+                349,
+                15,
+                20
+              ]
+            }
+          ],
+          "text": "Secured to the crankcase by countersunk screw [[90613730982]] (M5×18-10.9; item 13).",
+          "label": "462 crankcase"
+        }
+      ]
+    },
+    "00009950803": {
+      "applications": [
+        {
+          "id": "ms261-chain-sprocket-cover",
+          "model": "261",
+          "name": "Chain sprocket cover",
+          "manual": "ms261",
+          "drawing": 15,
+          "table": 16,
+          "item": "14",
+          "quantity": 1,
+          "crop": [
+            163,
+            225,
+            310,
+            217
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                400,
+                390,
+                14,
+                13
+              ]
+            }
+          ],
+          "text": "M8 collar nut on the chain sprocket cover. The parts list records one at item 14.",
+          "label": "261 sprocket cover"
+        },
+        {
+          "id": "ms462-chain-sprocket-cover",
+          "model": "462",
+          "name": "Chain sprocket cover",
+          "manual": "ms462",
+          "drawing": 17,
+          "table": 18,
+          "item": "5",
+          "quantity": 2,
+          "crop": [
+            217,
+            344,
+            313,
+            215
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                507,
+                454,
+                15,
+                14
+              ]
+            }
+          ],
+          "text": "M8 collar nuts on the chain sprocket cover.",
+          "label": "462 sprocket cover"
+        }
+      ]
+    },
+    "90744774438": {
+      "applications": [
+        {
+          "id": "ms261-chain-catcher",
+          "model": "261",
+          "name": "Chain catcher",
+          "manual": "ms261",
+          "drawing": 3,
+          "table": 5,
+          "item": "40",
+          "quantity": 1,
+          "crop": [
+            276,
+            251,
+            270,
+            220
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                481,
+                384,
+                10.5,
+                8.5
+              ]
+            }
+          ],
+          "text": "IS-P6×30. Secures chain catcher [[11416567700]] (item 39) to the crankcase.",
+          "label": "261 chain catcher"
+        }
+      ]
+    },
+    "90223711020": {
+      "applications": [
+        {
+          "id": "ms462-starter",
+          "model": "462",
+          "name": "Starter housing",
+          "manual": "ms462",
+          "drawing": 21,
+          "table": 22,
+          "item": "17",
+          "quantity": 3,
+          "crop": [
+            147,
+            278,
+            210,
+            192
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                181,
+                411,
+                14,
+                11
+              ]
+            }
+          ],
+          "text": "IS M5×20. Secures fan housing [[11420802102]] to the crankcase.",
+          "label": "462 starter housing"
+        },
+        {
+          "id": "ms462-av-system",
+          "model": "462",
+          "name": "AV system",
+          "manual": "ms462",
+          "drawing": 32,
+          "table": 33,
+          "item": "5",
+          "quantity": 1,
+          "crop": [
+            386,
+            234,
+            133,
+            169
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                469,
+                295,
+                10,
+                8
+              ]
+            }
+          ],
+          "text": "IS M5×20. Fastening in the anti-vibration assembly.",
+          "label": "462 av system"
+        },
+        {
+          "id": "ms261-cylinder",
+          "model": "261",
+          "name": "Cylinder",
+          "manual": "ms261",
+          "drawing": 8,
+          "table": 9,
+          "item": "20",
+          "quantity": 4,
+          "crop": [
+            48,
+            237,
+            224,
+            294
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                106,
+                388,
+                10,
+                13
+              ]
+            }
+          ],
+          "text": "IS M5×20. Cylinder-to-crankcase fastening.",
+          "label": "261 cylinder"
+        }
+      ]
+    },
+    "90223410960": {
+      "applications": [
+        {
+          "id": "ms462-bumper-spike",
+          "model": "462",
+          "name": "Bumper spike",
+          "manual": "ms462",
+          "drawing": 17,
+          "table": 18,
+          "item": "9",
+          "quantity": 1,
+          "crop": [
+            191,
+            235,
+            166,
+            154
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                314,
+                281,
+                14,
+                11
+              ]
+            }
+          ],
+          "text": "IS-M5×12. Screw at the upper hole of the inner bumper spike (item 8).",
+          "label": "462 bumper spike"
+        },
+        {
+          "id": "ht135-handle-clamps",
+          "model": "135",
+          "name": "Handle clamps",
+          "manual": "ht135",
+          "drawing": 15,
+          "table": 16,
+          "item": "4",
+          "quantity": 2,
+          "crop": [
+            209,
+            161,
+            225,
+            149
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                279,
+                224,
+                10,
+                8
+              ]
+            },
+            {
+              "ellipse": [
+                347,
+                279,
+                10,
+                8
+              ]
+            }
+          ],
+          "text": "IS-M5×12. Two screws secure the clamps (item 3) inside the control handle.",
+          "label": "135 handle clamps"
+        }
+      ]
+    },
+    "90613730982": {
+      "applications": [
+        {
+          "id": "ms462-chain-catcher",
+          "model": "462",
+          "name": "Chain catcher",
+          "manual": "ms462",
+          "drawing": 17,
+          "table": 18,
+          "item": "13",
+          "quantity": 1,
+          "crop": [
+            191,
+            235,
+            166,
+            154
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                275,
+                355,
+                14,
+                10
+              ]
+            }
+          ],
+          "text": "Secures chain catcher [[11426567700]] (item 12) to the crankcase.",
+          "label": "462 chain catcher"
+        }
+      ]
+    },
+    "11181953500": {
+      "applications": [
+        {
+          "id": "ht135-rewind-starter",
+          "model": "135",
+          "name": "Rewind starter",
+          "manual": "ht135",
+          "drawing": 5,
+          "table": 6,
+          "item": "9",
+          "quantity": 1,
+          "crop": [
+            67,
+            226,
+            228,
+            169
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                281,
+                359,
+                7,
+                11
+              ]
+            }
+          ],
+          "text": "Pawl-retaining spring in rewind starter [[41821904001]] (item 9).",
+          "label": "135 rewind starter"
+        }
+      ]
+    },
+    "00001957200": {
+      "applications": [
+        {
+          "id": "ht135-rewind-starter",
+          "model": "135",
+          "name": "Rewind starter",
+          "manual": "ht135",
+          "drawing": 5,
+          "table": 6,
+          "item": "8",
+          "quantity": 1,
+          "crop": [
+            67,
+            226,
+            228,
+            169
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                264,
+                344,
+                9,
+                9
+              ]
+            }
+          ],
+          "text": "Manual-listed pawl: 4116 195 7200. Shown in rewind starter [[41821904001]].",
+          "listed_part": "4116 195 7200",
+          "label": "135 rewind starter"
+        },
+        {
+          "id": "ms261-rewind-starter",
+          "model": "261",
+          "name": "Rewind starter",
+          "manual": "ms261",
+          "drawing": 19,
+          "table": 20,
+          "item": "8",
+          "quantity": 2,
+          "crop": [
+            233,
+            296,
+            285,
+            191
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                469,
+                450,
+                12,
+                14
+              ]
+            }
+          ],
+          "text": "Manual-listed pawl: 1125 195 7200. Shown in fan housing [[11410802104]].",
+          "listed_part": "1125 195 7200",
+          "label": "261 rewind starter"
+        },
+        {
+          "id": "ms462-rewind-starter",
+          "model": "462",
+          "name": "Rewind starter",
+          "manual": "ms462",
+          "drawing": 21,
+          "table": 22,
+          "item": "10",
+          "quantity": 2,
+          "crop": [
+            322,
+            384,
+            211,
+            163
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                489,
+                495,
+                13,
+                14
+              ]
+            }
+          ],
+          "text": "Manual-listed pawl: 1125 195 7200. Shown in fan housing [[11420802102]].",
+          "listed_part": "1125 195 7200",
+          "label": "462 rewind starter"
+        }
+      ],
+      "status": "unconfirmed",
+      "notice": "Fit unconfirmed. The inventory lists this number for HT 135, MS 261 and MS 462. The supplied manuals list different pawl numbers; interchangeability has not been verified."
+    },
+    "11281953500": {
+      "applications": [
+        {
+          "id": "ms261-rewind-starter",
+          "model": "261",
+          "name": "Rewind starter",
+          "manual": "ms261",
+          "drawing": 19,
+          "table": 20,
+          "item": "10",
+          "quantity": 1,
+          "crop": [
+            233,
+            296,
+            285,
+            191
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                494,
+                466,
+                10,
+                9
+              ]
+            }
+          ],
+          "text": "Pawl-retaining spring in fan housing [[11410802104]] (item 10).",
+          "label": "261 rewind starter"
+        },
+        {
+          "id": "ms462-rewind-starter",
+          "model": "462",
+          "name": "Rewind starter",
+          "manual": "ms462",
+          "drawing": 21,
+          "table": 22,
+          "item": "12",
+          "quantity": 1,
+          "crop": [
+            322,
+            384,
+            211,
+            163
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                514,
+                512,
+                11,
+                9
+              ]
+            }
+          ],
+          "text": "Pawl-retaining spring in fan housing [[11420802102]] (item 12).",
+          "label": "462 rewind starter"
+        }
+      ]
+    },
+    "11411605500": {
+      "applications": [
+        {
+          "id": "ms261-chain-brake",
+          "model": "261",
+          "name": "Chain brake",
+          "manual": "ms261",
+          "drawing": 13,
+          "table": 14,
+          "item": "8",
+          "quantity": 1,
+          "crop": [
+            277,
+            246,
+            229,
+            220
+          ],
+          "marks": [
+            {
+              "polygon": [
+                [
+                  334,
+                  350
+                ],
+                [
+                  393,
+                  299
+                ],
+                [
+                  408,
+                  304
+                ],
+                [
+                  356,
+                  362
+                ],
+                [
+                  338,
+                  365
+                ]
+              ]
+            },
+            {
+              "ellipse": [
+                321,
+                370,
+                15,
+                12
+              ]
+            }
+          ],
+          "text": "Includes sleeve (item 9). Shown with brake band [[11411605400]].",
+          "label": "261 chain brake"
+        }
+      ]
+    },
+    "11421605500": {
+      "applications": [
+        {
+          "id": "ms462-chain-brake",
+          "model": "462",
+          "name": "Chain brake",
+          "manual": "ms462",
+          "drawing": 15,
+          "table": 16,
+          "item": "7",
+          "quantity": 1,
+          "crop": [
+            258,
+            280,
+            247,
+            168
+          ],
+          "marks": [
+            {
+              "polygon": [
+                [
+                  277,
+                  380
+                ],
+                [
+                  285,
+                  389
+                ],
+                [
+                  317,
+                  368
+                ],
+                [
+                  354,
+                  343
+                ],
+                [
+                  373,
+                  324
+                ],
+                [
+                  368,
+                  318
+                ],
+                [
+                  328,
+                  345
+                ],
+                [
+                  317,
+                  339
+                ],
+                [
+                  302,
+                  353
+                ]
+              ]
+            }
+          ],
+          "text": "Includes sleeve (item 8). Shown with brake band [[11421605400]].",
+          "label": "462 chain brake"
+        }
+      ]
+    },
+    "00003503521": {
+      "applications": [
+        {
+          "id": "ht135-fuel-tank",
+          "model": "135",
+          "name": "Fuel tank",
+          "manual": "ht135",
+          "drawing": 5,
+          "table": 6,
+          "item": "23",
+          "quantity": 1,
+          "crop": [
+            272,
+            171,
+            211,
+            275
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                418,
+                304,
+                20,
+                13
+              ]
+            }
+          ],
+          "text": "Fuel pickup body inside the tank, on the fuel hose.",
+          "label": "135 fuel tank"
+        }
+      ]
+    },
+    "00003503518": {
+      "applications": [
+        {
+          "id": "ms261-fuel-tank",
+          "model": "261",
+          "name": "Fuel tank",
+          "manual": "ms261",
+          "drawing": 21,
+          "table": 22,
+          "item": "6",
+          "quantity": 1,
+          "crop": [
+            59,
+            158,
+            255,
+            214
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                229,
+                197,
+                20,
+                13
+              ]
+            }
+          ],
+          "text": "Fuel pickup body inside the tank, on fuel hose (item 5).",
+          "label": "261 fuel tank"
+        },
+        {
+          "id": "ms462-fuel-tank",
+          "model": "462",
+          "name": "Fuel tank",
+          "manual": "ms462",
+          "drawing": 23,
+          "table": 24,
+          "item": "4",
+          "quantity": 1,
+          "crop": [
+            179,
+            185,
+            215,
+            254
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                301,
+                309,
+                24,
+                23
+              ]
+            }
+          ],
+          "text": "Fuel pickup body inside the tank, on fuel hose (item 3).",
+          "label": "462 fuel tank"
+        }
+      ]
+    },
+    "41826600700": {
+      "applications": [
+        {
+          "id": "ht135-chain-tensioner",
+          "model": "135",
+          "name": "Chain tensioner",
+          "manual": "ht135",
+          "drawing": 17,
+          "table": 18,
+          "item": "23",
+          "quantity": 1,
+          "crop": [
+            145,
+            435,
+            247,
+            122
+          ],
+          "marks": [
+            {
+              "polygon": [
+                [
+                  327,
+                  488
+                ],
+                [
+                  366,
+                  466
+                ],
+                [
+                  366,
+                  507
+                ],
+                [
+                  327,
+                  529
+                ]
+              ]
+            }
+          ],
+          "text": "Chain-tensioning assembly on the gear head.",
+          "label": "135 chain tensioner"
+        }
+      ]
+    },
+    "11256401900": {
+      "applications": [
+        {
+          "id": "ms261-chain-tensioner",
+          "model": "261",
+          "name": "Chain tensioner",
+          "manual": "ms261",
+          "drawing": 15,
+          "table": 16,
+          "item": "3",
+          "quantity": 1,
+          "crop": [
+            165,
+            220,
+            169,
+            133
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                279,
+                267,
+                10,
+                11
+              ]
+            }
+          ],
+          "text": "Slide in chain tensioner kit [[ma020071002#ms261-chain-tensioner]].",
+          "label": "261 chain tensioner"
+        },
+        {
+          "id": "ms462-chain-tensioner",
+          "model": "462",
+          "name": "Chain tensioner",
+          "manual": "ms462",
+          "drawing": 15,
+          "table": 16,
+          "item": "14",
+          "quantity": 1,
+          "crop": [
+            128,
+            341,
+            182,
+            173
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                218,
+                401,
+                10,
+                12
+              ]
+            }
+          ],
+          "text": "Slide in chain tensioner kit [[ma020071002#ms462-chain-tensioner]].",
+          "label": "462 chain tensioner"
+        }
+      ]
+    },
+    "11416641030": {
+      "applications": [
+        {
+          "id": "ms261-guide-bar",
+          "model": "261",
+          "name": "Guide bar",
+          "manual": "ms261",
+          "drawing": 15,
+          "table": 16,
+          "item": "9",
+          "quantity": 1,
+          "crop": [
+            165,
+            220,
+            169,
+            133
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                299,
+                313,
+                24,
+                36
+              ]
+            }
+          ],
+          "text": "Inner side plate between the crankcase and guide bar.",
+          "label": "261 guide bar"
+        }
+      ]
+    },
+    "ma020071002": {
+      "applications": [
+        {
+          "id": "ms261-chain-tensioner",
+          "model": "261",
+          "name": "Chain tensioner",
+          "manual": "ms261",
+          "drawing": 15,
+          "table": 16,
+          "item": "1",
+          "quantity": 1,
+          "crop": [
+            165,
+            220,
+            169,
+            133
+          ],
+          "marks": [
+            {
+              "polygon": [
+                [
+                  182,
+                  300
+                ],
+                [
+                  270,
+                  236
+                ],
+                [
+                  298,
+                  253
+                ],
+                [
+                  299,
+                  274
+                ],
+                [
+                  275,
+                  286
+                ],
+                [
+                  275,
+                  323
+                ],
+                [
+                  249,
+                  338
+                ]
+              ]
+            }
+          ],
+          "text": "Includes items 2–8, including tensioner slide [[11256401900#ms261-chain-tensioner]] (item 3).",
+          "label": "261 chain tensioner"
+        },
+        {
+          "id": "ms462-chain-tensioner",
+          "model": "462",
+          "name": "Chain tensioner",
+          "manual": "ms462",
+          "drawing": 15,
+          "table": 16,
+          "item": "12",
+          "quantity": 1,
+          "crop": [
+            128,
+            341,
+            182,
+            173
+          ],
+          "marks": [
+            {
+              "polygon": [
+                [
+                  135,
+                  389
+                ],
+                [
+                  202,
+                  351
+                ],
+                [
+                  248,
+                  377
+                ],
+                [
+                  248,
+                  445
+                ],
+                [
+                  185,
+                  482
+                ],
+                [
+                  135,
+                  454
+                ]
+              ]
+            }
+          ],
+          "text": "Includes items 13–19, including tensioner slide [[11256401900#ms462-chain-tensioner]] (item 14).",
+          "label": "462 chain tensioner"
+        }
+      ]
+    },
+    "11286641000": {
+      "applications": [
+        {
+          "id": "ms462-guide-bar",
+          "model": "462",
+          "name": "Guide bar",
+          "manual": "ms462",
+          "drawing": 15,
+          "table": 16,
+          "item": "20",
+          "quantity": 1,
+          "crop": [
+            128,
+            341,
+            182,
+            174
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                268,
+                470,
+                27,
+                42
+              ]
+            }
+          ],
+          "text": "Inner side plate between the crankcase and guide bar.",
+          "label": "462 guide bar"
+        }
+      ]
+    },
+    "41801602000": {
+      "applications": [
+        {
+          "id": "ht135-clutch",
+          "model": "135",
+          "name": "Clutch",
+          "manual": "ht135",
+          "drawing": 13,
+          "table": 14,
+          "item": "1",
+          "quantity": 1,
+          "crop": [
+            164,
+            488,
+            273,
+            153
+          ],
+          "marks": [
+            {
+              "polygon": [
+                [
+                  289,
+                  560
+                ],
+                [
+                  310,
+                  548
+                ],
+                [
+                  350,
+                  581
+                ],
+                [
+                  362,
+                  593
+                ],
+                [
+                  353,
+                  601
+                ],
+                [
+                  330,
+                  579
+                ],
+                [
+                  314,
+                  591
+                ],
+                [
+                  291,
+                  596
+                ],
+                [
+                  286,
+                  583
+                ]
+              ]
+            }
+          ],
+          "text": "Clutch on the crankshaft; includes spring (item 2).",
+          "label": "135 clutch"
+        }
+      ]
+    },
+    "11211602051": {
+      "applications": [
+        {
+          "id": "ms261-clutch",
+          "model": "261",
+          "name": "Clutch",
+          "manual": "ms261",
+          "drawing": 10,
+          "table": 11,
+          "item": "13",
+          "quantity": 1,
+          "crop": [
+            240,
+            255,
+            300,
+            205
+          ],
+          "marks": [
+            {
+              "polygon": [
+                [
+                  359,
+                  294
+                ],
+                [
+                  397,
+                  285
+                ],
+                [
+                  447,
+                  325
+                ],
+                [
+                  447,
+                  362
+                ],
+                [
+                  385,
+                  404
+                ],
+                [
+                  351,
+                  388
+                ]
+              ]
+            },
+            {
+              "ellipse": [
+                346,
+                323,
+                18,
+                24
+              ]
+            }
+          ],
+          "text": "Assembly includes items 14–18.",
+          "label": "261 clutch"
+        }
+      ]
+    },
+    "11421602000": {
+      "applications": [
+        {
+          "id": "ms462-clutch",
+          "model": "462",
+          "name": "Clutch",
+          "manual": "ms462",
+          "drawing": 13,
+          "table": 14,
+          "item": "14",
+          "quantity": 1,
+          "crop": [
+            130,
+            410,
+            330,
+            248
+          ],
+          "marks": [
+            {
+              "polygon": [
+                [
+                  193,
+                  430
+                ],
+                [
+                  218,
+                  439
+                ],
+                [
+                  248,
+                  480
+                ],
+                [
+                  257,
+                  519
+                ],
+                [
+                  230,
+                  547
+                ],
+                [
+                  195,
+                  560
+                ],
+                [
+                  169,
+                  585
+                ],
+                [
+                  151,
+                  588
+                ],
+                [
+                  134,
+                  555
+                ],
+                [
+                  159,
+                  482
+                ],
+                [
+                  166,
+                  457
+                ]
+              ]
+            }
+          ],
+          "text": "Assembly includes items 15–17.",
+          "label": "462 clutch"
+        }
+      ]
+    },
+    "41386403200": {
+      "applications": [
+        {
+          "id": "ht135-oil-pump",
+          "model": "135",
+          "name": "Oil pump",
+          "manual": "ht135",
+          "drawing": 17,
+          "table": 18,
+          "item": "11",
+          "quantity": 1,
+          "crop": [
+            140,
+            388,
+            214,
+            211
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                227,
+                584,
+                6,
+                10
+              ]
+            }
+          ],
+          "text": "Oil pump in the gear-head housing.",
+          "label": "135 oil pump"
+        }
+      ]
+    },
+    "11216407111": {
+      "applications": [
+        {
+          "id": "ms261-oil-pump-drive",
+          "model": "261",
+          "name": "Oil pump drive",
+          "manual": "ms261",
+          "drawing": 10,
+          "table": 11,
+          "item": "11",
+          "quantity": 1,
+          "crop": [
+            165,
+            240,
+            180,
+            120
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                312,
+                307,
+                19,
+                23
+              ]
+            }
+          ],
+          "text": "Includes carrier [[11216473100]] (item 12). Drives oil pump [[11416403200]].",
+          "label": "261 oil pump drive"
+        }
+      ]
+    },
+    "11216473100": {
+      "applications": [
+        {
+          "id": "ms261-oil-pump-drive",
+          "model": "261",
+          "name": "Oil pump drive",
+          "manual": "ms261",
+          "drawing": 10,
+          "table": 11,
+          "item": "12",
+          "quantity": 1,
+          "crop": [
+            165,
+            240,
+            180,
+            120
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                324,
+                313,
+                11,
+                16
+              ]
+            }
+          ],
+          "text": "Carrier on worm [[11216407111]] (item 11).",
+          "label": "261 oil pump drive"
+        }
+      ]
+    },
+    "11416403200": {
+      "applications": [
+        {
+          "id": "ms261-oil-pump",
+          "model": "261",
+          "name": "Oil pump",
+          "manual": "ms261",
+          "drawing": 10,
+          "table": 11,
+          "item": "1",
+          "quantity": 1,
+          "crop": [
+            165,
+            240,
+            180,
+            120
+          ],
+          "marks": [
+            {
+              "polygon": [
+                [
+                  168,
+                  341
+                ],
+                [
+                  201,
+                  320
+                ],
+                [
+                  217,
+                  302
+                ],
+                [
+                  246,
+                  301
+                ],
+                [
+                  246,
+                  261
+                ],
+                [
+                  282,
+                  253
+                ],
+                [
+                  284,
+                  278
+                ],
+                [
+                  265,
+                  304
+                ],
+                [
+                  267,
+                  340
+                ],
+                [
+                  183,
+                  353
+                ]
+              ]
+            }
+          ],
+          "text": "Assembly includes items 2–8. Driven by worm [[11216407111]].",
+          "label": "261 oil pump"
+        }
+      ]
+    },
+    "11286407112": {
+      "applications": [
+        {
+          "id": "ms462-oil-pump-drive",
+          "model": "462",
+          "name": "Oil pump drive",
+          "manual": "ms462",
+          "drawing": 13,
+          "table": 14,
+          "item": "11",
+          "quantity": 1,
+          "crop": [
+            190,
+            245,
+            290,
+            167
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                413,
+                360,
+                16,
+                19
+              ]
+            },
+            {
+              "ellipse": [
+                436,
+                363,
+                14,
+                28
+              ]
+            }
+          ],
+          "text": "Includes spring [[11286472400]] (item 12). Drives oil pump [[11426403200]].",
+          "label": "462 oil pump drive"
+        }
+      ]
+    },
+    "11286472400": {
+      "applications": [
+        {
+          "id": "ms462-oil-pump-drive",
+          "model": "462",
+          "name": "Oil pump drive",
+          "manual": "ms462",
+          "drawing": 13,
+          "table": 14,
+          "item": "12",
+          "quantity": 1,
+          "crop": [
+            190,
+            245,
+            290,
+            167
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                436,
+                363,
+                14,
+                28
+              ]
+            }
+          ],
+          "text": "Spring on worm [[11286407112]] (item 11).",
+          "label": "462 oil pump drive"
+        }
+      ]
+    },
+    "11426403200": {
+      "applications": [
+        {
+          "id": "ms462-oil-pump",
+          "model": "462",
+          "name": "Oil pump",
+          "manual": "ms462",
+          "drawing": 13,
+          "table": 14,
+          "item": "1",
+          "quantity": 1,
+          "crop": [
+            190,
+            245,
+            290,
+            167
+          ],
+          "marks": [
+            {
+              "polygon": [
+                [
+                  202,
+                  369
+                ],
+                [
+                  378,
+                  253
+                ],
+                [
+                  378,
+                  330
+                ],
+                [
+                  346,
+                  348
+                ],
+                [
+                  346,
+                  400
+                ],
+                [
+                  202,
+                  400
+                ]
+              ]
+            }
+          ],
+          "text": "Assembly includes items 2–8. Driven by worm [[11286407112]].",
+          "label": "462 oil pump"
+        }
+      ]
+    },
+    "00004007011": {
+      "applications": [
+        {
+          "id": "ms462-cylinder",
+          "model": "462",
+          "name": "Cylinder",
+          "manual": "ms462",
+          "drawing": 9,
+          "table": 10,
+          "item": "10",
+          "quantity": 1,
+          "crop": [
+            68,
+            267,
+            267,
+            259
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                105,
+                314,
+                16,
+                10
+              ]
+            }
+          ],
+          "text": "Spark plug in the cylinder. Also listed in section D and the ignition-system section.",
+          "label": "462 cylinder"
+        },
+        {
+          "id": "ht135-cylinder",
+          "model": "135",
+          "name": "Cylinder",
+          "manual": "ht135",
+          "drawing": 8,
+          "table": 9,
+          "item": "9",
+          "quantity": 1,
+          "crop": [
+            221,
+            293,
+            146,
+            193
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                308,
+                315,
+                12,
+                19
+              ]
+            }
+          ],
+          "text": "Spark plug in the cylinder.",
+          "label": "135 cylinder"
+        }
+      ]
+    },
+    "00004007000": {
+      "applications": [
+        {
+          "id": "ms261-cylinder",
+          "model": "261",
+          "name": "Cylinder",
+          "manual": "ms261",
+          "drawing": 8,
+          "table": 9,
+          "item": "23",
+          "quantity": 1,
+          "crop": [
+            48,
+            237,
+            224,
+            294
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                71,
+                313,
+                17,
+                11
+              ]
+            }
+          ],
+          "text": "Spark plug in the cylinder.",
+          "label": "261 cylinder"
+        }
+      ]
+    },
+    "11280071001": {
+      "applications": [
+        {
+          "id": "ms462-rim-sprocket-kit",
+          "model": "462",
+          "name": "Rim sprocket kit",
+          "manual": "ms462",
+          "drawing": 13,
+          "table": 14,
+          "item": "23",
+          "quantity": 1,
+          "crop": [
+            130,
+            410,
+            330,
+            248
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                298,
+                571,
+                34,
+                40
+              ]
+            },
+            {
+              "ellipse": [
+                373,
+                571,
+                19,
+                23
+              ]
+            },
+            {
+              "ellipse": [
+                357,
+                604,
+                12,
+                14
+              ]
+            },
+            {
+              "ellipse": [
+                373,
+                614,
+                9,
+                11
+              ]
+            }
+          ],
+          "text": "3/8-inch pitch; 8 teeth. Includes washer [[00009581032]] (item 21), E-clip [[94606240801#ms462-clutch-drum]] (item 22) and 8-tooth rim sprocket (item 24).",
+          "label": "462 clutch drum"
+        }
+      ]
+    },
+    "11410071002": {
+      "applications": [
+        {
+          "id": "ms261-rim-sprocket-kit",
+          "model": "261",
+          "name": "Rim sprocket kit",
+          "manual": "ms261",
+          "drawing": 10,
+          "table": 11,
+          "item": "20",
+          "quantity": 1,
+          "crop": [
+            240,
+            255,
+            300,
+            205
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                446,
+                384,
+                27,
+                30
+              ]
+            },
+            {
+              "ellipse": [
+                477,
+                399,
+                14,
+                16
+              ]
+            },
+            {
+              "ellipse": [
+                504,
+                416,
+                11,
+                13
+              ]
+            },
+            {
+              "ellipse": [
+                519,
+                424,
+                9,
+                11
+              ]
+            }
+          ],
+          "text": "0.325-inch pitch; 7 teeth. Includes rim sprocket [[00006421236]] (item 24), washer [[00009581022]] (item 28) and E-clip [[94606240801#ms261-clutch-drum]] (item 29).",
+          "label": "261 clutch drum"
+        }
+      ]
+    },
+    "00003500527": {
+      "applications": [
+        {
+          "id": "ht135-fuel-tank",
+          "model": "135",
+          "name": "Fuel tank",
+          "manual": "ht135",
+          "drawing": 5,
+          "table": 7,
+          "item": "25",
+          "quantity": 1,
+          "crop": [
+            272,
+            157,
+            185,
+            290
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                301,
+                227,
+                22,
+                42
+              ]
+            }
+          ],
+          "text": "Fuel filler cap; includes items 26 and 27.",
+          "label": "135 fuel tank"
+        }
+      ]
+    },
+    "00003500529": {
+      "applications": [
+        {
+          "id": "ht135-oil-tank",
+          "model": "135",
+          "name": "Oil tank",
+          "manual": "ht135",
+          "drawing": 17,
+          "table": 18,
+          "item": "5",
+          "quantity": 1,
+          "crop": [
+            65,
+            375,
+            190,
+            160
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                174,
+                407,
+                15,
+                22
+              ]
+            }
+          ],
+          "text": "Gear-head oil filler cap; includes seal (item 6).",
+          "label": "135 oil tank"
+        }
+      ]
+    },
+    "41801410300": {
+      "applications": [
+        {
+          "id": "ht135-air-filter",
+          "model": "135",
+          "name": "Air filter",
+          "manual": "ht135",
+          "drawing": 20,
+          "table": 21,
+          "item": "8",
+          "quantity": 1,
+          "crop": [
+            400,
+            223,
+            149,
+            254
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                508,
+                379,
+                30,
+                36
+              ]
+            }
+          ],
+          "text": "Air-filter element between the filter cover (item 6) and filter housing (item 9).",
+          "label": "135 air filter"
+        }
+      ]
+    },
+    "00003500532": {
+      "applications": [
+        {
+          "id": "ms261-fuel-tank",
+          "model": "261",
+          "name": "Fuel tank",
+          "manual": "ms261",
+          "drawing": 21,
+          "table": 22,
+          "item": "13",
+          "quantity": 1,
+          "crop": [
+            54,
+            158,
+            260,
+            214
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                96,
+                220,
+                39,
+                21
+              ]
+            }
+          ],
+          "text": "Fuel filler cap; includes seal (item 14).",
+          "label": "261 fuel tank"
+        }
+      ]
+    },
+    "00003500537": {
+      "applications": [
+        {
+          "id": "ms261-oil-tank",
+          "model": "261",
+          "name": "Oil tank",
+          "manual": "ms261",
+          "drawing": 3,
+          "table": 5,
+          "item": "37",
+          "quantity": 1,
+          "crop": [
+            47,
+            109,
+            245,
+            191
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                80,
+                133,
+                27,
+                19
+              ]
+            }
+          ],
+          "text": "Oil filler cap in the crankcase; includes seal (item 38).",
+          "label": "261 oil tank"
+        }
+      ]
+    },
+    "11411404400": {
+      "applications": [
+        {
+          "id": "ms261-air-filter",
+          "model": "261",
+          "name": "Air filter",
+          "manual": "ms261",
+          "drawing": 27,
+          "table": 28,
+          "item": "19",
+          "quantity": 1,
+          "crop": [
+            70,
+            326,
+            251,
+            110
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                113,
+                387,
+                40,
+                38
+              ]
+            }
+          ],
+          "text": "HD2 air filter on the carburetor bracket.",
+          "label": "261 air filter"
+        }
+      ]
+    },
+    "00003500533": {
+      "applications": [
+        {
+          "id": "ms462-fuel-tank",
+          "model": "462",
+          "name": "Fuel tank",
+          "manual": "ms462",
+          "drawing": 23,
+          "table": 24,
+          "item": "5",
+          "quantity": 1,
+          "crop": [
+            76,
+            279,
+            293,
+            264
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                137,
+                344,
+                57,
+                41
+              ]
+            }
+          ],
+          "text": "Fuel filler cap; includes seal (item 6). The same part is used on the oil tank.",
+          "label": "462 fuel tank"
+        },
+        {
+          "id": "ms462-oil-tank",
+          "model": "462",
+          "name": "Oil tank",
+          "manual": "ms462",
+          "drawing": 3,
+          "table": 4,
+          "item": "8",
+          "quantity": 1,
+          "crop": [
+            66,
+            216,
+            200,
+            192
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                126,
+                255,
+                26,
+                21
+              ]
+            }
+          ],
+          "text": "Oil filler cap in the crankcase; includes seal (item 9). Also listed in crankcase section B, table p. 7.",
+          "label": "462 oil tank"
+        }
+      ]
+    },
+    "11421404402": {
+      "applications": [
+        {
+          "id": "ms462-air-filter",
+          "model": "462",
+          "name": "Air filter",
+          "manual": "ms462",
+          "drawing": 27,
+          "table": 28,
+          "item": "15",
+          "quantity": 1,
+          "crop": [
+            64,
+            520,
+            253,
+            113
+          ],
+          "marks": [
+            {
+              "ellipse": [
+                107,
+                591,
+                40,
+                39
+              ]
+            }
+          ],
+          "text": "HD2 air filter on the carburetor bracket.",
+          "label": "462 air filter"
+        }
+      ]
+    },
+    "41821904001": {
+      "applications": [
+        {
+          "id": "ht135-rewind-starter",
+          "model": "135",
+          "name": "Rewind starter",
+          "manual": "ht135",
+          "drawing": 5,
+          "table": 6,
+          "item": "3",
+          "quantity": 1,
+          "crop": [
+            66,
+            135,
+            233,
+            267
+          ],
+          "marks": [
+            {
+              "polygon": [
+                [
+                  101,
+                  142
+                ],
+                [
+                  255,
+                  142
+                ],
+                [
+                  255,
+                  323
+                ],
+                [
+                  287,
+                  343
+                ],
+                [
+                  289,
+                  365
+                ],
+                [
+                  253,
+                  397
+                ],
+                [
+                  71,
+                  397
+                ],
+                [
+                  71,
+                  278
+                ],
+                [
+                  105,
+                  241
+                ],
+                [
+                  102,
+                  207
+                ]
+              ]
+            }
+          ],
+          "text": "Assembly includes items 4–10, 12 and 13, including spring [[11181953500]] (item 9).",
+          "label": "135 rewind starter"
+        }
+      ]
+    },
+    "11410802104": {
+      "applications": [
+        {
+          "id": "ms261-rewind-starter",
+          "model": "261",
+          "name": "Rewind starter",
+          "manual": "ms261",
+          "drawing": 19,
+          "table": 20,
+          "item": "1–13",
+          "quantity": 1,
+          "crop": [
+            183,
+            151,
+            329,
+            332
+          ],
+          "marks": [
+            {
+              "polygon": [
+                [
+                  232,
+                  349
+                ],
+                [
+                  266,
+                  321
+                ],
+                [
+                  305,
+                  296
+                ],
+                [
+                  322,
+                  292
+                ],
+                [
+                  336,
+                  313
+                ],
+                [
+                  339,
+                  335
+                ],
+                [
+                  352,
+                  346
+                ],
+                [
+                  378,
+                  347
+                ],
+                [
+                  390,
+                  344
+                ],
+                [
+                  401,
+                  349
+                ],
+                [
+                  402,
+                  367
+                ],
+                [
+                  424,
+                  395
+                ],
+                [
+                  458,
+                  409
+                ],
+                [
+                  474,
+                  433
+                ],
+                [
+                  491,
+                  449
+                ],
+                [
+                  506,
+                  461
+                ],
+                [
+                  506,
+                  478
+                ],
+                [
+                  469,
+                  476
+                ],
+                [
+                  415,
+                  460
+                ],
+                [
+                  368,
+                  463
+                ],
+                [
+                  313,
+                  455
+                ],
+                [
+                  310,
+                  425
+                ],
+                [
+                  245,
+                  430
+                ],
+                [
+                  233,
+                  421
+                ]
+              ]
+            },
+            {
+              "ellipse": [
+                220,
+                221,
+                31,
+                67
+              ]
+            },
+            {
+              "ellipse": [
+                292,
+                294,
+                10,
+                9
+              ]
+            }
+          ],
+          "text": "Complete fan housing with rewind starter; includes items 1–13, including spring [[11281953500#ms261-rewind-starter]] (item 10).",
+          "label": "261 crankcase"
+        }
+      ]
+    },
+    "11420802102": {
+      "applications": [
+        {
+          "id": "ms462-rewind-starter",
+          "model": "462",
+          "name": "Rewind starter",
+          "manual": "ms462",
+          "drawing": 21,
+          "table": 22,
+          "item": "1",
+          "quantity": 1,
+          "crop": [
+            147,
+            181,
+            391,
+            461
+          ],
+          "marks": [
+            {
+              "polygon": [
+                [
+                  170,
+                  238
+                ],
+                [
+                  178.2,
+                  259
+                ],
+                [
+                  194,
+                  267.7
+                ],
+                [
+                  194,
+                  442.3
+                ],
+                [
+                  527.5,
+                  635
+                ],
+                [
+                  527.5,
+                  405.4
+                ],
+                [
+                  286,
+                  265.8
+                ],
+                [
+                  255.9,
+                  187.9
+                ]
+              ]
+            },
+            {
+              "polygon": [
+                [
+                  307,
+                  520
+                ],
+                [
+                  358.5,
+                  550
+                ],
+                [
+                  358.5,
+                  593.5
+                ],
+                [
+                  307,
+                  564
+                ]
+              ]
+            }
+          ],
+          "text": "Includes items 2–15, including spring [[11281953500#ms462-rewind-starter]] (item 12). Mounts to the crankcase with three pan head screws [[90223711020#ms462-starter]] (IS M5×20; item 17).",
+          "label": "462 crankcase"
+        }
+      ]
+    },
+    "11411605400": {
+      "applications": [
+        {
+          "id": "ms261-chain-brake",
+          "model": "261",
+          "name": "Chain brake",
+          "manual": "ms261",
+          "drawing": 13,
+          "table": 14,
+          "item": "6",
+          "quantity": 1,
+          "crop": [
+            277,
+            246,
+            229,
+            220
+          ],
+          "marks": [
+            {
+              "polygon": [
+                [
+                  399,
+                  335
+                ],
+                [
+                  410,
+                  331
+                ],
+                [
+                  410,
+                  335
+                ],
+                [
+                  385,
+                  348
+                ],
+                [
+                  393,
+                  355
+                ],
+                [
+                  397,
+                  368
+                ],
+                [
+                  395,
+                  384
+                ],
+                [
+                  387,
+                  398
+                ],
+                [
+                  373,
+                  408
+                ],
+                [
+                  359,
+                  409
+                ],
+                [
+                  365,
+                  425
+                ],
+                [
+                  348,
+                  439
+                ],
+                [
+                  338,
+                  436
+                ],
+                [
+                  356,
+                  423
+                ],
+                [
+                  350,
+                  410
+                ],
+                [
+                  343,
+                  397
+                ],
+                [
+                  344,
+                  376
+                ],
+                [
+                  355,
+                  358
+                ],
+                [
+                  379,
+                  346
+                ]
+              ]
+            }
+          ],
+          "text": "Brake band around the clutch drum. Shown with tension spring [[11411605500]].",
+          "label": "261 chain brake"
+        }
+      ]
+    },
+    "11421605400": {
+      "applications": [
+        {
+          "id": "ms462-chain-brake",
+          "model": "462",
+          "name": "Chain brake",
+          "manual": "ms462",
+          "drawing": 15,
+          "table": 16,
+          "item": "1",
+          "quantity": 1,
+          "crop": [
+            258,
+            280,
+            247,
+            168
+          ],
+          "marks": [
+            {
+              "polygon": [
+                [
+                  403,
+                  337
+                ],
+                [
+                  413,
+                  329
+                ],
+                [
+                  408,
+                  326
+                ],
+                [
+                  373,
+                  343
+                ],
+                [
+                  355,
+                  355
+                ],
+                [
+                  346,
+                  373
+                ],
+                [
+                  343,
+                  391
+                ],
+                [
+                  347,
+                  405
+                ],
+                [
+                  350,
+                  414
+                ],
+                [
+                  339,
+                  421
+                ],
+                [
+                  343,
+                  425
+                ],
+                [
+                  357,
+                  417
+                ],
+                [
+                  356,
+                  408
+                ],
+                [
+                  367,
+                  409
+                ],
+                [
+                  384,
+                  398
+                ],
+                [
+                  395,
+                  381
+                ],
+                [
+                  398,
+                  363
+                ],
+                [
+                  391,
+                  353
+                ],
+                [
+                  381,
+                  349
+                ]
+              ]
+            }
+          ],
+          "text": "Brake band around the clutch drum. Shown with tension spring [[11421605500]].",
+          "label": "462 chain brake"
+        }
+      ]
+    }
+  }
+}
