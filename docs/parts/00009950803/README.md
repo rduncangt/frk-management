@@ -2,7 +2,7 @@
 
 **0000 995 0803**
 
-Bin **T12** · **8** per kit · **S2** supervision
+Bin **T11** · **8** per kit · **S2** supervision
 
 [Part page](https://rduncangt.github.io/frk-management/parts/00009950803/) · [Part reference sheet PDF](field-card.pdf?raw=1) · [Avery label PDF](bag-label.pdf?raw=1) · [Offline reference](../../downloads/frk-part-reference.pdf?raw=1)
 

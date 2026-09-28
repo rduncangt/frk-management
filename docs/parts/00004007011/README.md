@@ -2,7 +2,7 @@
 
 **0000 400 7011**
 
-Bin **B5** · **2** per kit · **S1** supervision
+Bin **B4** · **2** per kit · **S1** supervision
 
 [Part page](https://rduncangt.github.io/frk-management/parts/00004007011/) · [Part reference sheet PDF](field-card.pdf?raw=1) · [Avery label PDF](bag-label.pdf?raw=1) · [Offline reference](../../downloads/frk-part-reference.pdf?raw=1)
 

@@ -2,7 +2,7 @@
 
 **1121 648 6610**
 
-Bin **T10** · **8** per kit · **S1** supervision
+Bin **T9** · **8** per kit · **S1** supervision
 
 [Part page](https://rduncangt.github.io/frk-management/parts/11216486610/) · [Part reference sheet PDF](field-card.pdf?raw=1) · [Avery label PDF](bag-label.pdf?raw=1) · [Offline reference](../../downloads/frk-part-reference.pdf?raw=1)
 

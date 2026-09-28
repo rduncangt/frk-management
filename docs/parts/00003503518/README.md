@@ -2,7 +2,7 @@
 
 **0000 350 3518**
 
-Bin **T8** · **4** per kit · **S2** supervision
+Bin **T7** · **4** per kit · **S2** supervision
 
 [Part page](https://rduncangt.github.io/frk-management/parts/00003503518/) · [Part reference sheet PDF](field-card.pdf?raw=1) · [Avery label PDF](bag-label.pdf?raw=1) · [Offline reference](../../downloads/frk-part-reference.pdf?raw=1)
 

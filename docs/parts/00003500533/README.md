@@ -2,7 +2,7 @@
 
 **0000 350 0533**
 
-Bin **T7** · **2** per kit · **AS1** supervision
+Bin **T0** · **2** per kit · **AS1** supervision
 
 [Part page](https://rduncangt.github.io/frk-management/parts/00003500533/) · [Part reference sheet PDF](field-card.pdf?raw=1) · [Avery label PDF](bag-label.pdf?raw=1) · [Offline reference](../../downloads/frk-part-reference.pdf?raw=1)
 

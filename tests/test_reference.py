@@ -40,7 +40,8 @@ class ReferenceTests(unittest.TestCase):
         self.assertTrue(all('11420802102' not in app['text'] for app in screw[1:]))
 
     def test_invalid_bin_assignment_rejected(self):
-        cases = [('T99', 'Unknown bin'), ('T13', 'field-extras bin'), ('T2', 'Conflicting contents names')]
+        reserve = next(key for key, slot in self.ref.bin_layout.items() if slot.get('reserve'))
+        cases = [('T99', 'Unknown bin'), (reserve, 'field-extras bin'), ('T2', 'Conflicting contents names')]
         for bin_id, error in cases:
             with self.subTest(bin=bin_id), tempfile.TemporaryDirectory() as tmp:
                 path = Path(tmp)/'inventory.tsv'

@@ -410,17 +410,16 @@ PACKAGES\begin{document}
     def bin_labels(self):
         names = self.bins()
         labels = []
-        for section in self.layout['sections']:
+        open_areas = [key for key, slot in self.bin_layout.items() if 'label_rect' in slot]
+        for i, section in enumerate(self.layout['sections']):
             # Start each level on a fresh row of the Avery sheet.
             labels.extend([None] * (-len(labels) % 3))
-            labels.extend(slot['id'] for slot in section['bins'])
-        # Use spare sheet positions for additional open-area labels.
-        open_areas = [key for key, slot in self.bin_layout.items() if 'label_rect' in slot]
-        for key in open_areas:
-            if None in labels:
-                labels[labels.index(None)] = key
-            else:
-                labels.append(key)
+            labels.extend(slot['id'] for slot in section['bins'] if 'rect' in slot)
+            if i == 0:
+                # Keep the open areas together at the right of their own row.
+                labels.extend([None] * (-len(labels) % 3))
+                labels.extend([None] * (-len(open_areas) % 3))
+                labels.extend(open_areas)
         out = self.label_preamble('frk-bin-labels-avery.tex')
         out += r'\hypersetup{pdftitle={Field Repair Kit: Bin labels}}' + '\n'
         for page in range(math.ceil(len(labels)/30)):
@@ -692,9 +691,8 @@ def check_pdfs(ref):
         if len(pdf.pages) != 1:
             raise ValueError(f'Expected a single kit sheet: {filename}')
         text = pdf.pages[0].extract_text()
-        for key, slot in ref.bin_layout.items():
-            expected = 2 if filename == 'frk-bin-labels-avery.pdf' and 'label_rect' in slot else 1
-            if len(re.findall(rf'\b{key}\b', text)) != expected:
+        for key in ref.bin_layout:
+            if len(re.findall(rf'\b{key}\b', text)) != 1:
                 raise ValueError(f'Incorrect bin label count in {filename}: {key}')
     book = PdfReader(ROOT/'frk-part-reference.pdf')
     destinations = book.named_destinations

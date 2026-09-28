@@ -14,7 +14,7 @@ PDFs for printing and offline use:
 
 - **[Offline part reference](https://rduncangt.github.io/frk-management/downloads/frk-part-reference.pdf)** — Indexed part descriptions and diagrams, with bookmarks and internal links for offline use.
 - **[Inventory checklist](https://rduncangt.github.io/frk-management/downloads/frk-parts-inventory.pdf)** — Check kit contents against required quantities and record the count on hand.
-- **[Box map](https://rduncangt.github.io/frk-management/downloads/frk-parts-boxmap.pdf)** — The standard layout for the top tray (T) and base (B), with storage codes and contents.
+- **[Box map](https://rduncangt.github.io/frk-management/downloads/frk-parts-boxmap.pdf)** — The standard layout for the top tray (T) and base (B), with storage codes and contents. T0 and B0 identify the open areas.
 - **[Part labels](https://rduncangt.github.io/frk-management/downloads/frk-parts-labels-avery.pdf)** — Bag labels with part identification, quantity, bin, supervision level, and a QR link to the part reference.
 - **[Bin labels](https://rduncangt.github.io/frk-management/downloads/frk-bin-labels-avery.pdf)** — One complete kit set per sheet, with storage codes and contents.
 
