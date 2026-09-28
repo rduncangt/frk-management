@@ -22,7 +22,7 @@ MS 261 C-M spare-parts list, 10/02/2023. Drawing p. 10; parts table p. 12.
 
 ## MS 462 — clutch drum
 
-Retains washer [0000 958 1032](../00009581032/README.md). Included in rim sprocket kit [1128 007 1001](../11280071001/README.md).
+Retains washer [0000 958 1032](../00009581032/README.md). Included in rim sprocket kit [1128 007 1000](../11280071000/README.md).
 
 **Item 22 · Qty listed: 1**
 

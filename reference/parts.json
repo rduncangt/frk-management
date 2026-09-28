@@ -420,7 +420,7 @@
               ]
             }
           ],
-          "text": "3/8-inch pitch; 7 teeth. The FRK also contains the separate 8-tooth kit [[11280071001]].",
+          "text": "3/8-inch pitch; 7 teeth. Included in rim sprocket kit [[11280071000]] (item 19).",
           "label": "462 clutch drum"
         }
       ]
@@ -512,7 +512,7 @@
               ]
             }
           ],
-          "text": "Retains washer [[00009581032]]. Included in rim sprocket kit [[11280071001]].",
+          "text": "Retains washer [[00009581032]]. Included in rim sprocket kit [[11280071000]].",
           "label": "462 clutch drum"
         }
       ]
@@ -544,7 +544,7 @@
               ]
             }
           ],
-          "text": "Retained by E-clip [[94606240801#ms462-clutch-drum]]. Included in rim sprocket kit [[11280071001]].",
+          "text": "Retained by E-clip [[94606240801#ms462-clutch-drum]]. Included in rim sprocket kit [[11280071000]].",
           "label": "462 clutch drum"
         }
       ]
@@ -8833,7 +8833,7 @@
         }
       ]
     },
-    "11280071001": {
+    "11280071000": {
       "applications": [
         {
           "id": "ms462-rim-sprocket-kit",
@@ -8842,7 +8842,7 @@
           "manual": "ms462",
           "drawing": 13,
           "table": 14,
-          "item": "23",
+          "item": "19",
           "quantity": 1,
           "crop": [
             130,
@@ -8962,76 +8962,68 @@
             {
               "polygon": [
                 [
-                  358.11,
-                  574.17
+                  321.05,
+                  596.39
                 ],
                 [
-                  359.79,
-                  568.11
+                  322.74,
+                  589.66
                 ],
                 [
-                  362.49,
-                  563.06
-                ],
-                [
-                  370.24,
-                  555.31
-                ],
-                [
-                  373.94,
-                  553.96
-                ],
-                [
-                  377.98,
-                  553.96
-                ],
-                [
-                  385.06,
-                  557.67
-                ],
-                [
-                  387.42,
-                  560.7
-                ],
-                [
-                  388.09,
-                  562.72
-                ],
-                [
-                  388.09,
-                  569.12
-                ],
-                [
-                  386.07,
-                  575.52
-                ],
-                [
-                  381.02,
+                  326.44,
                   583.26
                 ],
                 [
-                  375.96,
-                  587.3
+                  329.47,
+                  579.89
                 ],
                 [
-                  371.92,
-                  588.65
+                  334.19,
+                  576.86
                 ],
                 [
-                  368.55,
-                  588.65
+                  340.93,
+                  576.19
                 ],
                 [
-                  361.81,
-                  585.28
+                  348.34,
+                  580.57
                 ],
                 [
-                  359.12,
-                  582.25
+                  350.02,
+                  583.26
                 ],
                 [
-                  358.11,
-                  579.22
+                  350.7,
+                  589.32
+                ],
+                [
+                  349.35,
+                  595.72
+                ],
+                [
+                  344.97,
+                  603.47
+                ],
+                [
+                  338.23,
+                  609.19
+                ],
+                [
+                  335.54,
+                  610.2
+                ],
+                [
+                  331.16,
+                  610.2
+                ],
+                [
+                  324.76,
+                  606.83
+                ],
+                [
+                  321.73,
+                  603.47
                 ]
               ]
             },
@@ -9168,7 +9160,7 @@
               ]
             }
           ],
-          "text": "3/8-inch pitch; 8 teeth. Includes washer [[00009581032]] (item 21), E-clip [[94606240801#ms462-clutch-drum]] (item 22) and 8-tooth rim sprocket (item 24).",
+          "text": "3/8-inch pitch; 7 teeth. Includes rim sprocket [[00006421223]] (item 20), washer [[00009581032]] (item 21) and E-clip [[94606240801#ms462-clutch-drum]] (item 22).",
           "label": "462 clutch drum",
           "outline_width": 1.0
         }

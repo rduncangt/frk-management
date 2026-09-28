@@ -58,7 +58,7 @@
 | [Oil pump](11426403200/README.md) | 1142 640 3200 | 462 | B3 |
 | [Spark plug NGK CMR6H](00004007011/README.md) | 0000 400 7011 | 135, 462 | B4 |
 | [Spark plug BPMR7A](00004007000/README.md) | 0000 400 7000 | 261 | B4 |
-| [Rim sprocket kit 3/8" 8T](11280071001/README.md) | 1128 007 1001 | 462 | B5 |
+| [Rim sprocket kit 3/8" 7T](11280071000/README.md) | 1128 007 1000 | 462 | B5 |
 | [Rim sprocket kit 0.325" 7T](11410071002/README.md) | 1141 007 1002 | 261 | B5 |
 | [Rewind starter](41821904001/README.md) | 4182 190 4001 | 135 | B0 |
 | [Fan housing with rewind starter](11410802104/README.md) | 1141 080 2104 | 261 | B0 |

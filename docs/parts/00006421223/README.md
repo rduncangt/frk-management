@@ -10,7 +10,7 @@ Bin **T2** · **1** per kit · **AS1** supervision
 
 ## MS 462 — rim sprocket
 
-3/8-inch pitch; 7 teeth. The FRK also contains the separate 8-tooth kit [1128 007 1001](../11280071001/README.md).
+3/8-inch pitch; 7 teeth. Included in rim sprocket kit [1128 007 1000](../11280071000/README.md) (item 19).
 
 **Item 20 · Qty listed: 1**
 

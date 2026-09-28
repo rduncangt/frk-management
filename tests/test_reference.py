@@ -73,11 +73,15 @@ class ReferenceTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'Unknown related application'):
                 Reference(data=path)
 
-    def test_kit_tooth_count_is_not_conflated_with_separate_rim(self):
-        kit = self.ref.parts['11280071001']
-        self.assertIn('8T', kit['name'])
-        self.assertNotIn('[[00006421223]]', kit['applications'][0]['text'])
-        self.assertIn('7T', self.ref.parts['00006421223']['name'])
+    def test_ms462_kit_matches_its_separate_seven_tooth_rim(self):
+        kit = self.ref.parts['11280071000']
+        rim = self.ref.parts['00006421223']
+        self.assertIn('3/8" 7T', kit['name'])
+        self.assertIn('3/8" 7T', rim['name'])
+        self.assertEqual(kit['applications'][0]['item'], '19')
+        self.assertIn('[[00006421223]]', kit['applications'][0]['text'])
+        self.assertIn('[[11280071000]]', rim['applications'][0]['text'])
+        self.assertNotIn('11280071001', self.ref.parts)
 
     def test_unconfirmed_pawl_is_not_silently_substituted(self):
         part = self.ref.parts['00001957200']

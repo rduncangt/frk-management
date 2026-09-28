@@ -10,7 +10,7 @@ Bin **T3** · **1** per kit · **AS1** supervision
 
 ## MS 462 — clutch drum
 
-Retained by E-clip [9460 624 0801](../94606240801/README.md#ms462-clutch-drum). Included in rim sprocket kit [1128 007 1001](../11280071001/README.md).
+Retained by E-clip [9460 624 0801](../94606240801/README.md#ms462-clutch-drum). Included in rim sprocket kit [1128 007 1000](../11280071000/README.md).
 
 **Item 21 · Qty listed: 1**
 
