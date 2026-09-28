@@ -410,16 +410,8 @@ PACKAGES\begin{document}
     def bin_labels(self):
         names = self.bins()
         labels = []
-        open_areas = [key for key, slot in self.bin_layout.items() if 'label_rect' in slot]
-        for i, section in enumerate(self.layout['sections']):
-            # Start each level on a fresh row of the Avery sheet.
-            labels.extend([None] * (-len(labels) % 3))
-            labels.extend(slot['id'] for slot in section['bins'] if 'rect' in slot)
-            if i == 0:
-                # Keep the open areas together at the right of their own row.
-                labels.extend([None] * (-len(labels) % 3))
-                labels.extend([None] * (-len(open_areas) % 3))
-                labels.extend(open_areas)
+        for section in self.layout['sections']:
+            labels.extend(sorted((slot['id'] for slot in section['bins']), key=lambda key: int(key[1:])))
         out = self.label_preamble('frk-bin-labels-avery.tex')
         out += r'\hypersetup{pdftitle={Field Repair Kit: Bin labels}}' + '\n'
         for page in range(math.ceil(len(labels)/30)):
@@ -428,8 +420,6 @@ PACKAGES\begin{document}
             out += r'\null\begin{tikzpicture}[remember picture,overlay,x=1bp,y=-1bp]\begin{scope}[shift={(current page.north west)}]' + '\n'
             out += self.label_outlines()
             for i, key in enumerate(labels[page*30:(page+1)*30]):
-                if key is None:
-                    continue
                 slot = self.bin_layout[key]
                 x, y = 13.5+(i%3)*198, 36+(i//3)*72
                 out += f'\\node[anchor=west,inner sep=0,font=\\ttfamily\\bfseries\\fontsize{{25}}{{27}}\\selectfont] at ({x+9},{y+25}) {{{key}}};\n'
