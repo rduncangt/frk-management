@@ -414,6 +414,13 @@ PACKAGES\begin{document}
             # Start each level on a fresh row of the Avery sheet.
             labels.extend([None] * (-len(labels) % 3))
             labels.extend(slot['id'] for slot in section['bins'])
+        # Use spare sheet positions for additional open-area labels.
+        open_areas = [key for key, slot in self.bin_layout.items() if 'label_rect' in slot]
+        for key in open_areas:
+            if None in labels:
+                labels[labels.index(None)] = key
+            else:
+                labels.append(key)
         out = self.label_preamble('frk-bin-labels-avery.tex')
         out += r'\hypersetup{pdftitle={Field Repair Kit: Bin labels}}' + '\n'
         for page in range(math.ceil(len(labels)/30)):
@@ -428,6 +435,8 @@ PACKAGES\begin{document}
                 x, y = 13.5+(i%3)*198, 36+(i//3)*72
                 out += f'\\node[anchor=west,inner sep=0,font=\\ttfamily\\bfseries\\fontsize{{25}}{{27}}\\selectfont] at ({x+9},{y+25}) {{{key}}};\n'
                 out += tex_node(x+9, y+48, slot['section'].upper(), 6.5, color='frkSecondary')
+                if 'label_rect' in slot:
+                    out += tex_node(x+9, y+58, 'OPEN AREA', 6.5, color='frkSecondary')
                 out += f'\\draw[black!20,line width=0.4bp] ({x+58},{y+10}) -- ({x+58},{y+62});\n'
                 color = 'frkSecondary' if slot.get('reserve') else 'frkApplication'
                 out += tex_node(x+70, y+36, names[key], 11, 112, anchor='west', color=color, bold=True)
@@ -683,9 +692,10 @@ def check_pdfs(ref):
         if len(pdf.pages) != 1:
             raise ValueError(f'Expected a single kit sheet: {filename}')
         text = pdf.pages[0].extract_text()
-        for key in ref.bins():
-            if len(re.findall(rf'\b{key}\b', text)) != 1:
-                raise ValueError(f'Missing or duplicate bin in {filename}: {key}')
+        for key, slot in ref.bin_layout.items():
+            expected = 2 if filename == 'frk-bin-labels-avery.pdf' and 'label_rect' in slot else 1
+            if len(re.findall(rf'\b{key}\b', text)) != expected:
+                raise ValueError(f'Incorrect bin label count in {filename}: {key}')
     book = PdfReader(ROOT/'frk-part-reference.pdf')
     destinations = book.named_destinations
     for p in ref.parts.values():
