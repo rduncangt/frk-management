@@ -201,7 +201,7 @@ class Reference:
         draw = ImageDraw.Draw(overlay)
         rgb = tuple(int(COLORS['application'][i:i+2], 16) for i in (0, 2, 4))
         fill, outline = (*rgb, 31), (*rgb, 235)
-        width = max(2, round(1.6*sx))
+        width = max(2, round(a.get('outline_width', 1.6)*sx))
         for mark in a['marks']:
             if 'ellipse' in mark:
                 cx, cy, rx, ry = mark['ellipse']
