@@ -20,7 +20,7 @@ from urllib.parse import unquote, urlencode, urlsplit
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
-from PIL import Image, ImageDraw
+from PIL import Image, ImageChops, ImageDraw
 import qrcode
 from pypdf import PdfReader
 
@@ -30,6 +30,7 @@ LAYOUT = ROOT / 'reference/bin-layout.json'
 LINK = re.compile(r'\[\[([a-z0-9]+)(?:#([a-z0-9-]+))?\]\]')
 MODELS = {'135': 'HT 135', '261': 'MS 261', '462': 'MS 462'}
 COLORS = {'application': '075985', 'supervision': '92400E', 'secondary': '52525B'}
+DIAGRAM_HIGHLIGHT = {'fill': '#FFF200', 'outline': '#A37600'}
 CORRECTION_URL = 'https://github.com/rduncangt/frk-management/issues/new'
 
 
@@ -196,11 +197,10 @@ class Reference:
         with Image.open(source) as full:
             sx, sy = full.width / 595.2756, full.height / 841.8898
             x, y, w, h = a['crop']
-            crop = full.crop((round(x*sx), round(y*sy), round((x+w)*sx), round((y+h)*sy))).convert('RGBA')
-        overlay = Image.new('RGBA', crop.size)
+            crop = full.crop((round(x*sx), round(y*sy), round((x+w)*sx), round((y+h)*sy))).convert('RGB')
+        overlay = Image.new('RGB', crop.size, 'white')
         draw = ImageDraw.Draw(overlay)
-        rgb = tuple(int(COLORS['application'][i:i+2], 16) for i in (0, 2, 4))
-        fill, outline = (*rgb, 31), (*rgb, 235)
+        fill, outline = DIAGRAM_HIGHLIGHT['fill'], DIAGRAM_HIGHLIGHT['outline']
         width = max(2, round(a.get('outline_width', 1.6)*sx))
         for mark in a['marks']:
             if 'ellipse' in mark:
@@ -213,9 +213,10 @@ class Reference:
                 draw.line(points + points[:1], fill=outline, width=width, joint='curve')
                 for hole in mark.get('holes', []):
                     points = [((px-x)*sx, (py-y)*sy) for px, py in hole]
-                    draw.polygon(points, fill=(0, 0, 0, 0))
+                    draw.polygon(points, fill='white')
                     draw.line(points + points[:1], fill=outline, width=width, joint='curve')
-        result = Image.alpha_composite(crop, overlay).convert('RGB')
+        # Multiply behaves like a highlighter: the original black linework stays black.
+        result = ImageChops.multiply(crop, overlay)
         output = io.BytesIO()
         result.save(output, format='PNG', optimize=True)
         write(f'docs/parts/{p["id"]}/{a["id"]}.png', output.getvalue())
