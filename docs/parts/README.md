@@ -27,7 +27,7 @@
 | [Spline screw M5x12](90223410960/README.md) | 9022 341 0960 | 135, 462 | A9 |
 | [Countersunk screw M5x18-10.9](90613730982/README.md) | 9061 373 0982 | 462 | A9 |
 | [Spring](11181953500/README.md) | 1118 195 3500 | 135 | AA |
-| [Pawl — fit unconfirmed](00001957200/README.md) | 0000 195 7200 | 135, 261, 462 | AA |
+| [Pawl](00001957200/README.md) | 0000 195 7200 | 135, 261, 462 | AA |
 | [Spring](11281953500/README.md) | 1128 195 3500 | 261, 462 | AA |
 | [Tension spring](11411605500/README.md) | 1141 160 5500 | 261 | B1 |
 | [Tension spring](11421605500/README.md) | 1142 160 5500 | 462 | B1 |

@@ -6,8 +6,6 @@ Bin **AA** · **5** per kit · **S2** supervision
 
 [Part page](https://rduncangt.github.io/frk-management/parts/00001957200/) · [Field card PDF](field-card.pdf?raw=1) · [Avery label PDF](bag-label.pdf?raw=1) · [Offline reference](../../downloads/frk-part-reference.pdf?raw=1)
 
-> **Fit unconfirmed. The inventory lists this number for HT 135, MS 261 and MS 462. The supplied manuals list different pawl numbers; interchangeability has not been verified.**
-
 <a id="ht135-rewind-starter"></a>
 
 ## HT 135 — rewind starter

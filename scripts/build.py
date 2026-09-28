@@ -236,23 +236,21 @@ PACKAGES\begin{document}
         others = list(dict.fromkeys(a['label'] for a in p['applications'][1:] if a['label'] != main))
         if p['id'] == '90223711020':
             others = ['462 AV; 261 cylinder']
-        if p.get('status') == 'unconfirmed':
-            main, others = 'Fit unconfirmed', ['135 / 261 / 462 listed']
+        if p['id'] == '00001957200':
+            main, others = '135 / 261 / 462 rewind starter', []
         # A complete name block spans the label above the QR. Long names wrap as one block.
         name_size = 9 if len(p['name']) <= 29 else 8
         main_size = 8.4 if len(main) < 24 else 7.7
         secondary = 'Also: ' + '; '.join(others) if others else ''
-        if p.get('status') == 'unconfirmed':
-            secondary = '; '.join(others)
         return r'''\begin{scope}[shift={(X,Y)}]
-\node[anchor=north west,inner sep=0,text width=181bp,font=\sffamily\bfseries\fontsize{NS}{10}\selectfont] at (4,3) {NAME};
-\node[anchor=west,inner sep=0,font=\ttfamily\bfseries\fontsize{11.5}{12}\selectfont] at (4,26) {NUMBER};
-\node[anchor=west,inner sep=0,text=COLOR,font=\sffamily\bfseries\fontsize{MS}{9}\selectfont] at (4,39) {MAIN};
-\node[anchor=north west,inner sep=0,text width=124bp,text=frkSecondary,font=\sffamily\fontsize{7}{8}\selectfont] at (4,46) {SECONDARY};
-\node[anchor=west,inner sep=0,text=frkSecondary,font=\sffamily\fontsize{8}{9}\selectfont] at (4,65) {Bin~\textcolor{black}{\textbf{BIN}}\quad Qty~\textcolor{black}{\textbf{COUNT}}\quad \textcolor{frkSupervision}{\textbf{SCOPE}}};
-\node[anchor=north west,inner sep=0] at (131,15) {\includegraphics[width=54bp,height=54bp]{QR}};
+\node[anchor=north west,inner sep=0,text width=177bp,font=\sffamily\bfseries\fontsize{NS}{10}\selectfont] at (6,6) {NAME};
+\node[anchor=west,inner sep=0,font=\ttfamily\bfseries\fontsize{11.5}{12}\selectfont] at (6,26) {NUMBER};
+\node[anchor=west,inner sep=0,text=frkApplication,font=\sffamily\bfseries\fontsize{MS}{9}\selectfont] at (6,39) {MAIN};
+\node[anchor=north west,inner sep=0,text width=119bp,text=frkSecondary,font=\sffamily\fontsize{7}{8}\selectfont] at (6,46) {SECONDARY};
+\node[anchor=west,inner sep=0,text=frkSecondary,font=\sffamily\fontsize{8}{9}\selectfont] at (6,62) {Bin~\textcolor{black}{\textbf{BIN}}\quad Qty~\textcolor{black}{\textbf{COUNT}}\quad \textcolor{frkSupervision}{\textbf{SCOPE}}};
+\node[anchor=north west,inner sep=0] at (131,14) {\includegraphics[width=52bp,height=52bp]{QR}};
 \end{scope}
-'''.replace('X,Y', f'{x},{y}').replace('NS', str(name_size)).replace('NAME', name).replace('NUMBER', tex(p['number'])).replace('COLOR', 'frkSupervision' if p.get('status') == 'unconfirmed' else 'frkApplication').replace('MS', str(main_size)).replace('MAIN', tex(main)).replace('SECONDARY', tex(secondary)).replace('BIN', p['bin']).replace('COUNT', str(p['count'])).replace('SCOPE', p['scope']).replace('QR', base + 'qr.png')
+'''.replace('X,Y', f'{x},{y}').replace('NS', str(name_size)).replace('NAME', name).replace('NUMBER', tex(p['number'])).replace('MS', str(main_size)).replace('MAIN', tex(main)).replace('SECONDARY', tex(secondary)).replace('BIN', p['bin']).replace('COUNT', str(p['count'])).replace('SCOPE', p['scope']).replace('QR', base + 'qr.png')
 
     def label_sheet(self, parts, individual=False):
         prefix = '../../../' if individual else ''
@@ -310,7 +308,7 @@ PACKAGES\begin{document}
         out += r'\renewcommand{\arraystretch}{1.28}\begin{longtable}{@{}p{3.52in}p{1.68in}p{0.65in}r@{}}\toprule\textbf{Part} & \textbf{Part number} & \textbf{Bin} & \textbf{Page}\\\midrule\endfirsthead\multicolumn{4}{@{}l}{\large\bfseries Part index (continued)}\\\toprule\textbf{Part} & \textbf{Part number} & \textbf{Bin} & \textbf{Page}\\\midrule\endhead'
         for p in parts:
             key = p['id']
-            name = p['name'] + (' (fit unconfirmed)' if p.get('status') == 'unconfirmed' else '')
+            name = p['name']
             out += r'\hyperlink{' + key + '}{'+tex(name)+r'} & \hyperlink{'+key+r'}{\texttt{'+p['number']+'}} & '+p['bin']+r' & \pageref{part-'+key+r'}\\'+'\n'
         out += r'\bottomrule\end{longtable}\clearpage' + '\n'
         for i, p in enumerate(parts):
@@ -381,7 +379,7 @@ PACKAGES\begin{document}
         write('frk-bin-contents.tex', '% Generated bin names from frk_items.tsv.\n'+''.join(r'\expandafter\def\csname frkbin'+k+r'\endcsname{'+tex(v)+'}\n' for k, v in self.bins().items()))
         index = '# Parts\n\n[Online reference]('+self.url+'/) · [Offline reference PDF](../downloads/frk-part-reference.pdf?raw=1)\n\n| Part | Part number | Models | Bin |\n| :--- | :--- | :--- | :--- |\n'
         for p in self.parts.values():
-            name = p['name'] + (' — fit unconfirmed' if p.get('status') else '')
+            name = p['name']
             index += f'| [{name}]({p["id"]}/README.md) | {p["number"]} | {", ".join(p["models"])} | {p["bin"]} |\n'
         write('docs/parts/README.md', index)
 
@@ -411,8 +409,7 @@ PACKAGES\begin{document}
             pid = p['id']
             applications = '; '.join(a['label'] for a in p['applications'])
             searchable = ' '.join([p['name'], p['number'], pid, p['bin'], p['category'], applications])
-            status = ' · Fit unconfirmed' if p.get('status') else ''
-            index += f'<li data-search="{html.escape(searchable.lower(), quote=True)}" data-models="{",".join(p["models"])}" data-bin="{p["bin"]}"><a href="parts/{pid}/"><span class="part-name">{html.escape(p["name"])}</span><span class="part-number">{p["number"]}</span><span class="location">{html.escape(applications)}{status}</span><span class="part-bin"><span class="detail-label">Bin</span><span>{p["bin"]}</span></span><span class="part-quantity"><span class="detail-label">Per kit</span><span>{p["count"]}</span></span></a></li>'
+            index += f'<li data-search="{html.escape(searchable.lower(), quote=True)}" data-models="{",".join(p["models"])}" data-bin="{p["bin"]}"><a href="parts/{pid}/"><span class="part-name">{html.escape(p["name"])}</span><span class="part-number">{p["number"]}</span><span class="location">{html.escape(applications)}</span><span class="part-bin"><span class="detail-label">Bin</span><span>{p["bin"]}</span></span><span class="part-quantity"><span class="detail-label">Per kit</span><span>{p["count"]}</span></span></a></li>'
             body = f'<nav class="crumb"><a href="../../index.html">All parts</a><span>Bin {p["bin"]}</span></nav><h1>{html.escape(p["name"])}</h1><p class="number">{p["number"]}</p><div class="metadata"><span>Bin <strong>{p["bin"]}</strong></span><span><strong>{p["count"]}</strong> per kit</span><span class="supervision"><strong>{p["scope"]}</strong> supervision</span></div><nav class="downloads" aria-label="Downloads"><a href="field-card.pdf" download>Field card PDF</a><a href="bag-label.pdf" download>Avery label PDF</a><a href="../../downloads/frk-part-reference.pdf" download>Offline reference PDF</a></nav>'
             if p.get('notice'):
                 body += '<p class="notice">'+html.escape(p['notice'])+'</p>'

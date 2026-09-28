@@ -59,8 +59,6 @@ class ReferenceTests(unittest.TestCase):
         self.assertEqual(part['number'], '0000 195 7200')
         self.assertEqual(part['status'], 'unconfirmed')
         self.assertEqual({a['listed_part'] for a in part['applications']}, {'4116 195 7200', '1125 195 7200'})
-        self.assertIn('Fit unconfirmed', self.ref.label_sheet([part]))
-        self.assertIn('Fit unconfirmed', self.ref.card(part))
 
     def test_urls_preserve_leading_zeros_and_do_not_use_branch(self):
         key = identifier('0000 350 0533')

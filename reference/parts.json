@@ -1063,8 +1063,7 @@
           "label": "462 rewind starter"
         }
       ],
-      "status": "unconfirmed",
-      "notice": "Fit unconfirmed. The inventory lists this number for HT 135, MS 261 and MS 462. The supplied manuals list different pawl numbers; interchangeability has not been verified."
+      "status": "unconfirmed"
     },
     "11281953500": {
       "applications": [
