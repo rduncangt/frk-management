@@ -2,7 +2,7 @@
 
 **1141 656 7700**
 
-Bin **A8** · **3** per kit · **AS1** supervision
+Bin **T11** · **3** per kit · **AS1** supervision
 
 [Part page](https://rduncangt.github.io/frk-management/parts/11416567700/) · [Part reference sheet PDF](field-card.pdf?raw=1) · [Avery label PDF](bag-label.pdf?raw=1) · [Offline reference](../../downloads/frk-part-reference.pdf?raw=1)
 

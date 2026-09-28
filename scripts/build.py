@@ -26,6 +26,7 @@ from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'reference/parts.json'
+LAYOUT = ROOT / 'reference/bin-layout.json'
 LINK = re.compile(r'\[\[([a-z0-9]+)(?:#([a-z0-9-]+))?\]\]')
 MODELS = {'135': 'HT 135', '261': 'MS 261', '462': 'MS 462'}
 COLORS = {'application': '075985', 'supervision': '92400E', 'secondary': '52525B'}
@@ -49,6 +50,16 @@ def tex(value):
     return ''.join(replacements.get(c, c) for c in str(value))
 
 
+def tex_node(x, y, value, size=9, width=None, anchor='north west', color='black', bold=False, raw=False):
+    options = f'anchor={anchor},inner sep=0,align=left,text={color},font=\\sffamily'
+    if bold:
+        options += r'\bfseries'
+    options += f'\\fontsize{{{size}}}{{{size+1.5}}}\\selectfont'
+    if width:
+        options += f',text width={width:g}bp'
+    return f'\\node[{options}] at ({x:g},{y:g}) {{{value if raw else tex(value)}}};\n'
+
+
 def write(path, content):
     path = ROOT / path
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -62,8 +73,16 @@ def copy(source, target):
 
 
 class Reference:
-    def __init__(self, data=DATA, inventory=ROOT / 'frk_items.tsv'):
+    def __init__(self, data=DATA, inventory=ROOT / 'frk_items.tsv', layout=LAYOUT):
         self.data = json.loads(Path(data).read_text())
+        self.layout = json.loads(Path(layout).read_text())
+        self.bin_layout = {}
+        for section in self.layout['sections']:
+            for slot in section['bins']:
+                key = slot['id']
+                if key in self.bin_layout:
+                    raise ValueError(f'Duplicate bin in layout: {key}')
+                self.bin_layout[key] = dict(slot, section=section['name'])
         self.url = self.data['site_url'].rstrip('/')
         self.parts = {}
         for row in csv.reader(Path(inventory).read_text().splitlines(), delimiter='\t', quoting=csv.QUOTE_NONE):
@@ -78,13 +97,23 @@ class Reference:
                                    category=category, packaging=packaging,
                                    **self.data['parts'].get(key, {}))
         self.validate()
+        order = {key: i for i, key in enumerate(self.bin_layout)}
+        self.parts = dict(sorted(self.parts.items(), key=lambda item: order[item[1]['bin']]))
 
     def validate(self):
         if set(self.parts) != set(self.data['parts']):
             raise ValueError('Reference and inventory part numbers differ')
         if not self.url.startswith('https://'):
             raise ValueError('QR destination must use HTTPS')
+        bin_names = {}
         for p in self.parts.values():
+            if p['bin'] not in self.bin_layout:
+                raise ValueError(f'Unknown bin: {p["bin"]} / {p["number"]}')
+            name = bin_names.setdefault(p['bin'], p['category'])
+            if name != p['category']:
+                raise ValueError(f'Conflicting contents names for bin {p["bin"]}')
+            if self.bin_layout[p['bin']].get('reserve'):
+                raise ValueError(f'Standard inventory assigned to field-extras bin: {p["number"]}')
             apps = p.get('applications', [])
             if not apps or len({a['id'] for a in apps}) != len(apps):
                 raise ValueError(f'Missing or duplicate applications: {p["number"]}')
@@ -106,6 +135,19 @@ class Reference:
                         raise ValueError(f'Unknown related application: {target}#{anchor}')
                 if a.get('listed_part') and p.get('status') != 'unconfirmed':
                     raise ValueError('A differing manual number must be explicitly unconfirmed')
+        for section in self.layout['sections']:
+            width, height = section['size']
+            rectangles = []
+            for slot in section['bins']:
+                x, y, w, h = slot.get('rect', slot.get('label_rect', []))
+                if min(x, y) < 0 or min(w, h) <= 0 or x+w > width or y+h > height:
+                    raise ValueError(f'Bin outside box map: {slot["id"]}')
+                for key, (ox, oy, ow, oh) in rectangles:
+                    if x < ox+ow and ox < x+w and y < oy+oh and oy < y+h:
+                        raise ValueError(f'Overlapping bin areas: {key} / {slot["id"]}')
+                rectangles.append((slot['id'], (x, y, w, h)))
+                if slot['id'] not in bin_names and not slot.get('name'):
+                    raise ValueError(f'Bin has no contents name: {slot["id"]}')
 
     def part_url(self, part_id, anchor=''):
         return f'{self.url}/parts/{part_id}/' + (f'#{anchor}' if anchor else '')
@@ -267,25 +309,20 @@ PACKAGES\begin{document}
 \end{scope}
 '''.replace('X,Y', f'{x},{y}').replace('NS', str(name_size)).replace('NAME', name).replace('NUMBER', tex(p['number'])).replace('MS', str(main_size)).replace('MAIN', tex(main)).replace('SECONDARY', tex(secondary)).replace('BIN', p['bin']).replace('COUNT', str(p['count'])).replace('SCOPE', p['scope']).replace('QR', base + 'qr.png')
 
-    def label_sheet(self, parts, individual=False):
-        prefix = '../../../' if individual else ''
-        result = self.preamble('0in', prefix)
-        if not individual:
-            source = ROOT/'frk-parts-labels-avery.tex'
-            preamble = source.read_text().split(r'\begin{document}', 1)[0] if source.exists() else ''
-            settings = re.findall(r'(?m)^[ \t]*\\labelboundaries(true|false)\b', preamble)
-            setting = settings[-1] if settings else 'true'
-            options = r'''% Avery label outlines: use \labelboundariesfalse to hide them.
+    def label_preamble(self, filename):
+        source = ROOT/filename
+        preamble = source.read_text().split(r'\begin{document}', 1)[0] if source.exists() else ''
+        settings = re.findall(r'(?m)^[ \t]*\\labelboundaries(true|false)\b', preamble)
+        setting = settings[-1] if settings else 'true'
+        options = r'''% Avery label outlines: use \labelboundariesfalse to hide them.
 \newif\iflabelboundaries
 \labelboundariesSETTING
 '''.replace('SETTING', setting)
-            result = result.replace(r'\begin{document}', options + r'\begin{document}')
-        for page in range(math.ceil(len(parts)/30)):
-            if page:
-                result += '\\newpage\n'
-            result += r'\null\begin{tikzpicture}[remember picture,overlay,x=1bp,y=-1bp]\begin{scope}[shift={(current page.north west)}]' + '\n'
-            if not individual:
-                result += r'''\iflabelboundaries
+        return self.preamble('0in').replace(r'\begin{document}', options + r'\begin{document}')
+
+    @staticmethod
+    def label_outlines():
+        return r'''\iflabelboundaries
 \foreach \x in {13.5,211.5,409.5}{%
   \foreach \y in {36,108,...,684}{%
     \draw[black!20,line width=0.3bp] (\x,\y) rectangle ++(189,72);
@@ -293,6 +330,16 @@ PACKAGES\begin{document}
 }
 \fi
 '''
+
+    def label_sheet(self, parts, individual=False):
+        prefix = '../../../' if individual else ''
+        result = self.preamble('0in', prefix) if individual else self.label_preamble('frk-parts-labels-avery.tex')
+        for page in range(math.ceil(len(parts)/30)):
+            if page:
+                result += '\\newpage\n'
+            result += r'\null\begin{tikzpicture}[remember picture,overlay,x=1bp,y=-1bp]\begin{scope}[shift={(current page.north west)}]' + '\n'
+            if not individual:
+                result += self.label_outlines()
             for i, p in enumerate(parts[page*30:(page+1)*30]):
                 result += self.label(p, 13.5 + (i % 3)*198, 36+(i//3)*72, f'{prefix}docs/parts/{p["id"]}/')
             result += '\\end{scope}\\end{tikzpicture}\n'
@@ -357,28 +404,74 @@ PACKAGES\begin{document}
         return out + r'\bottomrule\end{longtable}\end{document}'+'\n'
 
     def bins(self):
-        result = {'A1': 'unassigned'}
-        for p in self.parts.values():
-            result.setdefault(p['bin'], p['category'])
-        # The open area holds the TSV category plus the brake bands in that bin.
-        for bin_id in ('O1', 'O2'):
-            if any(p['bin'] == bin_id and p['name'] == 'Brake band' for p in self.parts.values()):
-                result[bin_id] += ', brake bands'
-        return result
+        names = {p['bin']: p['category'] for p in self.parts.values()}
+        return {key: names.get(key, slot.get('name')) for key, slot in self.bin_layout.items()}
 
     def bin_labels(self):
-        labels = [(key, name) for key, name in self.bins().items() for _ in range(self.data['kit_count'])]
-        out = self.preamble('0in')
+        names = self.bins()
+        labels = []
+        for section in self.layout['sections']:
+            # Start each level on a fresh row of the Avery sheet.
+            labels.extend([None] * (-len(labels) % 3))
+            labels.extend(slot['id'] for slot in section['bins'])
+        out = self.label_preamble('frk-bin-labels-avery.tex')
+        out += r'\hypersetup{pdftitle={Field Repair Kit: Bin labels}}' + '\n'
         for page in range(math.ceil(len(labels)/30)):
             if page:
                 out += '\\newpage\n'
-            out += r'\null\begin{tikzpicture}[remember picture,overlay,x=1bp,y=-1bp]\begin{scope}[shift={(current page.north west)}]'
-            for i, (key, name) in enumerate(labels[page*30:(page+1)*30]):
+            out += r'\null\begin{tikzpicture}[remember picture,overlay,x=1bp,y=-1bp]\begin{scope}[shift={(current page.north west)}]' + '\n'
+            out += self.label_outlines()
+            for i, key in enumerate(labels[page*30:(page+1)*30]):
+                if key is None:
+                    continue
+                slot = self.bin_layout[key]
                 x, y = 13.5+(i%3)*198, 36+(i//3)*72
-                out += r'\node[anchor=center,inner sep=0,font=\ttfamily\bfseries\fontsize{25}{28}\selectfont] at ('+str(x+94.5)+','+str(y+22)+') {'+key+'};\n'
-                out += r'\node[anchor=north,align=center,text width=175bp,inner sep=0,text=frkApplication,font=\sffamily\fontsize{10}{11}\selectfont] at ('+str(x+94.5)+','+str(y+40)+') {'+tex(name)+'};\n'
+                out += f'\\node[anchor=west,inner sep=0,font=\\ttfamily\\bfseries\\fontsize{{25}}{{27}}\\selectfont] at ({x+9},{y+25}) {{{key}}};\n'
+                out += tex_node(x+9, y+48, slot['section'].upper(), 6.5, color='frkSecondary')
+                out += f'\\draw[black!20,line width=0.4bp] ({x+58},{y+10}) -- ({x+58},{y+62});\n'
+                color = 'frkSecondary' if slot.get('reserve') else 'frkApplication'
+                out += tex_node(x+70, y+36, names[key], 11, 112, anchor='west', color=color, bold=True)
             out += '\\end{scope}\\end{tikzpicture}\n'
         return out + '\\end{document}\n'
+
+    def box_map(self):
+        out = self.preamble('0in')
+        out += r'''\hypersetup{pdftitle={Field Repair Kit: Box map}}
+\input{frk-bin-contents.tex}
+\null\begin{tikzpicture}[remember picture,overlay,x=1bp,y=-1bp]
+\begin{scope}[shift={(current page.north west)}]
+'''
+        for i, section in enumerate(self.layout['sections']):
+            offset = i * 396
+            header_y = offset + (25 if i == 0 else 15)
+            out += f'\\node[anchor=north west,inner sep=0] at (36,{header_y}) {{\\includegraphics[width=1.08in]{{reference/team-rubicon-logo.png}}}};\n'
+            out += tex_node(130, header_y+1, 'FIELD REPAIR KIT', 8, color='frkSecondary')
+            out += tex_node(130, header_y+14, section['name'], 18, bold=True)
+            width, height = section['size']
+            scale = min(540/width, 276/height)
+            x, y = 36, offset + (94 if i == 0 else 72)
+            out += tex_node(306, y-16, 'HINGE EDGE', 7, anchor='north', color='frkSecondary')
+            out += f'\\draw[black!20,line width=0.6bp] ({x},{y}) rectangle ++({width*scale:g},{height*scale:g});\n'
+            for slot in section['bins']:
+                bx, by, bw, bh = [n*scale for n in slot.get('rect', slot.get('label_rect'))]
+                bx, by = x+bx, y+by
+                name = r'\csname frkbin' + slot['id'] + r'\endcsname'
+                if 'rect' in slot:
+                    fill = 'white' if slot.get('reserve') else 'frkApplication!4'
+                    style = 'dashed,' if slot.get('reserve') else ''
+                    color = 'frkSecondary' if slot.get('reserve') else 'frkApplication'
+                    out += f'\\draw[{style}draw=black!20,fill={fill},line width=0.6bp] ({bx+2:g},{by+2:g}) rectangle ++({bw-4:g},{bh-4:g});\n'
+                    out += tex_node(bx+10, by+8, slot['id'], 16, bold=True)
+                    out += tex_node(bx+10, by+30, name, 9, bw-20, color=color, raw=True)
+                else:
+                    out += tex_node(bx+18, by+16, slot['id'], 18, bold=True)
+                    out += tex_node(bx+18, by+44, name, 12, bw-36, color='frkApplication', raw=True)
+                    out += tex_node(bx+18, by+bh-30, 'OPEN AREA', 7, color='frkSecondary')
+            out += tex_node(306, y+height*scale+8, 'FRONT / LATCHES', 7, anchor='north', color='frkSecondary')
+            out += tex_node(36, offset+378, 'Not to scale', 6.5, color='frkSecondary')
+            out += tex_node(576, offset+378, 'Revision: '+self.data['revision'], 6.5, anchor='north east', color='frkSecondary')
+        out += r'\draw[black!20,dashed,line width=0.4bp] (24,396) -- (588,396);' + '\n'
+        return out + '\\end{scope}\\end{tikzpicture}\n\\end{document}\n'
 
     def sources(self):
         write('frk-reference-colors.tex', '% Shared color roles, generated by scripts/build.py.\n'+''.join(r'\definecolor{frk'+key.title()+r'}{HTML}{'+value+'}\n' for key, value in COLORS.items()))
@@ -393,6 +486,7 @@ PACKAGES\begin{document}
         write('frk-parts-inventory.tex', self.inventory())
         write('frk-part-reference.tex', self.offline_book())
         write('frk-bin-contents.tex', '% Generated bin names from frk_items.tsv.\n'+''.join(r'\expandafter\def\csname frkbin'+k+r'\endcsname{'+tex(v)+'}\n' for k, v in self.bins().items()))
+        write('frk-parts-boxmap.tex', self.box_map())
         index = '# Parts\n\n[Online reference]('+self.url+'/) · [Offline reference PDF](../downloads/frk-part-reference.pdf?raw=1)\n\n| Part | Part number | Models | Bin |\n| :--- | :--- | :--- | :--- |\n'
         for p in self.parts.values():
             name = p['name']
@@ -420,7 +514,9 @@ PACKAGES\begin{document}
         for name in ('frk-part-reference', 'frk-parts-labels-avery', 'frk-bin-labels-avery', 'frk-parts-inventory', 'frk-parts-boxmap'):
             copy(name+'.pdf', 'docs/downloads/'+name+'.pdf')
         index = '<h1>Parts</h1><p class="intro">HT 135 / MS 261 / MS 462</p><nav class="downloads" aria-label="Documents"><a href="downloads/frk-part-reference.pdf" download>Offline reference PDF</a><a href="downloads/frk-parts-labels-avery.pdf">Part labels</a><a href="downloads/frk-parts-inventory.pdf">Inventory</a><a href="downloads/frk-parts-boxmap.pdf">Box map</a><a href="downloads/frk-bin-labels-avery.pdf">Bin labels</a></nav>'
-        index += '<div class="filters" hidden><label>Find a part<input id="search" type="search" placeholder="Name, number, application or bin" autocomplete="off"></label><label>Model<select id="model"><option value="">All models</option>'+''.join(f'<option value="{k}">{v}</option>' for k,v in MODELS.items())+'</select></label><label>Bin<select id="bin"><option value="">All bins</option>'+''.join(f'<option>{b}</option>' for b in self.bins() if b!='A1')+'</select></label></div><p id="results" role="status">'+str(len(self.parts))+' parts</p><ul class="parts">'
+        occupied = {p['bin'] for p in self.parts.values()}
+        bin_options = ''.join('<optgroup label="'+html.escape(section['name'], quote=True)+'">'+''.join(f'<option>{slot["id"]}</option>' for slot in section['bins'] if slot['id'] in occupied)+'</optgroup>' for section in self.layout['sections'])
+        index += '<div class="filters" hidden><label>Find a part<input id="search" type="search" placeholder="Name, number, application or bin" autocomplete="off"></label><label>Model<select id="model"><option value="">All models</option>'+''.join(f'<option value="{k}">{v}</option>' for k,v in MODELS.items())+'</select></label><label>Bin<select id="bin"><option value="">All bins</option>'+bin_options+'</select></label></div><p id="results" role="status">'+str(len(self.parts))+' parts</p><ul class="parts">'
         for p in self.parts.values():
             pid = p['id']
             applications = '; '.join(a['label'] for a in p['applications'])
@@ -558,6 +654,9 @@ def check_pdfs(ref):
                 raise ValueError(f'Part number missing from {path}')
             if identifier(p['name']) not in identifier(text):
                 raise ValueError(f'Part name missing from {path}')
+            bin_text = rf'\bBin\s*{p["bin"]}' + (r'(?=\s*Qty)' if file == 'bag-label' else r'\b')
+            if not re.search(bin_text, text):
+                raise ValueError(f'Incorrect bin in {path}')
             quantity = rf'(?<!\d){p["count"]}\s*spare' if file == 'field-card' else rf'Qty\s*{p["count"]}(?!\d)'
             scope = rf'\b{p["scope"]}\s*supervision' if file == 'field-card' else rf'\b{p["scope"]}\b'
             if not re.search(quantity, text) or not re.search(scope, text):
@@ -579,6 +678,14 @@ def check_pdfs(ref):
         raise ValueError('Incorrect Avery sheet count')
     for i, p in enumerate(ref.parts.values()):
         check_label_position(labels.pages[i//30], p['number'], i%3, (i%30)//3)
+    for filename in ('frk-bin-labels-avery.pdf', 'frk-parts-boxmap.pdf'):
+        pdf = PdfReader(ROOT/filename)
+        if len(pdf.pages) != 1:
+            raise ValueError(f'Expected a single kit sheet: {filename}')
+        text = pdf.pages[0].extract_text()
+        for key in ref.bins():
+            if len(re.findall(rf'\b{key}\b', text)) != 1:
+                raise ValueError(f'Missing or duplicate bin in {filename}: {key}')
     book = PdfReader(ROOT/'frk-part-reference.pdf')
     destinations = book.named_destinations
     for p in ref.parts.values():
@@ -616,7 +723,7 @@ def main():
     if args.target == 'generate':
         return
     jobs = [(f'.build/parts/{p["id"]}/{name}.tex', 2 if name == 'bag-label' else 1, f'docs/parts/{p["id"]}/{name}.pdf') for p in ref.parts.values() for name in ('field-card', 'bag-label')]
-    jobs += [('frk-part-reference.tex', 3), ('frk-parts-labels-avery.tex', 2), ('frk-bin-labels-avery.tex', 2), ('frk-parts-inventory.tex', 2), ('frk-parts-boxmap.tex', 1)]
+    jobs += [('frk-part-reference.tex', 3), ('frk-parts-labels-avery.tex', 2), ('frk-bin-labels-avery.tex', 2), ('frk-parts-inventory.tex', 2), ('frk-parts-boxmap.tex', 2)]
     with ThreadPoolExecutor(max_workers=4) as pool:
         list(pool.map(lambda job: compile_pdf(*job, executable=args.pdflatex), jobs))
     ref.site()

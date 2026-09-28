@@ -14,9 +14,9 @@ PDFs for printing and offline use:
 
 - **[Offline part reference](https://rduncangt.github.io/frk-management/downloads/frk-part-reference.pdf)** — Indexed part descriptions and diagrams, with bookmarks and internal links for offline use.
 - **[Inventory checklist](https://rduncangt.github.io/frk-management/downloads/frk-parts-inventory.pdf)** — Check kit contents against required quantities and record the count on hand.
-- **[Box map](https://rduncangt.github.io/frk-management/downloads/frk-parts-boxmap.pdf)** — Locate bins and open storage areas by their codes and contents.
+- **[Box map](https://rduncangt.github.io/frk-management/downloads/frk-parts-boxmap.pdf)** — The standard layout for the top tray (T) and base (B), with storage codes and contents.
 - **[Part labels](https://rduncangt.github.io/frk-management/downloads/frk-parts-labels-avery.pdf)** — Bag labels with part identification, quantity, bin, supervision level, and a QR link to the part reference.
-- **[Bin labels](https://rduncangt.github.io/frk-management/downloads/frk-bin-labels-avery.pdf)** — Bin codes and contents for marking storage locations in the kit.
+- **[Bin labels](https://rduncangt.github.io/frk-management/downloads/frk-bin-labels-avery.pdf)** — One complete kit set per sheet, with storage codes and contents.
 
 **Paper for both label PDFs:** [Avery 5160 / 58160 format](https://www.avery.com/templates/58160), with 1″ × 2⅝″ labels on US Letter (8½″ × 11″) sheets, arranged 3 across × 10 down. **Print at 100% / actual size.**
 

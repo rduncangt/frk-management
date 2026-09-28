@@ -39,6 +39,30 @@ class ReferenceTests(unittest.TestCase):
         self.assertIn('[[11420802102]]', screw[0]['text'])
         self.assertTrue(all('11420802102' not in app['text'] for app in screw[1:]))
 
+    def test_invalid_bin_assignment_rejected(self):
+        cases = [('T99', 'Unknown bin'), ('T13', 'field-extras bin'), ('T2', 'Conflicting contents names')]
+        for bin_id, error in cases:
+            with self.subTest(bin=bin_id), tempfile.TemporaryDirectory() as tmp:
+                path = Path(tmp)/'inventory.tsv'
+                rows = (ROOT/'frk_items.tsv').read_text().splitlines()
+                part = rows[0].split('\t')
+                part[5] = bin_id
+                rows[0] = '\t'.join(part)
+                path.write_text('\n'.join(rows)+'\n')
+                with self.assertRaisesRegex(ValueError, error):
+                    Reference(inventory=path)
+
+    def test_overlapping_or_out_of_bounds_bins_rejected(self):
+        cases = [([8, 0, 9, 5], 'Overlapping bin areas'), ([40, 0, 9, 5], 'Bin outside box map')]
+        for rect, error in cases:
+            with self.subTest(rect=rect), tempfile.TemporaryDirectory() as tmp:
+                layout = copy.deepcopy(self.ref.layout)
+                layout['sections'][0]['bins'][1]['rect'] = rect
+                path = Path(tmp)/'layout.json'
+                path.write_text(json.dumps(layout))
+                with self.assertRaisesRegex(ValueError, error):
+                    Reference(layout=path)
+
     def test_broken_relationship_rejected_before_generation(self):
         data = copy.deepcopy(self.ref.data)
         data['parts']['11420802102']['applications'][0]['text'] = 'See [[90223711020#missing-application]].'

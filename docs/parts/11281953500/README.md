@@ -2,7 +2,7 @@
 
 **1128 195 3500**
 
-Bin **AA** · **3** per kit · **S2** supervision
+Bin **T5** · **3** per kit · **S2** supervision
 
 [Part page](https://rduncangt.github.io/frk-management/parts/11281953500/) · [Part reference sheet PDF](field-card.pdf?raw=1) · [Avery label PDF](bag-label.pdf?raw=1) · [Offline reference](../../downloads/frk-part-reference.pdf?raw=1)
 

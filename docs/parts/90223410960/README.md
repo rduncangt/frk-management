@@ -2,7 +2,7 @@
 
 **9022 341 0960**
 
-Bin **A9** · **1** per kit · **S2** supervision
+Bin **T12** · **1** per kit · **S2** supervision
 
 [Part page](https://rduncangt.github.io/frk-management/parts/90223410960/) · [Part reference sheet PDF](field-card.pdf?raw=1) · [Avery label PDF](bag-label.pdf?raw=1) · [Offline reference](../../downloads/frk-part-reference.pdf?raw=1)
 

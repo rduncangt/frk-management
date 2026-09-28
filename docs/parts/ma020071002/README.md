@@ -2,7 +2,7 @@
 
 **MA02 007 1002**
 
-Bin **D1** · **2** per kit · **S2** supervision
+Bin **B1** · **2** per kit · **S2** supervision
 
 [Part page](https://rduncangt.github.io/frk-management/parts/ma020071002/) · [Part reference sheet PDF](field-card.pdf?raw=1) · [Avery label PDF](bag-label.pdf?raw=1) · [Offline reference](../../downloads/frk-part-reference.pdf?raw=1)
 

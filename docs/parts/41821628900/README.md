@@ -2,7 +2,7 @@
 
 **4182 162 8900**
 
-Bin **A3** · **2** per kit · **S2** supervision
+Bin **T2** · **2** per kit · **S2** supervision
 
 [Part page](https://rduncangt.github.io/frk-management/parts/41821628900/) · [Part reference sheet PDF](field-card.pdf?raw=1) · [Avery label PDF](bag-label.pdf?raw=1) · [Offline reference](../../downloads/frk-part-reference.pdf?raw=1)
 
