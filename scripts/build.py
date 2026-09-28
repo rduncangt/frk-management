@@ -211,6 +211,10 @@ class Reference:
                 points = [((px-x)*sx, (py-y)*sy) for px, py in mark['polygon']]
                 draw.polygon(points, fill=fill)
                 draw.line(points + points[:1], fill=outline, width=width, joint='curve')
+                for hole in mark.get('holes', []):
+                    points = [((px-x)*sx, (py-y)*sy) for px, py in hole]
+                    draw.polygon(points, fill=(0, 0, 0, 0))
+                    draw.line(points + points[:1], fill=outline, width=width, joint='curve')
         result = Image.alpha_composite(crop, overlay).convert('RGB')
         output = io.BytesIO()
         result.save(output, format='PNG', optimize=True)
