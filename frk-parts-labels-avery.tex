@@ -13,8 +13,18 @@
 \renewcommand{\familydefault}{\sfdefault}
 \input{frk-reference-colors.tex}
 \hypersetup{pdftitle={Field Repair Kit: Part Reference},pdfauthor={Team Rubicon}}
+% Avery label outlines: use \labelboundariesfalse to hide them.
+\newif\iflabelboundaries
+\labelboundariestrue
 \begin{document}
 \null\begin{tikzpicture}[remember picture,overlay,x=1bp,y=-1bp]\begin{scope}[shift={(current page.north west)}]
+\iflabelboundaries
+\foreach \x in {13.5,211.5,409.5}{%
+  \foreach \y in {36,108,...,684}{%
+    \draw[black!20,line width=0.3bp] (\x,\y) rectangle ++(189,72);
+  }
+}
+\fi
 \begin{scope}[shift={(13.5,36)}]
 \node[anchor=north west,inner sep=0,text width=181bp,font=\sffamily\bfseries\fontsize{9}{10}\selectfont] at (4,3) {Needle cage 10x13x10};
 \node[anchor=west,inner sep=0,font=\ttfamily\bfseries\fontsize{11.5}{12}\selectfont] at (4,26) {9512 933 2260};
@@ -258,6 +268,13 @@
 \end{scope}\end{tikzpicture}
 \newpage
 \null\begin{tikzpicture}[remember picture,overlay,x=1bp,y=-1bp]\begin{scope}[shift={(current page.north west)}]
+\iflabelboundaries
+\foreach \x in {13.5,211.5,409.5}{%
+  \foreach \y in {36,108,...,684}{%
+    \draw[black!20,line width=0.3bp] (\x,\y) rectangle ++(189,72);
+  }
+}
+\fi
 \begin{scope}[shift={(13.5,36)}]
 \node[anchor=north west,inner sep=0,text width=181bp,font=\sffamily\bfseries\fontsize{9}{10}\selectfont] at (4,3) {Tensioner slide};
 \node[anchor=west,inner sep=0,font=\ttfamily\bfseries\fontsize{11.5}{12}\selectfont] at (4,26) {1125 640 1900};
@@ -501,6 +518,13 @@
 \end{scope}\end{tikzpicture}
 \newpage
 \null\begin{tikzpicture}[remember picture,overlay,x=1bp,y=-1bp]\begin{scope}[shift={(current page.north west)}]
+\iflabelboundaries
+\foreach \x in {13.5,211.5,409.5}{%
+  \foreach \y in {36,108,...,684}{%
+    \draw[black!20,line width=0.3bp] (\x,\y) rectangle ++(189,72);
+  }
+}
+\fi
 \begin{scope}[shift={(13.5,36)}]
 \node[anchor=north west,inner sep=0,text width=181bp,font=\sffamily\bfseries\fontsize{9}{10}\selectfont] at (4,3) {Brake band};
 \node[anchor=west,inner sep=0,font=\ttfamily\bfseries\fontsize{11.5}{12}\selectfont] at (4,26) {1142 160 5400};

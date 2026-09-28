@@ -257,10 +257,29 @@ PACKAGES\begin{document}
     def label_sheet(self, parts, individual=False):
         prefix = '../../../' if individual else ''
         result = self.preamble('0in', prefix)
+        if not individual:
+            source = ROOT/'frk-parts-labels-avery.tex'
+            preamble = source.read_text().split(r'\begin{document}', 1)[0] if source.exists() else ''
+            settings = re.findall(r'(?m)^[ \t]*\\labelboundaries(true|false)\b', preamble)
+            setting = settings[-1] if settings else 'true'
+            options = r'''% Avery label outlines: use \labelboundariesfalse to hide them.
+\newif\iflabelboundaries
+\labelboundariesSETTING
+'''.replace('SETTING', setting)
+            result = result.replace(r'\begin{document}', options + r'\begin{document}')
         for page in range(math.ceil(len(parts)/30)):
             if page:
                 result += '\\newpage\n'
             result += r'\null\begin{tikzpicture}[remember picture,overlay,x=1bp,y=-1bp]\begin{scope}[shift={(current page.north west)}]' + '\n'
+            if not individual:
+                result += r'''\iflabelboundaries
+\foreach \x in {13.5,211.5,409.5}{%
+  \foreach \y in {36,108,...,684}{%
+    \draw[black!20,line width=0.3bp] (\x,\y) rectangle ++(189,72);
+  }
+}
+\fi
+'''
             for i, p in enumerate(parts[page*30:(page+1)*30]):
                 result += self.label(p, 13.5 + (i % 3)*198, 36+(i//3)*72, f'{prefix}docs/parts/{p["id"]}/')
             result += '\\end{scope}\\end{tikzpicture}\n'
