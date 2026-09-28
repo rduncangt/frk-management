@@ -16,7 +16,7 @@ import subprocess
 from concurrent.futures import ThreadPoolExecutor
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import unquote, urlsplit
+from urllib.parse import unquote, urlencode, urlsplit
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
@@ -29,6 +29,7 @@ DATA = ROOT / 'reference/parts.json'
 LINK = re.compile(r'\[\[([a-z0-9]+)(?:#([a-z0-9-]+))?\]\]')
 MODELS = {'135': 'HT 135', '261': 'MS 261', '462': 'MS 462'}
 COLORS = {'application': '075985', 'supervision': '92400E', 'secondary': '52525B'}
+CORRECTION_URL = 'https://github.com/rduncangt/frk-management/issues/new'
 
 
 def identifier(number):
@@ -108,6 +109,18 @@ class Reference:
 
     def part_url(self, part_id, anchor=''):
         return f'{self.url}/parts/{part_id}/' + (f'#{anchor}' if anchor else '')
+
+    def correction_url(self, p):
+        body = (f'**Part:** {p["name"]}\n'
+                f'**Part number:** {p["number"]}\n'
+                f'**Saw model(s):** {", ".join(MODELS[model] for model in p["models"])}\n'
+                f'**Part reference:** {self.part_url(p["id"])}\n\n'
+                '**What needs changing:**\n\n\n'
+                '**Reference or photo (if available):**\n')
+        return CORRECTION_URL + '?' + urlencode({
+            'title': f'Parts correction: {p["number"]} — {p["name"]}',
+            'body': body,
+        })
 
     def source(self, app):
         manual = self.data['manuals'][app['manual']]
@@ -200,7 +213,7 @@ PACKAGES\begin{document}
         body = (r'\pdfbookmark[1]{' + tex(p['name'] + ' — ' + p['number']) + '}{bookmark-' + p['id'] + r'}\hypertarget{' + p['id'] + r'}{}\label{part-' + p['id'] + '}\n') if offline else ''
         body += r'''\begin{minipage}[c]{0.83\linewidth}
 \begin{minipage}[c]{1.08in}\includegraphics[width=\linewidth]{LOGO}\end{minipage}\hspace{0.16in}%
-\begin{minipage}[c]{2.8in}{\fontsize{8}{10}\selectfont\color{frkSecondary} FIELD REPAIR KIT --- PART REFERENCE}\end{minipage}\par
+\begin{minipage}[c]{2.8in}{\fontsize{8}{10}\selectfont\color{frkSecondary} FIELD REPAIR KIT --- PART REFERENCE SHEET}\end{minipage}\par
 {\fontsize{21}{24}\selectfont\bfseries NAME\par}
 {\fontsize{18}{21}\selectfont\ttfamily\bfseries \href{URL}{NUMBER}\par}
 {\small\color{frkSecondary} Bin \textcolor{black}{\textbf{BIN}} \enspace | \enspace \textcolor{black}{\textbf{COUNT}} sparePLURAL per kit \enspace | \enspace \textcolor{frkSupervision}{\textbf{SCOPE}} supervision}
@@ -225,10 +238,12 @@ PACKAGES\begin{document}
             else:
                 height = '2.05in' if len(apps) == 3 else '3.0in'
                 body += anchor + r'\noindent\begin{minipage}[c]{0.40\linewidth}\raggedright' + heading + r'{\small ' + description + r'}\smallskip' + '\n' + facts + source + r'\end{minipage}\hfill\begin{minipage}[c]{0.57\linewidth}\centering\includegraphics[width=\linewidth,height=' + height + ',keepaspectratio]{' + figure + r'}\end{minipage}\par\medskip' + '\n'
-        body += r'\vfill\hrule\smallskip{\footnotesize\color{frkSecondary} Drawing \textcopyright{} ANDREAS STIHL AG \& Co. KG. Not to scale.\hfill ' + self.data['revision']
+        body += (r'\vfill\hrule\smallskip{\footnotesize\color{frkSecondary} '
+                 r'\href{' + tex(self.correction_url(p)) + r'}{\textcolor{frkApplication}{Suggest a correction}}'
+                 r'\enspace (GitHub)\hfill Revision: ' + self.data['revision'])
         if offline:
             body += r'\enspace | \hyperlink{index}{Index}\enspace | \thepage'
-        return body + '}\n'
+        return body + r'\par\smallskip{\scriptsize Drawing \textcopyright{} ANDREAS STIHL AG \& Co. KG. Not to scale.}\par}' + '\n'
 
     def label(self, p, x, y, base=''):
         name = tex(p['name'])
@@ -285,7 +300,7 @@ PACKAGES\begin{document}
 
     def markdown(self, p):
         text = f'# {p["name"]}\n\n**{p["number"]}**\n\nBin **{p["bin"]}** · **{p["count"]}** per kit · **{p["scope"]}** supervision\n\n'
-        text += f'[Part page]({self.part_url(p["id"])}) · [Field card PDF](field-card.pdf?raw=1) · [Avery label PDF](bag-label.pdf?raw=1) · [Offline reference](../../downloads/frk-part-reference.pdf?raw=1)\n\n'
+        text += f'[Part page]({self.part_url(p["id"])}) · [Part reference sheet PDF](field-card.pdf?raw=1) · [Avery label PDF](bag-label.pdf?raw=1) · [Offline reference](../../downloads/frk-part-reference.pdf?raw=1)\n\n'
         if p.get('notice'):
             text += f'> **{p["notice"]}**\n\n'
         for a in p['applications']:
@@ -298,7 +313,7 @@ PACKAGES\begin{document}
             width = round(min(440, 300*a['crop'][2]/a['crop'][3]))
             text += f'<a href="{path}"><img src="{path}" alt="{html.escape(alt)}" width="{width}"></a>\n\n'
             text += self.source(a) + '\n\n'
-        return text + 'Drawings © ANDREAS STIHL AG & Co. KG. Not to scale.\n'
+        return text + f'[Suggest a correction]({self.correction_url(p)}) · GitHub sign-in required.\n\nDrawings © ANDREAS STIHL AG & Co. KG. Not to scale.\n'
 
     def offline_book(self):
         parts = sorted(self.parts.values(), key=lambda p: (p['name'].casefold(), p['number']))
@@ -370,7 +385,8 @@ PACKAGES\begin{document}
         for p in self.parts.values():
             base = f'.build/parts/{p["id"]}/'
             write(f'docs/parts/{p["id"]}/README.md', self.markdown(p))
-            write(base+'field-card.tex', self.preamble(relative='../../../')+self.card(p)+'\\end{document}\n')
+            title = tex(f'{p["name"]} — {p["number"]} | Part reference sheet')
+            write(base+'field-card.tex', self.preamble(relative='../../../')+r'\hypersetup{pdftitle={'+title+'}}\n'+self.card(p)+'\\end{document}\n')
             write(base+'bag-label.tex', self.label_sheet([p], individual=True))
         write('frk-parts-labels-avery.tex', self.label_sheet(list(self.parts.values())))
         write('frk-bin-labels-avery.tex', self.bin_labels())
@@ -410,7 +426,7 @@ PACKAGES\begin{document}
             applications = '; '.join(a['label'] for a in p['applications'])
             searchable = ' '.join([p['name'], p['number'], pid, p['bin'], p['category'], applications])
             index += f'<li data-search="{html.escape(searchable.lower(), quote=True)}" data-models="{",".join(p["models"])}" data-bin="{p["bin"]}"><a href="parts/{pid}/"><span class="part-name">{html.escape(p["name"])}</span><span class="part-number">{p["number"]}</span><span class="location">{html.escape(applications)}</span><span class="part-bin"><span class="detail-label">Bin</span><span>{p["bin"]}</span></span><span class="part-quantity"><span class="detail-label">Per kit</span><span>{p["count"]}</span></span></a></li>'
-            body = f'<nav class="crumb"><a href="../../index.html">All parts</a><span>Bin {p["bin"]}</span></nav><h1>{html.escape(p["name"])}</h1><p class="number">{p["number"]}</p><div class="metadata"><span>Bin <strong>{p["bin"]}</strong></span><span><strong>{p["count"]}</strong> per kit</span><span class="supervision"><strong>{p["scope"]}</strong> supervision</span></div><nav class="downloads" aria-label="Downloads"><a href="field-card.pdf" download>Field card PDF</a><a href="bag-label.pdf" download>Avery label PDF</a><a href="../../downloads/frk-part-reference.pdf" download>Offline reference PDF</a></nav>'
+            body = f'<nav class="crumb"><a href="../../index.html">All parts</a><span>Bin {p["bin"]}</span></nav><h1>{html.escape(p["name"])}</h1><p class="number">{p["number"]}</p><div class="metadata"><span>Bin <strong>{p["bin"]}</strong></span><span><strong>{p["count"]}</strong> per kit</span><span class="supervision"><strong>{p["scope"]}</strong> supervision</span></div><nav class="downloads" aria-label="Downloads"><a href="field-card.pdf" download="part-reference-{pid}.pdf">Part reference sheet PDF</a><a href="bag-label.pdf" download>Avery label PDF</a><a href="../../downloads/frk-part-reference.pdf" download>Offline reference PDF</a></nav>'
             if p.get('notice'):
                 body += '<p class="notice">'+html.escape(p['notice'])+'</p>'
             if len(p['applications']) > 1:
@@ -419,6 +435,7 @@ PACKAGES\begin{document}
                 figure = a['id']+'.png'
                 alt = f'{MODELS[a["model"]]} {a["name"]}, item {a["item"]} highlighted'
                 body += f'<section class="application" id="{a["id"]}"><div><h2>{MODELS[a["model"]]} — {html.escape(application_name(a))}</h2><p>{self.render_text(a["text"], "html")}</p><p class="facts">Item {a["item"]} <span>Qty listed: {a["quantity"]}</span></p></div><a class="diagram" href="{figure}" aria-label="Open full-size diagram: {html.escape(alt)}"><img src="{figure}" alt="{html.escape(alt)}" loading="lazy"></a><p class="source">{html.escape(self.source(a))}</p></section>'
+            body += f'<p class="correction"><a href="{html.escape(self.correction_url(p), quote=True)}">Suggest a correction</a><small>GitHub · sign-in required</small></p>'
             write(f'docs/parts/{pid}/index.html', self.html_page(p['name'], body, 2))
         index += '</ul><p id="empty" hidden>No matching parts.</p><script src="assets/search.js" defer></script>'
         write('docs/index.html', self.html_page('Parts', index))
@@ -470,6 +487,7 @@ class PageLinks(HTMLParser):
 
 
 def check_site(ref):
+    correction_urls = {ref.correction_url(p) for p in ref.parts.values()}
     html_pages = {path.resolve(): PageLinks(path.read_text()) for path in (ROOT/'docs').rglob('*.html')}
     if len(html_pages) != len(ref.parts)+1:
         raise ValueError('Website page count differs from the inventory')
@@ -486,7 +504,7 @@ def check_site(ref):
         for link in page.links:
             url = urlsplit(link)
             if url.scheme or url.netloc:
-                if path.suffix == '.md':
+                if path.suffix == '.md' or link in correction_urls:
                     continue
                 raise ValueError(f'Unexpected external dependency in site: {link}')
             target = (path.parent/unquote(url.path)).resolve() if url.path else path
@@ -550,6 +568,8 @@ def check_pdfs(ref):
         uris = {str(a.get_object().get('/A', {}).get('/URI', '')) for a in card.pages[0].get('/Annots', [])}
         if ref.part_url(p['id']) not in uris:
             raise ValueError(f'Part number/QR link missing: {p["id"]}')
+        if ref.correction_url(p) not in uris:
+            raise ValueError(f'Correction link missing: {p["id"]}')
         for a in p['applications']:
             for key, anchor in LINK.findall(a['text']):
                 if ref.part_url(key, anchor) not in uris:
@@ -575,7 +595,7 @@ def check_pdfs(ref):
                 internal_links += 1
     if internal_links < len(ref.parts)*2:
         raise ValueError('Offline index/related links are missing')
-    print(f'Checked {len(ref.parts)} one-page cards, {len(ref.parts)} labels, {len(book.pages)} offline pages and {internal_links} internal PDF links.')
+    print(f'Checked {len(ref.parts)} reference sheets, {len(ref.parts)} labels, {len(book.pages)} offline pages and {internal_links} internal PDF links.')
 
 
 def main():

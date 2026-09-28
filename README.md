@@ -6,7 +6,7 @@ This system brings together parts references, labels, and inventory documents fo
 
 **[Open the Parts reference →](https://rduncangt.github.io/frk-management/)**
 
-Search by part name or number, filter by saw or bin, and view highlighted diagrams and related parts. Each part page also provides its own field card and bag label.
+Search by part name or number, filter by saw or bin, and view highlighted diagrams and related parts. Each part page also provides a printable part reference sheet and bag label.
 
 [Suggest a parts correction](https://github.com/rduncangt/frk-management/issues/new?title=Parts+correction&body=%2A%2APart+number%3A%2A%2A%0A%0A%2A%2ASaw+model%28s%29%3A%2A%2A%0A%0A%2A%2AWhat+needs+changing%3A%2A%2A%0A%0A%2A%2AReference+or+photo+%28if+available%29%3A%2A%2A%0A) through GitHub Issues. GitHub sign-in is required.
 
