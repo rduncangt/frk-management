@@ -26,7 +26,7 @@ Fuel pickup body inside the tank, on fuel hose (item 3).
 
 **Item 4 · Qty listed: 1**
 
-<a href="ms462-fuel-tank.png"><img src="ms462-fuel-tank.png" alt="MS 462 Fuel tank, item 4 highlighted" width="254"></a>
+<a href="ms462-fuel-tank.png"><img src="ms462-fuel-tank.png" alt="MS 462 Fuel tank, item 4 highlighted" width="265"></a>
 
 MS 462 C-M Z spare-parts list, 10/29/2024. Drawing p. 23; parts table p. 24.
 

@@ -14,7 +14,7 @@ Brake band around the clutch drum. Shown with tension spring [1141 160 5500](../
 
 **Item 6 · Qty listed: 1**
 
-<a href="ms261-chain-brake.png"><img src="ms261-chain-brake.png" alt="MS 261 Chain brake, item 6 highlighted" width="312"></a>
+<a href="ms261-chain-brake.png"><img src="ms261-chain-brake.png" alt="MS 261 Chain brake, item 6 highlighted" width="324"></a>
 
 MS 261 C-M spare-parts list, 10/02/2023. Drawing p. 13; parts table p. 14.
 

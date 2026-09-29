@@ -14,7 +14,7 @@ Guard fitted to the chain sprocket cover.
 
 **Item 13 · Qty listed: 1**
 
-<a href="ms261-chain-sprocket-cover.png"><img src="ms261-chain-sprocket-cover.png" alt="MS 261 Chain sprocket cover, item 13 highlighted" width="429"></a>
+<a href="ms261-chain-sprocket-cover.png"><img src="ms261-chain-sprocket-cover.png" alt="MS 261 Chain sprocket cover, item 13 highlighted" width="424"></a>
 
 MS 261 C-M spare-parts list, 10/02/2023. Drawing p. 15; parts table p. 16.
 

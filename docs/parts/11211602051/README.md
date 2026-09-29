@@ -14,7 +14,7 @@ Assembly includes items 14–18.
 
 **Item 13 · Qty listed: 1**
 
-<a href="ms261-clutch.png"><img src="ms261-clutch.png" alt="MS 261 Clutch, item 13 highlighted" width="439"></a>
+<a href="ms261-clutch.png"><img src="ms261-clutch.png" alt="MS 261 Clutch, item 13 highlighted" width="346"></a>
 
 MS 261 C-M spare-parts list, 10/02/2023. Drawing p. 10; parts table p. 11.
 

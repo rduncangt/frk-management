@@ -14,7 +14,7 @@ Assembly includes items 4–10, 12 and 13, including spring [1118 195 3500](../1
 
 **Item 3 · Qty listed: 1**
 
-<a href="ht135-rewind-starter.png"><img src="ht135-rewind-starter.png" alt="HT 135 Rewind starter, item 3 highlighted" width="262"></a>
+<a href="ht135-rewind-starter.png"><img src="ht135-rewind-starter.png" alt="HT 135 Rewind starter, item 3 highlighted" width="261"></a>
 
 HT 135-Z spare-parts list, 10/28/2024. Drawing p. 5; parts table p. 6.
 

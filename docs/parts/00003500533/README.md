@@ -14,7 +14,7 @@ Fuel filler cap; includes seal (item 6). The same part is used on the oil tank.
 
 **Item 5 · Qty listed: 1**
 
-<a href="ms462-fuel-tank.png"><img src="ms462-fuel-tank.png" alt="MS 462 Fuel tank, item 5 highlighted" width="333"></a>
+<a href="ms462-fuel-tank.png"><img src="ms462-fuel-tank.png" alt="MS 462 Fuel tank, item 5 highlighted" width="315"></a>
 
 MS 462 C-M Z spare-parts list, 10/29/2024. Drawing p. 23; parts table p. 24.
 
@@ -26,7 +26,7 @@ Oil filler cap used in both MS 462 crankcase configurations; includes seal (item
 
 **Item 8 · Qty listed: 1**
 
-<a href="ms462-oil-tank.png"><img src="ms462-oil-tank.png" alt="MS 462 Oil tank, item 8 highlighted" width="312"></a>
+<a href="ms462-oil-tank.png"><img src="ms462-oil-tank.png" alt="MS 462 Oil tank, item 8 highlighted" width="332"></a>
 
 MS 462 C-M Z spare-parts list, 10/29/2024. Drawing p. 3; parts table p. 4.
 

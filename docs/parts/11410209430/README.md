@@ -14,7 +14,7 @@ Decompression valve in the cylinder.
 
 **Item 17 · Qty listed: 1**
 
-<a href="ms261-cylinder.png"><img src="ms261-cylinder.png" alt="MS 261 Cylinder, item 17 highlighted" width="229"></a>
+<a href="ms261-cylinder.png"><img src="ms261-cylinder.png" alt="MS 261 Cylinder, item 17 highlighted" width="242"></a>
 
 MS 261 C-M spare-parts list, 10/02/2023. Drawing p. 8; parts table p. 9.
 

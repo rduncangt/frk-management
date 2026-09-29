@@ -14,7 +14,7 @@ Air-filter element between the filter cover (item 6) and filter housing (item 9)
 
 **Item 8 · Qty listed: 1**
 
-<a href="ht135-air-filter.png"><img src="ht135-air-filter.png" alt="HT 135 Air filter, item 8 highlighted" width="176"></a>
+<a href="ht135-air-filter.png"><img src="ht135-air-filter.png" alt="HT 135 Air filter, item 8 highlighted" width="235"></a>
 
 HT 135-Z spare-parts list, 10/28/2024. Drawing p. 20; parts table p. 21.
 

@@ -14,7 +14,7 @@ Inner side plate between the crankcase and guide bar.
 
 **Item 9 · Qty listed: 1**
 
-<a href="ms261-guide-bar.png"><img src="ms261-guide-bar.png" alt="MS 261 Guide bar, item 9 highlighted" width="381"></a>
+<a href="ms261-guide-bar.png"><img src="ms261-guide-bar.png" alt="MS 261 Guide bar, item 9 highlighted" width="340"></a>
 
 MS 261 C-M spare-parts list, 10/02/2023. Drawing p. 15; parts table p. 16.
 

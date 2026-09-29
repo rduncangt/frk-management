@@ -14,7 +14,7 @@ Fuel pickup body inside the tank, on the fuel hose.
 
 **Item 23 · Qty listed: 1**
 
-<a href="ht135-fuel-tank.png"><img src="ht135-fuel-tank.png" alt="HT 135 Fuel tank, item 23 highlighted" width="230"></a>
+<a href="ht135-fuel-tank.png"><img src="ht135-fuel-tank.png" alt="HT 135 Fuel tank, item 23 highlighted" width="245"></a>
 
 HT 135-Z spare-parts list, 10/28/2024. Drawing p. 5; parts table p. 6.
 

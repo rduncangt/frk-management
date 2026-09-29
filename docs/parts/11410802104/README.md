@@ -14,7 +14,7 @@ Complete fan housing with rewind starter; includes items 1–13, including sprin
 
 **Item 1–13 · Qty listed: 1**
 
-<a href="ms261-rewind-starter.png"><img src="ms261-rewind-starter.png" alt="MS 261 Rewind starter, item 1–13 highlighted" width="297"></a>
+<a href="ms261-rewind-starter.png"><img src="ms261-rewind-starter.png" alt="MS 261 Rewind starter, item 1–13 highlighted" width="325"></a>
 
 MS 261 C-M spare-parts list, 10/02/2023. Drawing p. 19; parts table p. 20.
 

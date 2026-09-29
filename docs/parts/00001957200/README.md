@@ -38,7 +38,7 @@ Manual-listed pawl: 1125 195 7200. Shown in fan housing [1142 080 2102](../11420
 
 **Item 10 · Qty listed: 2**
 
-<a href="ms462-rewind-starter.png"><img src="ms462-rewind-starter.png" alt="MS 462 Rewind starter, item 10 highlighted" width="388"></a>
+<a href="ms462-rewind-starter.png"><img src="ms462-rewind-starter.png" alt="MS 462 Rewind starter, item 10 highlighted" width="322"></a>
 
 MS 462 C-M Z spare-parts list, 10/29/2024. Drawing p. 21; parts table p. 22.
 

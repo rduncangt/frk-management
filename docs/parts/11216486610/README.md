@@ -14,7 +14,7 @@ Two strips on the inside of the chain sprocket cover.
 
 **Item 12 · Qty listed: 2**
 
-<a href="ms261-chain-sprocket-cover.png"><img src="ms261-chain-sprocket-cover.png" alt="MS 261 Chain sprocket cover, item 12 highlighted" width="429"></a>
+<a href="ms261-chain-sprocket-cover.png"><img src="ms261-chain-sprocket-cover.png" alt="MS 261 Chain sprocket cover, item 12 highlighted" width="424"></a>
 
 MS 261 C-M spare-parts list, 10/02/2023. Drawing p. 15; parts table p. 16.
 
@@ -26,7 +26,7 @@ Two strips on the inside of the chain sprocket cover.
 
 **Item 4 · Qty listed: 2**
 
-<a href="ms462-chain-sprocket-cover.png"><img src="ms462-chain-sprocket-cover.png" alt="MS 462 Chain sprocket cover, item 4 highlighted" width="437"></a>
+<a href="ms462-chain-sprocket-cover.png"><img src="ms462-chain-sprocket-cover.png" alt="MS 462 Chain sprocket cover, item 4 highlighted" width="415"></a>
 
 MS 462 C-M Z spare-parts list, 10/29/2024. Drawing p. 17; parts table p. 18.
 

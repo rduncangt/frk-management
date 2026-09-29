@@ -14,7 +14,7 @@ Spark plug used in both MS 462 cylinder configurations.
 
 **Item 10 · Qty listed: 1**
 
-<a href="ms462-cylinder.png"><img src="ms462-cylinder.png" alt="MS 462 Cylinder, item 10 highlighted" width="309"></a>
+<a href="ms462-cylinder.png"><img src="ms462-cylinder.png" alt="MS 462 Cylinder, item 10 highlighted" width="295"></a>
 
 MS 462 C-M Z spare-parts list, 10/29/2024. Drawing p. 9; parts table p. 10.
 

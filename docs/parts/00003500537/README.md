@@ -14,7 +14,7 @@ Oil filler cap in the crankcase; includes seal (item 38).
 
 **Item 37 · Qty listed: 1**
 
-<a href="ms261-oil-tank.png"><img src="ms261-oil-tank.png" alt="MS 261 Oil tank, item 37 highlighted" width="385"></a>
+<a href="ms261-oil-tank.png"><img src="ms261-oil-tank.png" alt="MS 261 Oil tank, item 37 highlighted" width="320"></a>
 
 MS 261 C-M spare-parts list, 10/02/2023. Drawing p. 3; parts table p. 5.
 

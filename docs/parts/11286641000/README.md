@@ -14,7 +14,7 @@ Inner side plate between the crankcase and guide bar.
 
 **Item 20 · Qty listed: 1**
 
-<a href="ms462-guide-bar.png"><img src="ms462-guide-bar.png" alt="MS 462 Guide bar, item 20 highlighted" width="314"></a>
+<a href="ms462-guide-bar.png"><img src="ms462-guide-bar.png" alt="MS 462 Guide bar, item 20 highlighted" width="341"></a>
 
 MS 462 C-M Z spare-parts list, 10/29/2024. Drawing p. 15; parts table p. 16.
 

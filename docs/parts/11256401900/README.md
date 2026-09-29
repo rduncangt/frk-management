@@ -14,7 +14,7 @@ Slide in chain tensioner kit [MA02 007 1002](../ma020071002/README.md#ms261-chai
 
 **Item 3 · Qty listed: 1**
 
-<a href="ms261-chain-tensioner.png"><img src="ms261-chain-tensioner.png" alt="MS 261 Chain tensioner, item 3 highlighted" width="381"></a>
+<a href="ms261-chain-tensioner.png"><img src="ms261-chain-tensioner.png" alt="MS 261 Chain tensioner, item 3 highlighted" width="340"></a>
 
 MS 261 C-M spare-parts list, 10/02/2023. Drawing p. 15; parts table p. 16.
 
@@ -26,7 +26,7 @@ Slide in chain tensioner kit [MA02 007 1002](../ma020071002/README.md#ms462-chai
 
 **Item 14 · Qty listed: 1**
 
-<a href="ms462-chain-tensioner.png"><img src="ms462-chain-tensioner.png" alt="MS 462 Chain tensioner, item 14 highlighted" width="316"></a>
+<a href="ms462-chain-tensioner.png"><img src="ms462-chain-tensioner.png" alt="MS 462 Chain tensioner, item 14 highlighted" width="341"></a>
 
 MS 462 C-M Z spare-parts list, 10/29/2024. Drawing p. 15; parts table p. 16.
 

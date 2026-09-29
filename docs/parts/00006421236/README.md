@@ -14,7 +14,7 @@ Bin **T2** · **2** per kit · **AS1** supervision
 
 **Item 24 · Qty listed: 1**
 
-<a href="ms261-rim-sprocket.png"><img src="ms261-rim-sprocket.png" alt="MS 261 Rim sprocket, item 24 highlighted" width="439"></a>
+<a href="ms261-rim-sprocket.png"><img src="ms261-rim-sprocket.png" alt="MS 261 Rim sprocket, item 24 highlighted" width="346"></a>
 
 MS 261 C-M spare-parts list, 10/02/2023. Drawing p. 10; parts table p. 11.
 

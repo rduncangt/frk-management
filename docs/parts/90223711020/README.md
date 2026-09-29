@@ -15,7 +15,7 @@ IS M5×20. Secures fan housing [1142 080 2102](../11420802102/README.md) to the 
 
 **Item 17 · Qty listed: 3**
 
-<a href="ms462-starter.png"><img src="ms462-starter.png" alt="MS 462 Starter housing, item 17 highlighted" width="328"></a>
+<a href="ms462-starter.png"><img src="ms462-starter.png" alt="MS 462 Starter housing, item 17 highlighted" width="325"></a>
 
 MS 462 C-M Z spare-parts list, 10/29/2024. Drawing p. 21; parts table p. 22.
 
@@ -27,7 +27,7 @@ IS M5×20. Fastening in the anti-vibration assembly.
 
 **Item 5 · Qty listed: 1**
 
-<a href="ms462-av-system.png"><img src="ms462-av-system.png" alt="MS 462 AV system, item 5 highlighted" width="236"></a>
+<a href="ms462-av-system.png"><img src="ms462-av-system.png" alt="MS 462 AV system, item 5 highlighted" width="263"></a>
 
 MS 462 C-M Z spare-parts list, 10/29/2024. Drawing p. 32; parts table p. 33.
 
@@ -39,7 +39,7 @@ IS M5×20. Cylinder-to-crankcase fastening.
 
 **Item 20 · Qty listed: 4**
 
-<a href="ms261-cylinder.png"><img src="ms261-cylinder.png" alt="MS 261 Cylinder, item 20 highlighted" width="229"></a>
+<a href="ms261-cylinder.png"><img src="ms261-cylinder.png" alt="MS 261 Cylinder, item 20 highlighted" width="242"></a>
 
 MS 261 C-M spare-parts list, 10/02/2023. Drawing p. 8; parts table p. 9.
 

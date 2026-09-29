@@ -14,7 +14,7 @@ Secured to the crankcase by countersunk screw [9061 373 0982](../90613730982/REA
 
 **Item 12 · Qty listed: 1**
 
-<a href="ms462-chain-catcher.png"><img src="ms462-chain-catcher.png" alt="MS 462 Chain catcher, item 12 highlighted" width="323"></a>
+<a href="ms462-chain-catcher.png"><img src="ms462-chain-catcher.png" alt="MS 462 Chain catcher, item 12 highlighted" width="290"></a>
 
 MS 462 C-M Z spare-parts list, 10/29/2024. Drawing p. 17; parts table p. 18.
 

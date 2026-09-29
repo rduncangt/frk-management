@@ -14,7 +14,7 @@ Guard fitted to the chain sprocket cover.
 
 **Item 7 · Qty listed: 1**
 
-<a href="ms462-chain-sprocket-cover.png"><img src="ms462-chain-sprocket-cover.png" alt="MS 462 Chain sprocket cover, item 7 highlighted" width="382"></a>
+<a href="ms462-chain-sprocket-cover.png"><img src="ms462-chain-sprocket-cover.png" alt="MS 462 Chain sprocket cover, item 7 highlighted" width="367"></a>
 
 MS 462 C-M Z spare-parts list, 10/29/2024. Drawing p. 17; parts table p. 18.
 

@@ -14,7 +14,7 @@ Two strips on the gear-head housing, behind the chain sprocket cover.
 
 **Item 12 · Qty listed: 2**
 
-<a href="ht135-chain-sprocket-cover.png"><img src="ht135-chain-sprocket-cover.png" alt="HT 135 Chain sprocket cover, item 12 highlighted" width="419"></a>
+<a href="ht135-chain-sprocket-cover.png"><img src="ht135-chain-sprocket-cover.png" alt="HT 135 Chain sprocket cover, item 12 highlighted" width="341"></a>
 
 HT 135-Z spare-parts list, 10/28/2024. Drawing p. 17; parts table p. 18.
 

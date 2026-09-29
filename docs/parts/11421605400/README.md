@@ -14,7 +14,7 @@ Brake band around the clutch drum. Shown with tension spring [1142 160 5500](../
 
 **Item 1 · Qty listed: 1**
 
-<a href="ms462-chain-brake.png"><img src="ms462-chain-brake.png" alt="MS 462 Chain brake, item 1 highlighted" width="440"></a>
+<a href="ms462-chain-brake.png"><img src="ms462-chain-brake.png" alt="MS 462 Chain brake, item 1 highlighted" width="415"></a>
 
 MS 462 C-M Z spare-parts list, 10/29/2024. Drawing p. 15; parts table p. 16.
 

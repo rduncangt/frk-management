@@ -14,7 +14,7 @@ M8 collar nut on the chain sprocket cover.
 
 **Item 14 · Qty listed: 1**
 
-<a href="ms261-chain-sprocket-cover.png"><img src="ms261-chain-sprocket-cover.png" alt="MS 261 Chain sprocket cover, item 14 highlighted" width="429"></a>
+<a href="ms261-chain-sprocket-cover.png"><img src="ms261-chain-sprocket-cover.png" alt="MS 261 Chain sprocket cover, item 14 highlighted" width="424"></a>
 
 MS 261 C-M spare-parts list, 10/02/2023. Drawing p. 15; parts table p. 16.
 
@@ -26,7 +26,7 @@ M8 collar nuts on the chain sprocket cover.
 
 **Item 5 · Qty listed: 2**
 
-<a href="ms462-chain-sprocket-cover.png"><img src="ms462-chain-sprocket-cover.png" alt="MS 462 Chain sprocket cover, item 5 highlighted" width="437"></a>
+<a href="ms462-chain-sprocket-cover.png"><img src="ms462-chain-sprocket-cover.png" alt="MS 462 Chain sprocket cover, item 5 highlighted" width="415"></a>
 
 MS 462 C-M Z spare-parts list, 10/29/2024. Drawing p. 17; parts table p. 18.
 

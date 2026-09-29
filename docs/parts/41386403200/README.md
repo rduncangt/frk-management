@@ -14,7 +14,7 @@ Oil pump in the gear-head housing.
 
 **Item 11 · Qty listed: 1**
 
-<a href="ht135-oil-pump.png"><img src="ht135-oil-pump.png" alt="HT 135 Oil pump, item 11 highlighted" width="304"></a>
+<a href="ht135-oil-pump.png"><img src="ht135-oil-pump.png" alt="HT 135 Oil pump, item 11 highlighted" width="365"></a>
 
 HT 135-Z spare-parts list, 10/28/2024. Drawing p. 17; parts table p. 18.
 
