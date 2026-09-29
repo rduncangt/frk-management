@@ -500,6 +500,7 @@ PACKAGES\begin{document}
         prefix = '../'*depth
         return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no">
 <meta name="theme-color" content="#{COLORS['application']}"><title>{html.escape(title)} · Field Repair Kit</title>
 <link rel="stylesheet" href="{prefix}assets/site.css"></head><body>
 <header class="masthead"><a href="{prefix}index.html"><img src="{prefix}assets/team-rubicon-logo.png" alt="Team Rubicon"><span>Field Repair Kit<span class="sub">Part Reference</span></span></a></header>
