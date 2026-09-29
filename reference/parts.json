@@ -2362,7 +2362,7 @@
               ]
             }
           ],
-          "text": "M8 collar nut on the chain sprocket cover. The parts list records one at item 14.",
+          "text": "M8 collar nut on the chain sprocket cover.",
           "label": "261 sprocket cover",
           "outline_width": 1.0
         },
@@ -14034,7 +14034,7 @@
               ]
             }
           ],
-          "text": "Oil filler cap in the crankcase; includes seal (item 9). Also listed in crankcase section B, table p. 7.",
+          "text": "Oil filler cap used in both MS 462 crankcase configurations; includes seal (item 9).",
           "label": "462 oil tank",
           "outline_width": 1.0
         }

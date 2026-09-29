@@ -22,7 +22,7 @@ MS 462 C-M Z spare-parts list, 10/29/2024. Drawing p. 23; parts table p. 24.
 
 ## MS 462 — oil tank
 
-Oil filler cap in the crankcase; includes seal (item 9). Also listed in crankcase section B, table p. 7.
+Oil filler cap used in both MS 462 crankcase configurations; includes seal (item 9).
 
 **Item 8 · Qty listed: 1**
 

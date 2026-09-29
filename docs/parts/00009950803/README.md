@@ -10,7 +10,7 @@ Bin **T11** · **8** per kit · **S2** supervision
 
 ## MS 261 — chain sprocket cover
 
-M8 collar nut on the chain sprocket cover. The parts list records one at item 14.
+M8 collar nut on the chain sprocket cover.
 
 **Item 14 · Qty listed: 1**
 
