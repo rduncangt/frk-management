@@ -1266,7 +1266,7 @@
               ]
             }
           ],
-          "text": "Decompression valve in the cylinder. Also listed in section D, drawing p. 11 / table p. 12.",
+          "text": "Decompression valve used in both MS 462 cylinder configurations.",
           "label": "462 cylinder",
           "outline_width": 1.0
         }
@@ -11058,7 +11058,7 @@
               ]
             }
           ],
-          "text": "Spark plug in the cylinder. Also listed in section D and the ignition-system section.",
+          "text": "Spark plug used in both MS 462 cylinder configurations.",
           "label": "462 cylinder",
           "outline_width": 1.0
         },

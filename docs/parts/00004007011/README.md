@@ -10,7 +10,7 @@ Bin **B4** · **2** per kit · **S1** supervision
 
 ## MS 462 — cylinder
 
-Spark plug in the cylinder. Also listed in section D and the ignition-system section.
+Spark plug used in both MS 462 cylinder configurations.
 
 **Item 10 · Qty listed: 1**
 

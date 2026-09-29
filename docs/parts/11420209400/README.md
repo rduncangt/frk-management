@@ -10,7 +10,7 @@ Bin **T4** · **1** per kit · **S2** supervision
 
 ## MS 462 — cylinder
 
-Decompression valve in the cylinder. Also listed in section D, drawing p. 11 / table p. 12.
+Decompression valve used in both MS 462 cylinder configurations.
 
 **Item 9 · Qty listed: 1**
 
