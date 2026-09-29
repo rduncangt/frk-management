@@ -369,15 +369,17 @@ PACKAGES\begin{document}
 
     def offline_book(self):
         parts = sorted(self.parts.values(), key=lambda p: (p['name'].casefold(), p['number']))
-        out = self.preamble(book=True)
+        out = r'\PassOptionsToPackage{table}{xcolor}' + '\n' + self.preamble(book=True)
         out += r'\pdfbookmark[0]{Part index}{book-index}\hypertarget{index}{}\includegraphics[width=1.08in]{reference/team-rubicon-logo.png}\hfill{\small '+self.data['revision']+r'}\par{\LARGE\bfseries Field Repair Kit: Part Reference}\par'
         out += r'{\color{frkSecondary} HT 135 \enspace / \enspace MS 261 \enspace / \enspace MS 462 \hfill '+str(len(parts))+r' parts}\par\medskip'
-        out += r'\renewcommand{\arraystretch}{1.28}\begin{longtable}{@{}p{3.52in}p{1.68in}p{0.65in}r@{}}\toprule\textbf{Part} & \textbf{Part number} & \textbf{Bin} & \textbf{Page}\\\midrule\endfirsthead\multicolumn{4}{@{}l}{\large\bfseries Part index (continued)}\\\toprule\textbf{Part} & \textbf{Part number} & \textbf{Bin} & \textbf{Page}\\\midrule\endhead'
-        for p in parts:
+        out += r'\begingroup\renewcommand{\arraystretch}{1.5}\setlength{\tabcolsep}{4pt}\begin{longtable}{@{}>{\raggedright\arraybackslash}p{3.18in}p{1.85in}p{1.30in}p{0.38in}r@{}}\toprule\textbf{Part} & \textbf{Saws} & \textbf{Part number} & \textbf{Bin} & \textbf{Page}\\\midrule\endfirsthead\multicolumn{5}{@{}l}{\large\bfseries Part index (continued)}\\\toprule\textbf{Part} & \textbf{Saws} & \textbf{Part number} & \textbf{Bin} & \textbf{Page}\\\midrule\endhead'
+        for i, p in enumerate(parts):
             key = p['id']
             name = p['name']
-            out += r'\hyperlink{' + key + '}{'+tex(name)+r'} & \hyperlink{'+key+r'}{\texttt{'+p['number']+'}} & '+p['bin']+r' & \pageref{part-'+key+r'}\\'+'\n'
-        out += r'\bottomrule\end{longtable}\clearpage' + '\n'
+            models = ', '.join(MODELS[model] for model in p['models'])
+            shade = r'\rowcolor{black!6}' if i % 2 else ''
+            out += '\n'+shade+r'\hyperlink{' + key + '}{'+tex(name)+r'} & \textcolor{frkApplication}{\mbox{'+tex(models)+r'}} & \hyperlink{'+key+r'}{\texttt{'+p['number']+'}} & '+p['bin']+r' & \pageref{part-'+key+r'}\\'+'\n'
+        out += r'\bottomrule\end{longtable}\endgroup\clearpage' + '\n'
         for i, p in enumerate(parts):
             if i:
                 out += '\\clearpage\n'
