@@ -304,15 +304,20 @@ PACKAGES\begin{document}
         name_size = 9 if len(p['name']) <= 29 else 8
         main_size = 8.4 if len(main) < 24 else 7.7
         secondary = 'Also: ' + '; '.join(others) if others else ''
+        secondary_style = r'text=frkSecondary,font=\sffamily\fontsize{7}{8}\selectfont'
+        if len(p['models']) == 2:
+            secondary = '; '.join(others)
+            secondary_style = (r'text=frkApplication,font=\sffamily\bfseries\fontsize{'
+                               + str(main_size) + r'}{9}\selectfont')
         return r'''\begin{scope}[shift={(X,Y)}]
 \node[anchor=north west,inner sep=0,text width=177bp,font=\sffamily\bfseries\fontsize{NS}{10}\selectfont] at (6,6) {NAME};
 \node[anchor=west,inner sep=0,font=\ttfamily\bfseries\fontsize{11.5}{12}\selectfont] at (6,26) {NUMBER};
 \node[anchor=west,inner sep=0,text=frkApplication,font=\sffamily\bfseries\fontsize{MS}{9}\selectfont] at (6,39) {MAIN};
-\node[anchor=north west,inner sep=0,text width=119bp,text=frkSecondary,font=\sffamily\fontsize{7}{8}\selectfont] at (6,46) {SECONDARY};
+\node[anchor=north west,inner sep=0,text width=119bp,SECONDARYSTYLE] at (6,46) {SECONDARY};
 \node[anchor=west,inner sep=0,text=frkSecondary,font=\sffamily\fontsize{8}{9}\selectfont] at (6,62) {Bin~\textcolor{black}{\textbf{BIN}}\quad Qty~\textcolor{black}{\textbf{COUNT}}\quad \textcolor{frkSupervision}{\textbf{SCOPE}}};
 \node[anchor=north west,inner sep=0] at (131,14) {\includegraphics[width=52bp,height=52bp]{QR}};
 \end{scope}
-'''.replace('X,Y', f'{x},{y}').replace('NS', str(name_size)).replace('NAME', name).replace('NUMBER', tex(p['number'])).replace('MS', str(main_size)).replace('MAIN', tex(main)).replace('SECONDARY', tex(secondary)).replace('BIN', p['bin']).replace('COUNT', str(p['count'])).replace('SCOPE', p['scope']).replace('QR', base + 'qr.png')
+'''.replace('X,Y', f'{x},{y}').replace('NS', str(name_size)).replace('NAME', name).replace('NUMBER', tex(p['number'])).replace('MS', str(main_size)).replace('MAIN', tex(main)).replace('SECONDARYSTYLE', secondary_style).replace('SECONDARY', tex(secondary)).replace('BIN', p['bin']).replace('COUNT', str(p['count'])).replace('SCOPE', p['scope']).replace('QR', base + 'qr.png')
 
     def label_preamble(self, filename):
         source = ROOT/filename
