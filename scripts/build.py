@@ -479,7 +479,7 @@ PACKAGES\begin{document}
                     out += tex_node(bx+18, by+bh-30, 'OPEN AREA', 7, color='frkSecondary')
             out += tex_node(306, y+height*scale+8, 'FRONT / LATCHES', 7, anchor='north', color='frkSecondary')
             out += tex_node(36, offset+378, 'Not to scale', 6.5, color='frkSecondary')
-            out += tex_node(576, offset+378, 'Revision: '+self.data['revision'], 6.5, anchor='north east', color='frkSecondary')
+            out += tex_node(576, offset+378, 'Revision: '+self.layout.get('revision', self.data['revision']), 6.5, anchor='north east', color='frkSecondary')
         out += r'\draw[black!20,dashed,line width=0.4bp] (24,396) -- (588,396);' + '\n'
         return out + '\\end{scope}\\end{tikzpicture}\n\\end{document}\n'
 

@@ -2,7 +2,7 @@
 
 # Previous kit photos
 
-These photos show the earlier kit layout. See the [box map](https://rduncangt.github.io/frk-management/downloads/frk-parts-boxmap.pdf) for the current standard.
+These photos show the earlier kit layout. See the [packing guide](kit-packing.md) and [box map](https://rduncangt.github.io/frk-management/downloads/frk-parts-boxmap.pdf) for the current standard.
 
 ## Labeled parts
 
