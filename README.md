@@ -1,5 +1,9 @@
 # Field Repair Kit Inventory Management: Documents and Materials
 
+> **Legacy FRK documentation**
+>
+> These documents support kits using the earlier FRK labels and bin layout. For the current FRK system, see the [main project page](https://github.com/rduncangt/frk-management/tree/main#readme).
+
 ## Materials
 
 These are the materials purchased and used for configuring the FRK:
