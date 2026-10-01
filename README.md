@@ -52,3 +52,7 @@ Supplies for packing and labeling kits. Suppliers are examples; equivalent suppl
 [Previous kit photos](legacy-photos.md)
 
 Drawings © ANDREAS STIHL AG & Co. KG. Team Rubicon logo from [Team Rubicon](https://teamrubiconusa.org/).
+
+> **Legacy FRK documentation**
+>
+> For kits using the earlier labels and bin layout, see the [legacy version](https://github.com/rduncangt/frk-management/tree/legacy-frk#readme).
