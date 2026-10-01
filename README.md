@@ -1,5 +1,9 @@
 # Field Repair Kit Inventory Management: Documents and Materials
 
+> **An updated FRK documentation system is in development.**
+>
+> [Explore the pilot →](https://github.com/rduncangt/frk-management/tree/pan-head-screw-qr-pilot#readme) for searchable parts references, QR-linked labels, and a photo packing guide. The documents below remain available for kits using the earlier system.
+
 ## Materials
 
 These are the materials purchased and used for configuring the FRK:
