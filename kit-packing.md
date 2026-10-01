@@ -4,7 +4,7 @@
 
 The kit layout, from empty bins to packed parts. Use the [box map](https://rduncangt.github.io/frk-management/downloads/frk-parts-boxmap.pdf) for locations and the [inventory checklist](https://rduncangt.github.io/frk-management/downloads/frk-parts-inventory.pdf) for quantities.
 
-[Top tray](#top-tray) · [Base](#base) · [Bagged parts](#bagged-parts)
+[Top tray](#top-tray) · [Base](#base) · [Bagged parts](#bagged-parts) · [QR part reference](#qr-part-reference)
 
 ## Top tray
 
@@ -31,6 +31,12 @@ The kit layout, from empty bins to packed parts. Use the [box map](https://rdunc
 E-clips, brake springs, and a brake band.
 
 <a href="docs/assets/photos/bagged-parts.jpg"><img src="docs/assets/photos/bagged-parts.jpg" alt="Labeled bags containing E-clips, brake springs, and a brake band, with part numbers and QR codes visible" width="800"></a>
+
+## QR part reference
+
+The bag’s QR code opens the [tension spring reference](https://rduncangt.github.io/frk-management/parts/11411605500/), with the part highlighted in its assembly diagram.
+
+<a href="docs/assets/photos/qr-part-reference.jpg"><img src="docs/assets/photos/qr-part-reference.jpg" alt="Bag of MS 261 tension springs, part 1141 160 5500, beside a phone displaying the matching part reference and highlighted chain brake diagram" width="800"></a>
 
 ---
 

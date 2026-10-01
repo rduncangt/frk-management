@@ -16,7 +16,7 @@ A standard parts and storage system for Team Rubicon’s chainsaw Field Repair K
 
 **[Online parts reference →](https://rduncangt.github.io/frk-management/)**
 
-Search by name, number, saw, or bin. Highlighted diagrams show where each part fits, with links to related parts and printable reference sheets.
+Search by name, number, saw, or bin. Highlighted diagrams show where each part fits, with links to related parts and printable reference sheets. [See a QR label in use →](kit-packing.md#qr-part-reference)
 
 **[Offline reference · PDF](https://rduncangt.github.io/frk-management/downloads/frk-part-reference.pdf)**
 
