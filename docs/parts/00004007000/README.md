@@ -10,7 +10,9 @@ Bin **B4** · **3** per kit · **S1** supervision
 
 ## MS 261 — cylinder
 
-Spark plug in the cylinder. Alternative for MS 261: Bosch WSR6F (1110 400 7005).
+Spark plug in the cylinder.
+
+Alternative for MS 261: Bosch WSR6F (1110 400 7005).
 
 **Item 23 · Qty listed: 1**
 

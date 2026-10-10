@@ -190,7 +190,9 @@ class Reference:
                 chunks.append(f'<a class="part-number" href="{target}">{number}</a>')
             offset = match.end()
         chunks.append(escape(value[offset:]))
-        return ''.join(chunks)
+        # Blank lines in descriptions preserve paragraph breaks across formats.
+        separator = {'html': '</p><p>', 'md': '\n\n', 'tex': '\\par\n', 'offline': '\\par\n'}[mode]
+        return separator.join(''.join(chunks).split('\n\n'))
 
     def figure(self, p, a):
         source = ROOT / f'reference/figures/{a["manual"]}-{a["drawing"]:03}.png'
