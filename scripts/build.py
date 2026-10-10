@@ -136,6 +136,11 @@ class Reference:
                         raise ValueError(f'Unknown related application: {target}#{anchor}')
                 if a.get('listed_part') and p.get('status') != 'unconfirmed':
                     raise ValueError('A differing manual number must be explicitly unconfirmed')
+                if 'alternative' in a:
+                    alternative = a['alternative']
+                    if (not isinstance(alternative, dict) or set(alternative) != {'title', 'name', 'number'}
+                            or any(not isinstance(value, str) or not value.strip() for value in alternative.values())):
+                        raise ValueError(f'Incomplete alternative: {p["number"]} / {a["id"]}')
         for section in self.layout['sections']:
             width, height = section['size']
             rectangles = []
@@ -193,6 +198,19 @@ class Reference:
         # Blank lines in descriptions preserve paragraph breaks across formats.
         separator = {'html': '</p><p>', 'md': '\n\n', 'tex': '\\par\n', 'offline': '\\par\n'}[mode]
         return separator.join(''.join(chunks).split('\n\n'))
+
+    def render_alternative(self, app, mode):
+        alternative = app.get('alternative')
+        if not alternative:
+            return ''
+        escape = tex if mode in {'tex', 'offline'} else html.escape
+        title, name, number = (escape(alternative[key]) for key in ('title', 'name', 'number'))
+        if mode in {'tex', 'offline'}:
+            return (r'\medskip{\small\bfseries\color{frkSecondary} ' + title + r'\par}'
+                    + name + r' \textperiodcentered{} \mbox{' + number + r'}\par' + '\n')
+        if mode == 'md':
+            return f'### {title}\n\n{name} · {number.replace(" ", "&nbsp;")}\n\n'
+        return f'<div class="alternative"><h3>{title}</h3><p>{name} · <span class="part-number">{number}</span></p></div>'
 
     def figure(self, p, a):
         source = ROOT / f'reference/figures/{a["manual"]}-{a["drawing"]:03}.png'
@@ -281,12 +299,13 @@ PACKAGES\begin{document}
             facts = r'{\small\textbf{Item ' + tex(a['item']) + r' \enspace | \enspace Qty listed: ' + str(a['quantity']) + r'}}\par' + '\n'
             source = r'{\footnotesize\color{frkSecondary} ' + tex(self.source(a)) + r'}\par' + '\n'
             description = self.render_text(a['text'], mode) + '\\par\n'
+            alternative = self.render_alternative(a, mode)
             figure = base + a['id'] + '.png'
             if len(apps) == 1:
-                body += anchor + heading + description + facts + r'\begin{center}\includegraphics[width=5.3in,height=5.5in,keepaspectratio]{' + figure + r'}\end{center}' + '\n' + source
+                body += anchor + heading + description + facts + alternative + r'\begin{center}\includegraphics[width=5.3in,height=5.5in,keepaspectratio]{' + figure + r'}\end{center}' + '\n' + source
             else:
                 height = '2.05in' if len(apps) == 3 else '3.0in'
-                body += anchor + r'\noindent\begin{minipage}[c]{0.40\linewidth}\raggedright' + heading + r'{\small ' + description + r'}\smallskip' + '\n' + facts + source + r'\end{minipage}\hfill\begin{minipage}[c]{0.57\linewidth}\centering\includegraphics[width=\linewidth,height=' + height + ',keepaspectratio]{' + figure + r'}\end{minipage}\par\medskip' + '\n'
+                body += anchor + r'\noindent\begin{minipage}[c]{0.40\linewidth}\raggedright' + heading + r'{\small ' + description + r'}\smallskip' + '\n' + facts + alternative + source + r'\end{minipage}\hfill\begin{minipage}[c]{0.57\linewidth}\centering\includegraphics[width=\linewidth,height=' + height + ',keepaspectratio]{' + figure + r'}\end{minipage}\par\medskip' + '\n'
         body += (r'\vfill\hrule\smallskip{\footnotesize\color{frkSecondary} '
                  r'\href{' + tex(self.correction_url(p)) + r'}{\textcolor{frkApplication}{Suggest a correction}}'
                  r'\enspace (GitHub)\hfill Revision: ' + self.data['revision'])
@@ -367,6 +386,7 @@ PACKAGES\begin{document}
             text += f'<a id="{a["id"]}"></a>\n\n## {MODELS[a["model"]]} — {application_name(a)}\n\n'
             text += self.render_text(a['text'], 'md') + '\n\n'
             text += f'**Item {a["item"]} · Qty listed: {a["quantity"]}**\n\n'
+            text += self.render_alternative(a, 'md')
             path = f'{a["id"]}.png'
             alt = f'{MODELS[a["model"]]} {a["name"]}, item {a["item"]} highlighted'
             width = round(min(440, 300*a['crop'][2]/a['crop'][3]))
@@ -543,7 +563,7 @@ PACKAGES\begin{document}
             for a in p['applications']:
                 figure = a['id']+'.png'
                 alt = f'{MODELS[a["model"]]} {a["name"]}, item {a["item"]} highlighted'
-                body += f'<section class="application" id="{a["id"]}"><div><h2>{MODELS[a["model"]]} — {html.escape(application_name(a))}</h2><p>{self.render_text(a["text"], "html")}</p><p class="facts">Item {a["item"]} <span>Qty listed: {a["quantity"]}</span></p></div><a class="diagram" href="{figure}" aria-label="Open full-size diagram: {html.escape(alt)}"><img src="{figure}" alt="{html.escape(alt)}" loading="lazy"></a><p class="source">{html.escape(self.source(a))}</p></section>'
+                body += f'<section class="application" id="{a["id"]}"><div><h2>{MODELS[a["model"]]} — {html.escape(application_name(a))}</h2><p>{self.render_text(a["text"], "html")}</p><p class="facts">Item {a["item"]} <span>Qty listed: {a["quantity"]}</span></p>{self.render_alternative(a, "html")}</div><a class="diagram" href="{figure}" aria-label="Open full-size diagram: {html.escape(alt)}"><img src="{figure}" alt="{html.escape(alt)}" loading="lazy"></a><p class="source">{html.escape(self.source(a))}</p></section>'
             body += f'<p class="correction"><a href="{html.escape(self.correction_url(p), quote=True)}">Suggest a correction</a><small>GitHub · sign-in required</small></p>'
             write(f'docs/parts/{pid}/index.html', self.html_page(p['name'], body, 2))
         index += '</ul><p id="empty" hidden>No matching parts.</p><script src="assets/search.js" defer></script>'

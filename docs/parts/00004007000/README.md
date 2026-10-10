@@ -12,9 +12,11 @@ Bin **B4** · **3** per kit · **S1** supervision
 
 Spark plug in the cylinder.
 
-Alternative for MS 261: Bosch WSR6F (1110 400 7005).
-
 **Item 23 · Qty listed: 1**
+
+### Alternative spark plug
+
+Bosch WSR6F · 1110&nbsp;400&nbsp;7005
 
 <a href="ms261-cylinder.png"><img src="ms261-cylinder.png" alt="MS 261 Cylinder, item 23 highlighted" width="242"></a>
 
