@@ -138,7 +138,7 @@ class Reference:
                     raise ValueError('A differing manual number must be explicitly unconfirmed')
                 if 'alternative' in a:
                     alternative = a['alternative']
-                    if (not isinstance(alternative, dict) or set(alternative) != {'title', 'name', 'number'}
+                    if (not isinstance(alternative, dict) or set(alternative) not in ({'title', 'name'}, {'title', 'name', 'number'})
                             or any(not isinstance(value, str) or not value.strip() for value in alternative.values())):
                         raise ValueError(f'Incomplete alternative: {p["number"]} / {a["id"]}')
         for section in self.layout['sections']:
@@ -204,13 +204,17 @@ class Reference:
         if not alternative:
             return ''
         escape = tex if mode in {'tex', 'offline'} else html.escape
-        title, name, number = (escape(alternative[key]) for key in ('title', 'name', 'number'))
+        title, name = (escape(alternative[key]) for key in ('title', 'name'))
+        number = escape(alternative.get('number', ''))
         if mode in {'tex', 'offline'}:
+            detail = name + (r' \textperiodcentered{} \mbox{' + number + '}' if number else '')
             return (r'\medskip{\small\bfseries\color{frkSecondary} ' + title + r'\par}'
-                    + name + r' \textperiodcentered{} \mbox{' + number + r'}\par' + '\n')
+                    + detail + r'\par' + '\n')
         if mode == 'md':
-            return f'### {title}\n\n{name} · {number.replace(" ", "&nbsp;")}\n\n'
-        return f'<div class="alternative"><h3>{title}</h3><p>{name} · <span class="part-number">{number}</span></p></div>'
+            detail = name + (' · ' + number.replace(' ', '&nbsp;') if number else '')
+            return f'### {title}\n\n{detail}\n\n'
+        detail = name + (f' · <span class="part-number">{number}</span>' if number else '')
+        return f'<div class="alternative"><h3>{title}</h3><p>{detail}</p></div>'
 
     def figure(self, p, a):
         source = ROOT / f'reference/figures/{a["manual"]}-{a["drawing"]:03}.png'
@@ -300,6 +304,8 @@ PACKAGES\begin{document}
             source = r'{\footnotesize\color{frkSecondary} ' + tex(self.source(a)) + r'}\par' + '\n'
             description = self.render_text(a['text'], mode) + '\\par\n'
             alternative = self.render_alternative(a, mode)
+            if alternative and len(apps) > 1:
+                alternative += '\\smallskip\n'
             figure = base + a['id'] + '.png'
             if len(apps) == 1:
                 body += anchor + heading + description + facts + alternative + r'\begin{center}\includegraphics[width=5.3in,height=5.5in,keepaspectratio]{' + figure + r'}\end{center}' + '\n' + source
