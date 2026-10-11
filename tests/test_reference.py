@@ -75,17 +75,23 @@ class ReferenceTests(unittest.TestCase):
 
     def test_partial_alternative_keeps_its_application_scope(self):
         part = copy.deepcopy(self.ref.parts['00004007011'])
-        part['alternative']['applications'] = ['ms462-cylinder']
+        part['alternative'] = {'title': 'Example alternative', 'name': 'Example component',
+                               'applications': ['ms462-cylinder']}
         for mode in ('html', 'md', 'tex', 'offline'):
             with self.subTest(mode=mode):
                 rendered = self.ref.render_alternative(part, mode)
                 self.assertIn('For MS 462', rendered)
                 self.assertIn('cylinder.', rendered)
                 self.assertNotIn('HT 135', rendered)
-        self.assertNotIn('For ', self.ref.render_alternative(self.ref.parts['00004007011'], 'html'))
+        part['alternative']['applications'] = [a['id'] for a in part['applications']]
+        rendered = self.ref.render_alternative(part, 'html')
+        self.assertIn('Example component', rendered)
+        self.assertNotIn('For ', rendered)
 
     def test_alternative_requires_valid_explicit_applications(self):
         part = self.ref.parts['00004007011']
+        part['alternative'] = {'title': 'Example alternative', 'name': 'Example component',
+                               'applications': ['ms462-cylinder']}
         for targets in ([], ['missing'], ['ms462-cylinder', 'ms462-cylinder'], 'ms462-cylinder', [None]):
             with self.subTest(targets=targets):
                 part['alternative']['applications'] = targets
