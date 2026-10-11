@@ -6,6 +6,12 @@ Bin **B4** · **3** per kit · **S1** supervision
 
 [Part page](https://rduncangt.github.io/frk-management/parts/00004007000/) · [Part reference sheet PDF](field-card.pdf?raw=1) · [Avery label PDF](bag-label.pdf?raw=1) · [Offline reference](../../downloads/frk-part-reference.pdf?raw=1)
 
+---
+
+## Alternative spark plug
+
+Bosch WSR6F · 1110&nbsp;400&nbsp;7005
+
 <a id="ms261-cylinder"></a>
 
 ## MS 261 — cylinder
@@ -13,10 +19,6 @@ Bin **B4** · **3** per kit · **S1** supervision
 Spark plug in the cylinder.
 
 **Item 23 · Qty listed: 1**
-
-### Alternative spark plug
-
-Bosch WSR6F · 1110&nbsp;400&nbsp;7005
 
 <a href="ms261-cylinder.png"><img src="ms261-cylinder.png" alt="MS 261 Cylinder, item 23 highlighted" width="242"></a>
 

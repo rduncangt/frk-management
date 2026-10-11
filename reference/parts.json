@@ -11059,10 +11059,6 @@
             }
           ],
           "text": "Spark plug used in both MS 462 cylinder configurations.",
-          "alternative": {
-            "title": "Alternative spark plug",
-            "name": "Bosch USR4AC"
-          },
           "label": "462 cylinder",
           "outline_width": 1.0
         },
@@ -11176,14 +11172,18 @@
             }
           ],
           "text": "Spark plug in the cylinder.",
-          "alternative": {
-            "title": "Alternative spark plug",
-            "name": "Bosch USR4AC"
-          },
           "label": "135 cylinder",
           "outline_width": 1.0
         }
-      ]
+      ],
+      "alternative": {
+        "title": "Alternative spark plug",
+        "name": "Bosch USR4AC",
+        "applications": [
+          "ms462-cylinder",
+          "ht135-cylinder"
+        ]
+      }
     },
     "00004007000": {
       "applications": [
@@ -11289,15 +11289,18 @@
             }
           ],
           "text": "Spark plug in the cylinder.",
-          "alternative": {
-            "title": "Alternative spark plug",
-            "name": "Bosch WSR6F",
-            "number": "1110 400 7005"
-          },
           "label": "261 cylinder",
           "outline_width": 1.0
         }
-      ]
+      ],
+      "alternative": {
+        "title": "Alternative spark plug",
+        "name": "Bosch WSR6F",
+        "number": "1110 400 7005",
+        "applications": [
+          "ms261-cylinder"
+        ]
+      }
     },
     "11280071000": {
       "applications": [

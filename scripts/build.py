@@ -122,6 +122,19 @@ class Reference:
                 raise ValueError(f'Inventory/reference model mismatch: {p["number"]}')
             if p['count'] < 0 or p['scope'] not in {'S1', 'AS1', 'CI1', 'S2', 'CI2'}:
                 raise ValueError(f'Invalid count or supervision: {p["number"]}')
+            if 'alternative' in p:
+                alternative = p['alternative']
+                if (not isinstance(alternative, dict)
+                        or set(alternative) not in ({'title', 'name', 'applications'}, {'title', 'name', 'number', 'applications'})
+                        or any(not isinstance(value, str) or not value.strip()
+                               for key, value in alternative.items() if key != 'applications')):
+                    raise ValueError(f'Incomplete alternative: {p["number"]}')
+                targets = alternative['applications']
+                if (not isinstance(targets, list) or not targets
+                        or any(not isinstance(target, str) for target in targets)
+                        or len(set(targets)) != len(targets)
+                        or not set(targets) <= {a['id'] for a in apps}):
+                    raise ValueError(f'Invalid alternative applications: {p["number"]}')
             for a in apps:
                 figure = ROOT / f'reference/figures/{a["manual"]}-{a["drawing"]:03}.png'
                 if not figure.exists() or not a['marks'] or a['quantity'] < 1:
@@ -137,10 +150,7 @@ class Reference:
                 if a.get('listed_part') and p.get('status') != 'unconfirmed':
                     raise ValueError('A differing manual number must be explicitly unconfirmed')
                 if 'alternative' in a:
-                    alternative = a['alternative']
-                    if (not isinstance(alternative, dict) or set(alternative) not in ({'title', 'name'}, {'title', 'name', 'number'})
-                            or any(not isinstance(value, str) or not value.strip() for value in alternative.values())):
-                        raise ValueError(f'Incomplete alternative: {p["number"]} / {a["id"]}')
+                    raise ValueError(f'Alternative must declare its applications at part level: {p["number"]}')
         for section in self.layout['sections']:
             width, height = section['size']
             rectangles = []
@@ -199,22 +209,28 @@ class Reference:
         separator = {'html': '</p><p>', 'md': '\n\n', 'tex': '\\par\n', 'offline': '\\par\n'}[mode]
         return separator.join(''.join(chunks).split('\n\n'))
 
-    def render_alternative(self, app, mode):
-        alternative = app.get('alternative')
+    def render_alternative(self, p, mode):
+        alternative = p.get('alternative')
         if not alternative:
             return ''
         escape = tex if mode in {'tex', 'offline'} else html.escape
         title, name = (escape(alternative[key]) for key in ('title', 'name'))
         number = escape(alternative.get('number', ''))
+        scope = ''
+        if set(alternative['applications']) != {a['id'] for a in p['applications']}:
+            scope = 'For ' + '; '.join(MODELS[a['model']] + ' — ' + application_name(a)
+                                      for a in p['applications'] if a['id'] in alternative['applications']) + '.'
         if mode in {'tex', 'offline'}:
             detail = name + (r' \textperiodcentered{} \mbox{' + number + '}' if number else '')
-            return (r'\medskip{\small\bfseries\color{frkSecondary} ' + title + r'\par}'
-                    + detail + r'\par' + '\n')
+            return (r'{\small\bfseries\color{frkSecondary} ' + title + r'\par}'
+                    + detail + r'\par' + '\n'
+                    + (r'{\small\color{frkSecondary} ' + escape(scope) + r'\par}' + '\n' if scope else '')
+                    + r'\medskip' + '\n')
         if mode == 'md':
             detail = name + (' · ' + number.replace(' ', '&nbsp;') if number else '')
-            return f'### {title}\n\n{detail}\n\n'
+            return f'## {title}\n\n{detail}\n\n' + (escape(scope) + '\n\n' if scope else '')
         detail = name + (f' · <span class="part-number">{number}</span>' if number else '')
-        return f'<div class="alternative"><h3>{title}</h3><p>{detail}</p></div>'
+        return f'<section class="alternative"><h2>{title}</h2><p>{detail}</p>' + (f'<p class="alternative-scope">{escape(scope)}</p>' if scope else '') + '</section>'
 
     def figure(self, p, a):
         source = ROOT / f'reference/figures/{a["manual"]}-{a["drawing"]:03}.png'
@@ -294,6 +310,7 @@ PACKAGES\begin{document}
 {\scriptsize\color{frkSecondary} Online guide}
 \end{minipage}\par\smallskip\hrule\medskip
 '''.replace('LOGO', logo).replace('NAME', tex(p['name'])).replace('URL', tex(self.part_url(p['id']))).replace('NUMBER', tex(p['number'])).replace('BIN', p['bin']).replace('COUNT', str(p['count'])).replace('PLURAL', plural).replace('SCOPE', p['scope']).replace('BASE', base)
+        body += self.render_alternative(p, mode)
         if p.get('notice'):
             body += r'{\small\color{frkSupervision}\textbf{' + tex(p['notice']) + r'}}\par\medskip' + '\n'
         apps = p['applications']
@@ -303,15 +320,12 @@ PACKAGES\begin{document}
             facts = r'{\small\textbf{Item ' + tex(a['item']) + r' \enspace | \enspace Qty listed: ' + str(a['quantity']) + r'}}\par' + '\n'
             source = r'{\footnotesize\color{frkSecondary} ' + tex(self.source(a)) + r'}\par' + '\n'
             description = self.render_text(a['text'], mode) + '\\par\n'
-            alternative = self.render_alternative(a, mode)
-            if alternative and len(apps) > 1:
-                alternative += '\\smallskip\n'
             figure = base + a['id'] + '.png'
             if len(apps) == 1:
-                body += anchor + heading + description + facts + alternative + r'\begin{center}\includegraphics[width=5.3in,height=5.5in,keepaspectratio]{' + figure + r'}\end{center}' + '\n' + source
+                body += anchor + heading + description + facts + r'\begin{center}\includegraphics[width=5.3in,height=5.5in,keepaspectratio]{' + figure + r'}\end{center}' + '\n' + source
             else:
                 height = '2.05in' if len(apps) == 3 else '3.0in'
-                body += anchor + r'\noindent\begin{minipage}[c]{0.40\linewidth}\raggedright' + heading + r'{\small ' + description + r'}\smallskip' + '\n' + facts + alternative + source + r'\end{minipage}\hfill\begin{minipage}[c]{0.57\linewidth}\centering\includegraphics[width=\linewidth,height=' + height + ',keepaspectratio]{' + figure + r'}\end{minipage}\par\medskip' + '\n'
+                body += anchor + r'\noindent\begin{minipage}[c]{0.40\linewidth}\raggedright' + heading + r'{\small ' + description + r'}\smallskip' + '\n' + facts + source + r'\end{minipage}\hfill\begin{minipage}[c]{0.57\linewidth}\centering\includegraphics[width=\linewidth,height=' + height + ',keepaspectratio]{' + figure + r'}\end{minipage}\par\medskip' + '\n'
         body += (r'\vfill\hrule\smallskip{\footnotesize\color{frkSecondary} '
                  r'\href{' + tex(self.correction_url(p)) + r'}{\textcolor{frkApplication}{Suggest a correction}}'
                  r'\enspace (GitHub)\hfill Revision: ' + self.data['revision'])
@@ -385,6 +399,8 @@ PACKAGES\begin{document}
     def markdown(self, p):
         text = f'# {p["name"]}\n\n**{p["number"]}**\n\nBin **{p["bin"]}** · **{p["count"]}** per kit · **{p["scope"]}** supervision\n\n'
         text += f'[Part page]({self.part_url(p["id"])}) · [Part reference sheet PDF](field-card.pdf?raw=1) · [Avery label PDF](bag-label.pdf?raw=1) · [Offline reference](../../downloads/frk-part-reference.pdf?raw=1)\n\n'
+        if p.get('alternative'):
+            text += '---\n\n' + self.render_alternative(p, 'md')
         if p.get('notice'):
             text += f'> **{p["notice"]}**\n\n'
         for a in p['applications']:
@@ -392,7 +408,6 @@ PACKAGES\begin{document}
             text += f'<a id="{a["id"]}"></a>\n\n## {MODELS[a["model"]]} — {application_name(a)}\n\n'
             text += self.render_text(a['text'], 'md') + '\n\n'
             text += f'**Item {a["item"]} · Qty listed: {a["quantity"]}**\n\n'
-            text += self.render_alternative(a, 'md')
             path = f'{a["id"]}.png'
             alt = f'{MODELS[a["model"]]} {a["name"]}, item {a["item"]} highlighted'
             width = round(min(440, 300*a['crop'][2]/a['crop'][3]))
@@ -562,6 +577,7 @@ PACKAGES\begin{document}
             searchable = ' '.join([p['name'], p['number'], pid, p['bin'], p['category'], applications])
             index += f'<li data-search="{html.escape(searchable.lower(), quote=True)}" data-models="{",".join(p["models"])}" data-bin="{p["bin"]}"><a href="parts/{pid}/"><span class="part-name">{html.escape(p["name"])}</span><span class="part-number">{p["number"]}</span><span class="location">{html.escape(applications)}</span><span class="part-bin"><span class="detail-label">Bin</span><span>{p["bin"]}</span></span><span class="part-quantity"><span class="detail-label">Per kit</span><span>{p["count"]}</span></span></a></li>'
             body = f'<nav class="crumb"><a href="../../index.html">All parts</a><span>Bin {p["bin"]}</span></nav><h1>{html.escape(p["name"])}</h1><p class="number">{p["number"]}</p><div class="metadata"><span>Bin <strong>{p["bin"]}</strong></span><span><strong>{p["count"]}</strong> per kit</span><span class="supervision"><strong>{p["scope"]}</strong> supervision</span></div><nav class="downloads" aria-label="Downloads"><a href="field-card.pdf" download="part-reference-{pid}.pdf">Part reference sheet PDF</a><a href="bag-label.pdf" download>Avery label PDF</a><a href="../../downloads/frk-part-reference.pdf" download>Offline reference PDF</a></nav>'
+            body += self.render_alternative(p, 'html')
             if p.get('notice'):
                 body += '<p class="notice">'+html.escape(p['notice'])+'</p>'
             if len(p['applications']) > 1:
@@ -569,7 +585,7 @@ PACKAGES\begin{document}
             for a in p['applications']:
                 figure = a['id']+'.png'
                 alt = f'{MODELS[a["model"]]} {a["name"]}, item {a["item"]} highlighted'
-                body += f'<section class="application" id="{a["id"]}"><div><h2>{MODELS[a["model"]]} — {html.escape(application_name(a))}</h2><p>{self.render_text(a["text"], "html")}</p><p class="facts">Item {a["item"]} <span>Qty listed: {a["quantity"]}</span></p>{self.render_alternative(a, "html")}</div><a class="diagram" href="{figure}" aria-label="Open full-size diagram: {html.escape(alt)}"><img src="{figure}" alt="{html.escape(alt)}" loading="lazy"></a><p class="source">{html.escape(self.source(a))}</p></section>'
+                body += f'<section class="application" id="{a["id"]}"><div><h2>{MODELS[a["model"]]} — {html.escape(application_name(a))}</h2><p>{self.render_text(a["text"], "html")}</p><p class="facts">Item {a["item"]} <span>Qty listed: {a["quantity"]}</span></p></div><a class="diagram" href="{figure}" aria-label="Open full-size diagram: {html.escape(alt)}"><img src="{figure}" alt="{html.escape(alt)}" loading="lazy"></a><p class="source">{html.escape(self.source(a))}</p></section>'
             body += f'<p class="correction"><a href="{html.escape(self.correction_url(p), quote=True)}">Suggest a correction</a><small>GitHub · sign-in required</small></p>'
             write(f'docs/parts/{pid}/index.html', self.html_page(p['name'], body, 2))
         index += '</ul><p id="empty" hidden>No matching parts.</p><script src="assets/search.js" defer></script>'

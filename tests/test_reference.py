@@ -73,6 +73,28 @@ class ReferenceTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'Unknown related application'):
                 Reference(data=path)
 
+    def test_partial_alternative_keeps_its_application_scope(self):
+        part = copy.deepcopy(self.ref.parts['00004007011'])
+        part['alternative']['applications'] = ['ms462-cylinder']
+        for mode in ('html', 'md', 'tex', 'offline'):
+            with self.subTest(mode=mode):
+                rendered = self.ref.render_alternative(part, mode)
+                self.assertIn('For MS 462', rendered)
+                self.assertIn('cylinder.', rendered)
+                self.assertNotIn('HT 135', rendered)
+        self.assertNotIn('For ', self.ref.render_alternative(self.ref.parts['00004007011'], 'html'))
+
+    def test_alternative_requires_valid_explicit_applications(self):
+        part = self.ref.parts['00004007011']
+        for targets in ([], ['missing'], ['ms462-cylinder', 'ms462-cylinder'], 'ms462-cylinder', [None]):
+            with self.subTest(targets=targets):
+                part['alternative']['applications'] = targets
+                with self.assertRaisesRegex(ValueError, 'Invalid alternative applications'):
+                    self.ref.validate()
+        del part['alternative']['applications']
+        with self.assertRaisesRegex(ValueError, 'Incomplete alternative'):
+            self.ref.validate()
+
     def test_ms462_kit_matches_its_separate_seven_tooth_rim(self):
         kit = self.ref.parts['11280071000']
         rim = self.ref.parts['00006421223']
