@@ -2,7 +2,7 @@
 
 > **An updated FRK documentation system is in development.**
 >
-> [Explore the pilot →](https://github.com/rduncangt/frk-management/tree/pan-head-screw-qr-pilot#readme) for searchable parts references, QR-linked labels, and a photo packing guide. The documents below remain available for kits using the earlier system.
+> [Explore the pilot →](https://github.com/rduncangt/frk-management/tree/frk-documentation-pilot#readme) for searchable parts references, QR-linked labels, and a photo packing guide. The documents below remain available for kits using the earlier system.
 
 ## Materials
 
