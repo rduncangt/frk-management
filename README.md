@@ -24,6 +24,7 @@ The same part references in one document, with a linked index and bookmarks.
 
 ### Prepare and restock
 
+- **[Toolbox card · PDF](https://rduncangt.github.io/frk-management/downloads/frk-toolbox-card.pdf)** — Attach to the kit for quick access to parts, kit documents, and the offline reference. Two identical 6″ × 4″ cards on US Letter; print at **100% / actual size** and trim.
 - **[Inventory checklist · PDF](https://rduncangt.github.io/frk-management/downloads/frk-parts-inventory.pdf)** — Required quantities and space to record counts on hand.
 - **[Box map · PDF](https://rduncangt.github.io/frk-management/downloads/frk-parts-boxmap.pdf)** — Standard kit layout and part locations.
 

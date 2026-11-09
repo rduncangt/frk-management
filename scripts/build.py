@@ -32,6 +32,8 @@ MODELS = {'135': 'HT 135', '261': 'MS 261', '462': 'MS 462'}
 COLORS = {'application': '075985', 'supervision': '92400E', 'secondary': '52525B'}
 DIAGRAM_HIGHLIGHT = {'fill': '#FFF200', 'outline': '#A37600'}
 CORRECTION_URL = 'https://github.com/rduncangt/frk-management/issues/new'
+TOOLBOX_CARD_SIZE = (432, 288)  # 6 × 4 inches, in PDF points.
+TOOLBOX_CARD_POSITIONS = ((90, 54), (90, 414))
 
 
 def identifier(number):
@@ -71,6 +73,15 @@ def write(path, content):
 
 def copy(source, target):
     write(target, (ROOT / source).read_bytes())
+
+
+def qr_asset(url, path):
+    qr = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_M, box_size=10, border=4)
+    qr.add_data(url)
+    qr.make(fit=True)
+    output = io.BytesIO()
+    qr.make_image(fill_color='black', back_color='white').save(output, format='PNG')
+    write(path, output.getvalue())
 
 
 class Reference:
@@ -263,14 +274,56 @@ class Reference:
 
     def assets(self):
         for p in self.parts.values():
-            qr = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_M, box_size=10, border=4)
-            qr.add_data(self.part_url(p['id']))
-            qr.make(fit=True)
-            output = io.BytesIO()
-            qr.make_image(fill_color='black', back_color='white').save(output, format='PNG')
-            write(f'docs/parts/{p["id"]}/qr.png', output.getvalue())
+            qr_asset(self.part_url(p['id']), f'docs/parts/{p["id"]}/qr.png')
             for a in p['applications']:
                 self.figure(p, a)
+        for action in self.toolbox_actions():
+            qr_asset(action['url'], action['asset'])
+
+    def toolbox_actions(self):
+        return (
+            dict(title='Parts & kit documents', url=self.url+'/',
+                 asset='docs/assets/toolbox-parts-qr.png',
+                 text='Search by name or part number.'),
+            dict(title='Offline reference', url=self.url+'/downloads/frk-part-reference.pdf',
+                 asset='docs/assets/toolbox-offline-qr.png',
+                 text='Save the PDF to your device while connected.'),
+        )
+
+    def toolbox_card(self):
+        width, height = TOOLBOX_CARD_SIZE
+        card = tex_node(18, 18, 'Field Repair Kit', 22, bold=True)
+        card += tex_node(18, 48, 'Spare parts for field repairs', 10, color='frkSecondary')
+        card += tex_node(18, 65, 'HT 135 · MS 261 · MS 462', 9.5, color='frkApplication')
+        card += r'\node[anchor=north west,inner sep=0] at (342,18) {\includegraphics[width=72bp]{reference/team-rubicon-logo.png}};' + '\n'
+        card += r'\draw[black!20,line width=0.4bp] (18,87) -- (414,87);' + '\n'
+        card += r'\draw[black!15,line width=0.4bp] (216,99) -- (216,216);' + '\n'
+        for x, action in zip((18, 234), self.toolbox_actions()):
+            card += tex_node(x, 98, r'\href{' + tex(action['url']) + '}{' + tex(action['title']) + '}',
+                             11, color='frkApplication', bold=True, raw=True)
+            card += (r'\node[anchor=north west,inner sep=0] at (' + str(x) + r',116) {\href{'
+                     + tex(action['url']) + r'}{\includegraphics[width=96bp]{' + action['asset'] + '}}};\n')
+            card += tex_node(x+108, 120, action['text'], 10, width=72)
+        address = self.url.removeprefix('https://')
+        card += tex_node(18, 230, r'\href{' + tex(self.url+'/') + '}{' + tex(address) + '}',
+                         9.5, color='frkApplication', raw=True)
+        card += tex_node(18, 257, 'Kit ID', 9.5, color='frkSecondary')
+        card += tex_node(198, 257, 'Assignment', 9.5, color='frkSecondary')
+        card += r'\draw[black!45,line width=0.4bp] (52,270) -- (174,270) (256,270) -- (414,270);' + '\n'
+        # One card definition is imposed twice; crop marks stay outside its trim bounds.
+        out = self.preamble('0in') + r'\hypersetup{pdftitle={Field Repair Kit: Toolbox Card}}' + '\n'
+        out += r'\null\begin{tikzpicture}[remember picture,overlay,x=1bp,y=-1bp]\begin{scope}[shift={(current page.north west)}]' + '\n'
+        for x, y in TOOLBOX_CARD_POSITIONS:
+            out += r'\begin{scope}[shift={(' + f'{x},{y}' + ')}]\n' + card
+            for cx, cy, dx, dy in ((0, 0, -1, -1), (width, 0, 1, -1), (0, height, -1, 1), (width, height, 1, 1)):
+                out += (r'\draw[black!35,line width=0.3bp] '
+                        + f'({cx+dx*3},{cy}) -- ({cx+dx*9},{cy}) '
+                        + f'({cx},{cy+dy*3}) -- ({cx},{cy+dy*9});\n')
+            out += '\\end{scope}\n'
+        out += tex_node(306, 738, 'Print at 100% / actual size on US Letter. Cut at the trim marks.',
+                        9, anchor='north', color='frkSecondary')
+        out += tex_node(306, 754, 'Two identical 6 × 4 inch toolbox cards', 8, anchor='north', color='frkSecondary')
+        return out + '\\end{scope}\\end{tikzpicture}\n\\end{document}\n'
 
     def preamble(self, margin='0.45in', relative='', book=False, packages=()):
         return r'''% Generated by scripts/build.py from frk_items.tsv and reference/parts.json.
@@ -540,6 +593,7 @@ PACKAGES\begin{document}
         write('frk-part-reference.tex', self.offline_book())
         write('frk-bin-contents.tex', '% Generated bin names from frk_items.tsv.\n'+''.join(r'\expandafter\def\csname frkbin'+k+r'\endcsname{'+tex(v)+'}\n' for k, v in self.bins().items()))
         write('frk-parts-boxmap.tex', self.box_map())
+        write('frk-toolbox-card.tex', self.toolbox_card())
         index = '# Parts\n\n[Online reference]('+self.url+'/) · [Offline reference PDF](../downloads/frk-part-reference.pdf?raw=1)\n\n| Part | Part number | Models | Bin |\n| :--- | :--- | :--- | :--- |\n'
         for p in self.parts.values():
             name = p['name']
@@ -565,9 +619,9 @@ PACKAGES\begin{document}
         write('docs/assets/site.css', css)
         copy('reference/search.js', 'docs/assets/search.js')
         copy('reference/team-rubicon-logo.png', 'docs/assets/team-rubicon-logo.png')
-        for name in ('frk-part-reference', 'frk-parts-labels-avery', 'frk-bin-labels-avery', 'frk-parts-inventory', 'frk-parts-boxmap'):
+        for name in ('frk-part-reference', 'frk-parts-labels-avery', 'frk-bin-labels-avery', 'frk-parts-inventory', 'frk-parts-boxmap', 'frk-toolbox-card'):
             copy(name+'.pdf', 'docs/downloads/'+name+'.pdf')
-        index = '<h1>Parts</h1><p class="intro">HT 135 / MS 261 / MS 462</p><nav class="downloads" aria-label="Documents"><a href="downloads/frk-part-reference.pdf" download>Offline reference PDF</a><a href="downloads/frk-parts-labels-avery.pdf">Part labels</a><a href="downloads/frk-parts-inventory.pdf">Inventory</a><a href="downloads/frk-parts-boxmap.pdf">Box map</a><a href="downloads/frk-bin-labels-avery.pdf">Bin labels</a></nav>'
+        index = '<h1>Parts</h1><p class="intro">HT 135 / MS 261 / MS 462</p><nav class="downloads" aria-label="Documents"><a href="downloads/frk-part-reference.pdf" download>Offline reference PDF</a><a href="downloads/frk-toolbox-card.pdf" download>Toolbox card</a><a href="downloads/frk-parts-labels-avery.pdf">Part labels</a><a href="downloads/frk-parts-inventory.pdf">Inventory</a><a href="downloads/frk-parts-boxmap.pdf">Box map</a><a href="downloads/frk-bin-labels-avery.pdf">Bin labels</a></nav>'
         occupied = {p['bin'] for p in self.parts.values()}
         bin_options = ''.join('<optgroup label="'+html.escape(section['name'], quote=True)+'">'+''.join(f'<option>{slot["id"]}</option>' for slot in section['bins'] if slot['id'] in occupied)+'</optgroup>' for section in self.layout['sections'])
         index += '<div class="filters" hidden><label>Find a part<input id="search" type="search" placeholder="Name, number, application or bin" autocomplete="off"></label><label>Model<select id="model"><option value="">All models</option>'+''.join(f'<option value="{k}">{v}</option>' for k,v in MODELS.items())+'</select></label><label>Bin<select id="bin"><option value="">All bins</option>'+bin_options+'</select></label></div><p id="results" role="status">'+str(len(self.parts))+' parts</p><ul class="parts">'
@@ -741,6 +795,30 @@ def check_pdfs(ref):
         for key in ref.bin_layout:
             if len(re.findall(rf'\b{key}\b', text)) != 1:
                 raise ValueError(f'Incorrect bin label count in {filename}: {key}')
+    toolbox = PdfReader(ROOT/'frk-toolbox-card.pdf')
+    if len(toolbox.pages) != 1 or tuple(toolbox.pages[0].mediabox) != (0, 0, 612, 792):
+        raise ValueError('Toolbox cards must occupy one US Letter page')
+    page = toolbox.pages[0]
+    content = identifier(page.extract_text())
+    for value in ('Field Repair Kit', 'Kit ID', 'Assignment'):
+        if content.count(identifier(value)) != 2:
+            raise ValueError(f'Toolbox card must contain two copies: {value}')
+    actions = ref.toolbox_actions()
+    links = [a.get_object() for a in page.get('/Annots', [])]
+    for action in actions:
+        if content.count(identifier(action['title'])) != 2:
+            raise ValueError(f'Toolbox action missing: {action["title"]}')
+        expected = 6 if action == actions[0] else 4  # QR, caption and online fallback.
+        if sum(a.get('/A', {}).get('/URI') == action['url'] for a in links) != expected:
+            raise ValueError(f'Toolbox QR/caption links missing: {action["url"]}')
+    for link in links:
+        left, bottom, right, top = map(float, link['/Rect'])
+        if not any(x+17 <= left <= right <= x+TOOLBOX_CARD_SIZE[0]-17
+                   and 792-y-TOOLBOX_CARD_SIZE[1]+17 <= bottom <= top <= 792-y-17
+                   for x, y in TOOLBOX_CARD_POSITIONS):
+            raise ValueError('Toolbox link outside its card safe area')
+    if (ROOT/'frk-toolbox-card.pdf').read_bytes() != (ROOT/'docs/downloads/frk-toolbox-card.pdf').read_bytes():
+        raise ValueError('Toolbox download differs from the printable original')
     book = PdfReader(ROOT/'frk-part-reference.pdf')
     destinations = book.named_destinations
     for p in ref.parts.values():
@@ -778,7 +856,7 @@ def main():
     if args.target == 'generate':
         return
     jobs = [(f'.build/parts/{p["id"]}/{name}.tex', 2 if name == 'bag-label' else 1, f'docs/parts/{p["id"]}/{name}.pdf') for p in ref.parts.values() for name in ('field-card', 'bag-label')]
-    jobs += [('frk-part-reference.tex', 3), ('frk-parts-labels-avery.tex', 2), ('frk-bin-labels-avery.tex', 2), ('frk-parts-inventory.tex', 2), ('frk-parts-boxmap.tex', 2)]
+    jobs += [('frk-part-reference.tex', 3), ('frk-parts-labels-avery.tex', 2), ('frk-bin-labels-avery.tex', 2), ('frk-parts-inventory.tex', 2), ('frk-parts-boxmap.tex', 2), ('frk-toolbox-card.tex', 2)]
     with ThreadPoolExecutor(max_workers=4) as pool:
         list(pool.map(lambda job: compile_pdf(*job, executable=args.pdflatex), jobs))
     ref.site()

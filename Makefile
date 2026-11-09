@@ -2,7 +2,7 @@ PYTHON ?= .venv/bin/python
 UV ?= uv
 PDFLATEX ?= pdflatex
 
-.PHONY: all setup generate labels binlabels inventory boxmap reference site check check-live clean
+.PHONY: all setup generate labels binlabels inventory boxmap reference toolbox site check check-live clean
 
 # One build refreshes every printable document and the GitHub Pages site.
 all: setup
@@ -11,7 +11,7 @@ all: setup
 setup:
 	$(UV) sync --frozen
 
-labels binlabels inventory boxmap reference site: all
+labels binlabels inventory boxmap reference toolbox site: all
 
 generate: setup
 	$(PYTHON) scripts/build.py generate
